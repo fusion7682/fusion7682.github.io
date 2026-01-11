@@ -1,143 +1,255 @@
 <!DOCTYPE html>
-<html lang="tr" style="scroll-behavior: smooth;">
+<html lang="tr" style="scroll-behavior:smooth;">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fusion Robotics 7682 | It Should Work In Theory</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        body { font-family: 'Roboto', sans-serif; background: #001233; color: #e5e7eb; }
-        .navbar { backdrop-filter: blur(10px); background: rgba(0, 18, 51, 0.8); }
-        .section { scroll-margin-top: 80px; padding: 4rem 1.5rem; border-bottom: 1px solid #1e3a8a; }
-        
-        /* Takım Renkleri: Koyu Mavi, Açık Mavi, Beyaz */
-        .text-fusion-light { color: #00a8e8; }
-        .bg-fusion-dark { background-color: #001233; }
-        .bg-fusion-blue { background-color: #002366; }
-        .border-fusion { border-color: #00a8e8; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fusion Robotics 7682 | It Should Work In Theory</title>
 
-        .timeline::before {
-            content: ''; position: absolute; top: 0; left: 50%; width: 4px;
-            height: 100%; background: linear-gradient(to bottom, #00a8e8, #002366);
-            transform: translateX(-50%);
-        }
-        .timeline-item { position: relative; width: 45%; background: #002366; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s; }
-        .timeline-item:hover { transform: scale(1.02); }
-        .timeline-item.left { margin-left: 55%; }
-        .timeline-item.right { margin-right: 55%; }
-        
-        .robot-card { background: #002366; border-top: 4px solid #00a8e8; transition: 0.3s; }
-        .robot-card:hover { transform: translateY(-10px); }
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-        @media (max-width: 768px) {
-            .timeline::before { left: 20px; }
-            .timeline-item { width: calc(100% - 60px); margin-left: 40px !important; }
-        }
-    </style>
+<style>
+body{
+    font-family:'Roboto',sans-serif;
+    background:#001233;
+    color:#e5e7eb;
+}
+
+/* Navbar */
+.navbar{
+    backdrop-filter:blur(12px);
+    background:rgba(0,18,51,.85);
+}
+
+/* Sections */
+.section{
+    scroll-margin-top:90px;
+    padding:5rem 1.5rem;
+    border-bottom:1px solid #1e3a8a;
+}
+
+/* Colors */
+.text-fusion{color:#00a8e8;}
+.bg-fusion-blue{background:#002366;}
+.border-fusion{border-color:#00a8e8;}
+
+/* Hero */
+.hero-bg{
+    background:linear-gradient(to bottom,#000,#001233);
+}
+.hero-glow{
+    text-shadow:0 0 35px rgba(0,168,232,.45);
+}
+
+/* Timeline */
+.timeline::before{
+    content:'';
+    position:absolute;
+    left:50%;
+    top:0;
+    width:3px;
+    height:100%;
+    background:linear-gradient(to bottom,#00a8e8,#002366);
+    transform:translateX(-50%);
+}
+
+.timeline-item{
+    position:relative;
+    width:45%;
+    background:rgba(0,35,102,.92);
+    padding:1.75rem;
+    border-radius:16px;
+    box-shadow:0 12px 32px rgba(0,0,0,.35);
+    transition:.3s;
+}
+.timeline-item:hover{transform:translateY(-6px);}
+.timeline-item.left{margin-left:55%;}
+.timeline-item.right{margin-right:55%;}
+
+.timeline-item::before{
+    content:'';
+    position:absolute;
+    top:26px;
+    width:14px;
+    height:14px;
+    background:#00a8e8;
+    border-radius:50%;
+    box-shadow:0 0 14px rgba(0,168,232,.8);
+}
+.timeline-item.left::before{left:-34px;}
+.timeline-item.right::before{right:-34px;}
+
+/* Robot cards */
+.robot-card{
+    background:rgba(0,35,102,.9);
+    border-top:4px solid #00a8e8;
+    backdrop-filter:blur(6px);
+    transition:.3s;
+}
+.robot-card:hover{transform:translateY(-12px);}
+
+/* Scroll animations */
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all .9s ease;
+}
+.reveal-left{
+    opacity:0;
+    transform:translateX(-60px);
+    transition:all .9s ease;
+}
+.reveal-right{
+    opacity:0;
+    transform:translateX(60px);
+    transition:all .9s ease;
+}
+.active{
+    opacity:1;
+    transform:translate(0);
+}
+
+/* Mobile */
+@media(max-width:768px){
+    .timeline::before{left:20px;}
+    .timeline-item{
+        width:calc(100% - 60px);
+        margin-left:40px !important;
+        margin-right:0 !important;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <nav class="navbar fixed top-0 w-full z-50 py-4 px-6 flex justify-between items-center border-b border-blue-900">
-        <div class="text-2xl font-bold text-white"><span class="text-fusion-light">FUSION</span> 7682</div>
-        <div class="hidden md:flex space-x-6">
-            <a href="#home" class="hover:text-fusion-light transition">Ana Sayfa</a>
-            <a href="#about" class="hover:text-fusion-light transition">Hakkımızda</a>
-            <a href="#events" class="hover:text-fusion-light transition">Başarılar</a>
-            <a href="#robots" class="hover:text-fusion-light transition">Robotlar</a>
-            <a href="#contact" class="hover:text-fusion-light transition">İletişim</a>
-        </div>
-        <div class="lang-toggle">
-            <button class="bg-blue-800 px-3 py-1 rounded text-sm font-bold">TR</button>
-        </div>
-    </nav>
+<!-- NAVBAR -->
+<nav class="navbar fixed top-0 w-full z-50 py-4 px-6 flex justify-between items-center border-b border-blue-900">
+    <div class="text-2xl font-bold">
+        <span class="text-fusion">FUSION</span> 7682
+    </div>
+    <div class="hidden md:flex space-x-6">
+        <a href="#home" class="hover:text-fusion transition">Ana Sayfa</a>
+        <a href="#about" class="hover:text-fusion transition">Hakkımızda</a>
+        <a href="#events" class="hover:text-fusion transition">Başarılar</a>
+        <a href="#robots" class="hover:text-fusion transition">Robotlar</a>
+        <a href="#contact" class="hover:text-fusion transition">İletişim</a>
+    </div>
+    <button class="bg-blue-800 px-3 py-1 rounded text-sm font-bold">TR</button>
+</nav>
 
-    <section id="home" class="min-h-screen flex items-center justify-center text-center bg-gradient-to-b from-black to-fusion-dark">
-        <div class="p-8">
-            <h1 class="text-6xl font-extrabold text-white mb-4">FUSION ROBOTICS</h1>
-            <p class="text-2xl text-fusion-light italic mb-8">"It Should Work In Theory"</p>
-            <a href="#events" class="px-8 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-500 transition">Serüvenimizi Gör</a>
-        </div>
-    </section>
+<!-- HERO -->
+<section id="home" class="min-h-screen hero-bg flex items-center justify-center text-center">
+    <div>
+        <h1 class="text-6xl font-extrabold mb-4 hero-glow reveal">
+            FUSION ROBOTICS
+        </h1>
+        <p class="text-2xl text-fusion italic mb-8 reveal">
+            "It Should Work In Theory"
+        </p>
+        <a href="#events" class="px-8 py-3 bg-blue-600 rounded-full font-bold hover:bg-blue-500 transition reveal">
+            Serüvenimizi Gör
+        </a>
+    </div>
+</section>
 
-    <section id="about" class="section">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h2 class="text-4xl font-bold text-fusion-light mb-6">Hakkımızda</h2>
-                <p class="text-lg leading-relaxed">
-                    Füsun Yönder Anadolu Lisesi'nin kalbinde doğan <b>Fusion Robotics #7682</b>, teoriyi pratiğe döken bir mühendislik topluluğudur. 
-                    Bahçelievler'den yola çıkarak uluslararası arenalarda (FRC, Teknofest) okulumuzu ve ülkemizi temsil ediyoruz. 
-                    Mottorumuz olan <i>"It Should Work In Theory"</i> ile her soruna bilimsel bir merakla yaklaşıyoruz.
-                </p>
-            </div>
-            <div class="bg-blue-900 p-8 rounded-2xl text-center border-2 border-dashed border-fusion">
-                <span class="text-6xl font-bold">#7682</span>
-                <p class="mt-2 font-bold tracking-widest">FÜSUN YÖNDER ANADOLU LİSESİ</p>
-            </div>
-        </div>
-    </section>
+<!-- ABOUT -->
+<section id="about" class="section">
+<div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <div class="reveal">
+        <h2 class="text-4xl font-bold text-fusion mb-6">Hakkımızda</h2>
+        <p class="text-lg leading-relaxed">
+            Füsun Yönder Anadolu Lisesi'nde doğan <b>Fusion Robotics #7682</b>,
+            teoriyi pratiğe dönüştüren bir mühendislik topluluğudur.
+            FRC ve Teknofest sahnelerinde okulumuzu ve ülkemizi temsil ediyoruz.
+        </p>
+    </div>
+    <div class="bg-fusion-blue p-10 rounded-2xl text-center border border-fusion reveal">
+        <span class="text-6xl font-bold">#7682</span>
+        <p class="mt-3 font-bold tracking-widest">FÜSUN YÖNDER A.L.</p>
+    </div>
+</div>
+</section>
 
-    <section id="events" class="section">
-        <h2 class="text-4xl font-bold text-center text-fusion-light mb-16">Başarı Yolculuğumuz</h2>
-        <div class="timeline relative max-w-5xl mx-auto">
-            
-            <div class="timeline-item left mb-8">
-                <span class="text-fusion-light font-bold">2024</span>
-                <h3 class="text-xl font-bold">Aerospace Valley Regional</h3>
-                <p class="text-gray-400">ABD California'da düzenlenen yarışmada 7. olduk.</p>
-            </div>
+<!-- TIMELINE -->
+<section id="events" class="section">
+<h2 class="text-4xl font-bold text-center text-fusion mb-16 reveal">
+    Başarı Yolculuğumuz
+</h2>
 
-            <div class="timeline-item right mb-8">
-                <span class="text-fusion-light font-bold">2023</span>
-                <h3 class="text-xl font-bold">Haliç Regional</h3>
-                <p class="text-gray-400">Finallere yükseldik, En İyi 3. İttifak başarısı.</p>
-            </div>
+<div class="timeline relative max-w-5xl mx-auto space-y-14">
 
-            <div class="timeline-item left mb-8">
-                <span class="text-fusion-light font-bold">2022</span>
-                <h3 class="text-xl font-bold">Pendik Off-Season</h3>
-                <p class="text-fusion-light font-bold">🏆 Şampiyon (Winner)</p>
-                <p class="text-gray-400">İttifakımızla birlikte birincilik kupasını kaldırdık.</p>
-            </div>
+<div class="timeline-item left reveal-left">
+    <span class="text-fusion font-bold">2024</span>
+    <h3 class="text-xl font-bold">Aerospace Valley Regional</h3>
+    <p class="text-gray-400">California – 7.’lik</p>
+</div>
 
-            <div class="timeline-item right mb-8">
-                <span class="text-fusion-light font-bold">2021</span>
-                <h3 class="text-xl font-bold">Teknofest</h3>
-                <p class="text-fusion-light font-bold">🥈 Türkiye İkincisi</p>
-                <p class="text-gray-400">Eğitim Teknolojileri alanında 243 takım arasından 2. olduk.</p>
-            </div>
+<div class="timeline-item right reveal-right">
+    <span class="text-fusion font-bold">2023</span>
+    <h3 class="text-xl font-bold">Haliç Regional</h3>
+    <p class="text-gray-400">En İyi 3. İttifak</p>
+</div>
 
-            <div class="timeline-item left mb-8">
-                <span class="text-fusion-light font-bold">2019</span>
-                <h3 class="text-xl font-bold">GameX Expo Off-Season</h3>
-                <p class="text-gray-400">Yarı finallere çıkma başarısı gösterdik.</p>
-            </div>
+<div class="timeline-item left reveal-left">
+    <span class="text-fusion font-bold">2022</span>
+    <h3 class="text-xl font-bold">Pendik Off-Season</h3>
+    <p class="text-fusion font-bold">🏆 Şampiyon</p>
+</div>
 
-        </div>
-    </section>
+<div class="timeline-item right reveal-right">
+    <span class="text-fusion font-bold">2021</span>
+    <h3 class="text-xl font-bold">Teknofest</h3>
+    <p class="text-fusion font-bold">🥈 Türkiye 2.si</p>
+</div>
 
-    <section id="robots" class="section bg-black bg-opacity-30">
-        <h2 class="text-4xl font-bold text-center text-fusion-light mb-12">Robotlarımız</h2>
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="robot-card p-8 rounded-xl">
-                <h3 class="text-2xl font-bold mb-2">Sezon 2024</h3>
-                <p class="text-fusion-light font-mono">Status: Retired</p>
-                <p class="mt-4 text-gray-400 italic">Aerospace Valley Prototipi</p>
-            </div>
-            <div class="robot-card p-8 rounded-xl border-fusion shadow-2xl">
-                <h3 class="text-2xl font-bold mb-2">Sezon 2022</h3>
-                <p class="text-green-400 font-mono">Status: Winner</p>
-                <p class="mt-4 text-gray-400 italic">Pendik Off-Season Champion</p>
-            </div>
-            <div class="robot-card p-8 rounded-xl opacity-70">
-                <h3 class="text-2xl font-bold mb-2">Sezon 2019</h3>
-                <p class="text-gray-400 font-mono">Status: Legacy</p>
-                <p class="mt-4 text-gray-400 italic">Early Prototypes</p>
-            </div>
-        </div>
-    </section>
+</div>
+</section>
 
-    <section id="contact" class="section">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
-            <div class="bg-fusion-blue p-8 rounded-2xl">
-                <h2 class="text-3xl font-bold text-fusion-light mb-6">Bize Ulaşın</h2>
-                <p class="mb-4">📍 Bahçelievler / İstanbul</p
+<!-- ROBOTS -->
+<section id="robots" class="section bg-black bg-opacity-30">
+<h2 class="text-4xl font-bold text-center text-fusion mb-12 reveal">
+    Robotlarımız
+</h2>
+
+<div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-center">
+    <div class="robot-card p-8 rounded-xl reveal">
+        <h3 class="text-2xl font-bold">2024</h3>
+        <p class="text-fusion font-mono">Retired</p>
+    </div>
+
+    <div class="robot-card p-8 rounded-xl shadow-2xl reveal">
+        <h3 class="text-2xl font-bold">2022</h3>
+        <p class="text-green-400 font-mono">Winner</p>
+    </div>
+
+    <div class="robot-card p-8 rounded-xl opacity-70 reveal">
+        <h3 class="text-2xl font-bold">2019</h3>
+        <p class="text-gray-400 font-mono">Legacy</p>
+    </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+<div class="max-w-5xl mx-auto bg-fusion-blue p-10 rounded-2xl text-center reveal">
+    <h2 class="text-3xl font-bold text-fusion mb-4">Bize Ulaşın</h2>
+    <p>📍 Bahçelievler / İstanbul</p>
+</div>
+</section>
+
+<!-- JS: Scroll Animations -->
+<script>
+const elements=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.15});
+elements.forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
