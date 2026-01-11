@@ -1,240 +1,224 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" style="scroll-behavior:smooth;">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FUSION 7682</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fusion Robotics 7682 | It Should Work In Theory</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-    body {
-      background: radial-gradient(circle at top, #061c3a, #020b1a);
-      color: white;
-      overflow-x: hidden;
-    }
+<style>
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:radial-gradient(circle at top,#061c3a,#020b1a);
+  color:#e5e7eb;
+}
 
-    a { text-decoration: none; color: inherit; }
+/* NAVBAR */
+.navbar{
+  backdrop-filter:blur(12px);
+  background:rgba(0,18,51,.85);
+}
 
-    /* NAVBAR */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 60px;
-      border-bottom: 1px solid rgba(255,255,255,.15);
-    }
+/* SECTIONS */
+.section{
+  scroll-margin-top:90px;
+  padding:6rem 1.5rem;
+  border-bottom:1px solid #1e3a8a;
+}
 
-    nav .logo {
-      font-size: 26px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
+/* COLORS */
+.text-fusion{color:#00a8e8;}
+.bg-fusion-blue{background:#002366;}
+.border-fusion{border-color:#00a8e8;}
 
-    nav .logo span {
-      color: #00a8e8;
-    }
+/* HERO */
+.hero-bg{
+  min-height:90vh;
+  background:linear-gradient(to bottom,#000,#001233);
+}
+.hero-glow{
+  text-shadow:0 0 35px rgba(0,168,232,.45);
+}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 32px;
-    }
+/* TIMELINE */
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:50%;
+  top:0;
+  width:3px;
+  height:100%;
+  background:linear-gradient(to bottom,#00a8e8,#002366);
+  transform:translateX(-50%);
+}
+.timeline-item{
+  position:relative;
+  width:45%;
+  background:rgba(0,35,102,.92);
+  padding:1.75rem;
+  border-radius:16px;
+  box-shadow:0 12px 32px rgba(0,0,0,.35);
+}
+.timeline-item.left{margin-left:55%;}
+.timeline-item.right{margin-right:55%;}
+.timeline-item::before{
+  content:'';
+  position:absolute;
+  top:26px;
+  width:14px;
+  height:14px;
+  background:#00a8e8;
+  border-radius:50%;
+  box-shadow:0 0 14px rgba(0,168,232,.8);
+}
+.timeline-item.left::before{left:-34px;}
+.timeline-item.right::before{right:-34px;}
 
-    nav ul li:hover {
-      color: #00a8e8;
-    }
+/* MAP */
+.map-container{
+  margin-top:2rem;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 0 30px rgba(0,168,232,.25);
+}
+.map-container iframe{
+  width:100%;
+  height:420px;
+  border:none;
+}
 
-    .lang-switch button {
-      background: none;
-      border: 1px solid #00a8e8;
-      color: #00a8e8;
-      padding: 6px 12px;
-      margin-left: 8px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+/* SCROLL */
+.reveal,.reveal-left,.reveal-right{
+  opacity:0;
+  transition:.9s ease;
+}
+.reveal{transform:translateY(40px);}
+.reveal-left{transform:translateX(-60px);}
+.reveal-right{transform:translateX(60px);}
+.active{
+  opacity:1;
+  transform:translate(0);
+}
 
-    .lang-switch button:hover {
-      background: #00a8e8;
-      color: black;
-    }
-
-    /* HERO */
-    header {
-      height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      gap: 24px;
-    }
-
-    header h1 {
-      font-size: 64px;
-      letter-spacing: 3px;
-      text-shadow: 0 0 35px rgba(0,168,232,.5);
-    }
-
-    header p {
-      font-size: 22px;
-      color: #00a8e8;
-      font-style: italic;
-    }
-
-    header button {
-      padding: 16px 36px;
-      border-radius: 999px;
-      border: none;
-      background: #1e66ff;
-      color: white;
-      font-size: 18px;
-      cursor: pointer;
-      box-shadow: 0 0 30px rgba(30,102,255,.5);
-    }
-
-    header button:hover {
-      transform: scale(1.05);
-    }
-
-    section {
-      padding: 100px 80px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    section h2 {
-      font-size: 42px;
-      margin-bottom: 16px;
-    }
-
-    section p {
-      max-width: 800px;
-      font-size: 18px;
-      opacity: .85;
-    }
-
-    /* MAP */
-    .map-container {
-      margin-top: 32px;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 0 30px rgba(0,168,232,.25);
-    }
-
-    .map-container iframe {
-      width: 100%;
-      height: 420px;
-      border: none;
-    }
-
-    /* SCROLL ANIMATIONS */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all .9s ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      opacity: .6;
-      font-size: 14px;
-    }
-  </style>
+/* MOBILE */
+@media(max-width:768px){
+  .timeline::before{left:20px;}
+  .timeline-item{
+    width:calc(100% - 60px);
+    margin-left:40px !important;
+    margin-right:0 !important;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <div class="logo">FUSION <span>7682</span></div>
-    <ul>
-      <li data-tr="Ana Sayfa" data-en="Home"></li>
-      <li data-tr="Hakkımızda" data-en="About"></li>
-      <li data-tr="Konum" data-en="Location"></li>
-      <li data-tr="İletişim" data-en="Contact"></li>
-    </ul>
-    <div class="lang-switch">
-      <button onclick="setLang('tr')">TR</button>
-      <button onclick="setLang('en')">EN</button>
-    </div>
-  </nav>
+<!-- NAVBAR -->
+<nav class="navbar fixed top-0 w-full z-50 py-4 px-6 flex justify-between items-center border-b border-blue-900">
+  <div class="text-2xl font-bold">
+    <span class="text-fusion">FUSION</span> 7682
+  </div>
+  <div class="hidden md:flex space-x-6">
+    <a href="#home" data-tr="Ana Sayfa" data-en="Home"></a>
+    <a href="#about" data-tr="Hakkımızda" data-en="About"></a>
+    <a href="#events" data-tr="Başarılar" data-en="Achievements"></a>
+    <a href="#location" data-tr="Konum" data-en="Location"></a>
+    <a href="#contact" data-tr="İletişim" data-en="Contact"></a>
+  </div>
+  <div>
+    <button onclick="setLang('tr')" class="px-2">TR</button>
+    <button onclick="setLang('en')" class="px-2">EN</button>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <header>
-    <h1 class="reveal">FUSION ROBOTICS</h1>
-    <p class="reveal">"It Should Work In Theory"</p>
-    <button class="reveal" data-tr="Serüvenimizi Gör" data-en="See Our Journey"></button>
-  </header>
+<!-- HERO -->
+<section id="home" class="hero-bg flex items-center justify-center text-center">
+  <div>
+    <h1 class="text-6xl font-extrabold mb-4 hero-glow reveal">FUSION ROBOTICS</h1>
+    <p class="text-2xl text-fusion italic mb-8 reveal">"It Should Work In Theory"</p>
+    <a href="#events" class="px-8 py-3 bg-blue-600 rounded-full font-bold reveal"
+       data-tr="Serüvenimizi Gör" data-en="See Our Journey"></a>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section class="reveal">
-    <h2 data-tr="Biz Kimiz?" data-en="Who Are We?"></h2>
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="max-w-5xl mx-auto reveal">
+    <h2 class="text-4xl font-bold text-fusion mb-6"
+        data-tr="Biz Kimiz?" data-en="Who Are We?"></h2>
     <p
-      data-tr="FUSION 7682, FRC yarışmalarında mühendislik, yazılım ve takım ruhunu birleştiren bir lise robotik takımıdır."
-      data-en="FUSION 7682 is a high school robotics team combining engineering, software and teamwork in FRC competitions.">
+      data-tr="Fusion Robotics 7682, FRC yarışmalarında mühendislik ve takım ruhunu birleştiren bir lise robotik takımıdır."
+      data-en="Fusion Robotics 7682 is a high school robotics team competing in FIRST Robotics Competition.">
     </p>
-  </section>
+  </div>
+</section>
 
-  <!-- LOCATION -->
-  <section id="location" class="reveal">
-    <h2 data-tr="Okulumuzun Konumu" data-en="Our School Location"></h2>
-    <p
-      data-tr="Füsun Yönder Anadolu Lisesi"
-      data-en="Fusun Yonder Anatolian High School">
-    </p>
+<!-- TIMELINE -->
+<section id="events" class="section">
+  <h2 class="text-4xl font-bold text-center text-fusion mb-16 reveal"
+      data-tr="Başarı Yolculuğumuz" data-en="Our Journey"></h2>
 
-    <div class="map-container">
-      <iframe
-        src="https://www.google.com/maps?q=41.0115395,28.8486905&z=17&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+  <div class="timeline relative max-w-5xl mx-auto space-y-14">
+    <div class="timeline-item left reveal-left">
+      <b class="text-fusion">2024</b>
+      <p>Aerospace Valley Regional – California</p>
     </div>
-  </section>
+    <div class="timeline-item right reveal-right">
+      <b class="text-fusion">2023</b>
+      <p>Haliç Regional – En İyi 3. İttifak</p>
+    </div>
+    <div class="timeline-item left reveal-left">
+      <b class="text-fusion">2022</b>
+      <p>🏆 Pendik Off-Season Şampiyonu</p>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    © 2026 FUSION 7682 – FIRST Robotics Competition
-  </footer>
+<!-- LOCATION -->
+<section id="location" class="section">
+  <h2 class="text-4xl font-bold text-fusion mb-6 reveal"
+      data-tr="Okulumuzun Konumu" data-en="School Location"></h2>
 
-  <!-- JS -->
-  <script>
-    // Scroll Reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
+  <div class="map-container reveal">
+    <iframe src="https://www.google.com/maps?q=41.0115395,28.8486905&z=17&output=embed"></iframe>
+  </div>
+</section>
 
-    reveals.forEach(r => observer.observe(r));
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="max-w-4xl mx-auto bg-fusion-blue p-10 rounded-2xl text-center reveal">
+    <h2 class="text-3xl font-bold text-fusion mb-6"
+        data-tr="Bize Ulaşın" data-en="Contact Us"></h2>
+    <p>📸 Instagram: <b>@fusionrobotics7682</b></p>
+    <p>▶️ YouTube: <b>@FusionRobo7682</b></p>
+    <p>🐦 X: <b>@Fusion7682</b></p>
+    <p class="mt-4">📧 fusionrobo7682@gmail.com</p>
+  </div>
+</section>
 
-    // Language System
-    function setLang(lang) {
-      document.querySelectorAll('[data-tr]').forEach(el => {
-        el.textContent = el.getAttribute(`data-${lang}`);
-      });
-      localStorage.setItem('lang', lang);
+<!-- JS -->
+<script>
+const elements=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target);
     }
+  });
+},{threshold:0.15});
+elements.forEach(el=>observer.observe(el));
 
-    const savedLang = localStorage.getItem('lang') || 'tr';
-    setLang(savedLang);
-  </script>
+function setLang(lang){
+  document.querySelectorAll('[data-tr]').forEach(el=>{
+    el.textContent=el.getAttribute(`data-${lang}`);
+  });
+  localStorage.setItem('lang',lang);
+}
+setLang(localStorage.getItem('lang')||'tr');
+</script>
 
 </body>
 </html>
