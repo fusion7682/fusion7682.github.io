@@ -78,15 +78,6 @@ body{
 .timeline-item.left::before{left:-34px;}
 .timeline-item.right::before{right:-34px;}
 
-/* Robot cards */
-.robot-card{
-    background:rgba(0,35,102,.9);
-    border-top:4px solid #00a8e8;
-    backdrop-filter:blur(6px);
-    transition:.3s;
-}
-.robot-card:hover{transform:translateY(-12px);}
-
 /* Scroll animations */
 .reveal{
     opacity:0;
@@ -131,7 +122,6 @@ body{
         <a href="#home" class="hover:text-fusion transition">Ana Sayfa</a>
         <a href="#about" class="hover:text-fusion transition">Hakkımızda</a>
         <a href="#events" class="hover:text-fusion transition">Başarılar</a>
-        <a href="#robots" class="hover:text-fusion transition">Robotlar</a>
         <a href="#contact" class="hover:text-fusion transition">İletişim</a>
     </div>
     <button class="bg-blue-800 px-3 py-1 rounded text-sm font-bold">TR</button>
@@ -205,39 +195,19 @@ body{
 </div>
 </section>
 
-<!-- ROBOTS -->
-<section id="robots" class="section bg-black bg-opacity-30">
-<h2 class="text-4xl font-bold text-center text-fusion mb-12 reveal">
-    Robotlarımız
-</h2>
-
-<div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-center">
-    <div class="robot-card p-8 rounded-xl reveal">
-        <h3 class="text-2xl font-bold">2024</h3>
-        <p class="text-fusion font-mono">Retired</p>
-    </div>
-
-    <div class="robot-card p-8 rounded-xl shadow-2xl reveal">
-        <h3 class="text-2xl font-bold">2022</h3>
-        <p class="text-green-400 font-mono">Winner</p>
-    </div>
-
-    <div class="robot-card p-8 rounded-xl opacity-70 reveal">
-        <h3 class="text-2xl font-bold">2019</h3>
-        <p class="text-gray-400 font-mono">Legacy</p>
-    </div>
-</div>
-</section>
-
 <!-- CONTACT -->
 <section id="contact" class="section">
-<div class="max-w-5xl mx-auto bg-fusion-blue p-10 rounded-2xl text-center reveal">
-    <h2 class="text-3xl font-bold text-fusion mb-4">Bize Ulaşın</h2>
-    <p>📍 Bahçelievler / İstanbul</p>
+<div class="max-w-4xl mx-auto bg-fusion-blue p-10 rounded-2xl text-center reveal">
+    <h2 class="text-3xl font-bold text-fusion mb-6">Bize Ulaşın</h2>
+
+    <p class="mb-2">📸 Instagram: <b>@fusionrobotics7682</b></p>
+    <p class="mb-2">▶️ YouTube: <b>@FusionRobo7682</b></p>
+    <p class="mb-2">🐦 X: <b>@Fusion7682</b></p>
+    <p class="mt-4">📧 Mail: <b>fusionrobo7682@gmail.com</b></p>
 </div>
 </section>
 
-<!-- JS: Scroll Animations -->
+<!-- JS -->
 <script>
 const elements=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
 const observer=new IntersectionObserver(entries=>{
