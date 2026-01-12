@@ -312,6 +312,33 @@
                     </div>
                 </div>
 
+                <script>
+    function toggleFAQ(button) {
+        // Tıklanan butondan sonraki div'i (yani cevabı) bulur
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('svg');
+        
+        // Eğer zaten açıksa kapat
+        if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+            content.style.maxHeight = '0px';
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            // Diğer tüm FAQ cevaplarını kapat (Akordiyon efekti)
+            document.querySelectorAll('#faq .overflow-hidden').forEach(el => {
+                if (el.style.maxHeight !== '0px') {
+                    el.style.maxHeight = '0px';
+                    const otherIcon = el.previousElementSibling.querySelector('svg');
+                    if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Sadece tıklananı aç
+            content.style.maxHeight = content.scrollHeight + 'px';
+            icon.style.transform = 'rotate(180deg)';
+        }
+    }
+</script>
+
             </div>
         </div>
     </section>
