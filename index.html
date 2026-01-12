@@ -126,6 +126,7 @@
             <a href="#home" class="hover:text-fusion transition" data-tr="Ana Sayfa" data-en="Home"></a>
             <a href="#about" class="hover:text-fusion transition" data-tr="Hakkımızda" data-en="About"></a>
             <a href="#events" class="hover:text-fusion transition" data-tr="Başarılar" data-en="Achievements"></a>
+            <a href="#gallery" class="hover:text-fusion transition" data-tr="Galeri" data-en="Gallery"></a>
             <a href="#sponsors" class="hover:text-fusion transition" data-tr="Sponsorlar" data-en="Sponsors"></a>
             <a href="#faq" class="hover:text-fusion transition" data-tr="SSS" data-en="FAQ"></a>
             <a href="#location" class="hover:text-fusion transition" data-tr="Konum" data-en="Location"></a>
@@ -199,6 +200,80 @@
 
         </div>
     </section>
+    
+    <section id="gallery" class="py-20 bg-black">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-12 reveal">
+            <h2 class="text-4xl font-bold text-fusion mb-4" data-tr="Başarı Yolculuğumuz" data-en="Our Journey"></h2>
+            
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <button onclick="filterGallery('all')" class="px-6 py-2 rounded-full border border-fusion text-fusion hover:bg-fusion hover:text-black transition-all duration-300 active-filter" id="filter-all">ALL</button>
+                <button onclick="filterGallery('2023')" class="px-6 py-2 rounded-full border border-gray-700 text-gray-400 hover:border-fusion hover:text-fusion transition-all duration-300">2023</button>
+                <button onclick="filterGallery('2022')" class="px-6 py-2 rounded-full border border-gray-700 text-gray-400 hover:border-fusion hover:text-fusion transition-all duration-300">2022</button>
+                <button onclick="filterGallery('2021')" class="px-6 py-2 rounded-full border border-gray-700 text-gray-400 hover:border-fusion hover:text-fusion transition-all duration-300">2021</button>
+            </div>
+        </div>
+
+        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+            
+            <div class="gallery-item 2023 reveal md:row-span-2 relative group overflow-hidden rounded-2xl border border-blue-900 shadow-lg transition-all duration-500">
+                <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a1930" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="text-fusion font-bold">2023</span>
+                    <p class="text-white text-sm">Season: Charged Up</p>
+                </div>
+            </div>
+
+            <div class="gallery-item 2022 reveal md:col-span-2 relative group overflow-hidden rounded-2xl border border-blue-900 shadow-lg transition-all duration-500">
+                <img src="https://images.unsplash.com/photo-1561144409-519391e5518b" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="text-white text-xl font-bold">2022 - Rapid React</span>
+                </div>
+            </div>
+
+            <div class="gallery-item 2021 reveal relative group overflow-hidden rounded-2xl border border-blue-900 shadow-lg transition-all duration-500">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-fusion/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="text-black font-bold text-lg">2021</span>
+                </div>
+            </div>
+
+            </div>
+    </div>
+</section>
+
+<script>
+function filterGallery(year) {
+    const items = document.querySelectorAll('.gallery-item');
+    const buttons = document.querySelectorAll('#gallery button');
+
+    // Buton stilini güncelle
+    buttons.forEach(btn => {
+        btn.classList.remove('border-fusion', 'text-fusion');
+        btn.classList.add('border-gray-700', 'text-gray-400');
+    });
+    event.target.classList.add('border-fusion', 'text-fusion');
+    event.target.classList.remove('border-gray-700', 'text-gray-400');
+
+    // Filtreleme yap
+    items.forEach(item => {
+        item.style.transform = 'scale(0.8)';
+        item.style.opacity = '0';
+        
+        setTimeout(() => {
+            if (year === 'all' || item.classList.contains(year)) {
+                item.style.display = 'block';
+                setTimeout(() => {
+                    item.style.transform = 'scale(1)';
+                    item.style.opacity = '1';
+                }, 10);
+            } else {
+                item.style.display = 'none';
+            }
+        }, 300);
+    });
+}
+</script>
     
     <section id="sponsors" class="section">
         <div class="max-w-5xl mx-auto text-center">
