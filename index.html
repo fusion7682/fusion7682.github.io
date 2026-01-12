@@ -127,6 +127,7 @@
             <a href="#about" class="hover:text-fusion transition" data-tr="Hakkımızda" data-en="About"></a>
             <a href="#events" class="hover:text-fusion transition" data-tr="Başarılar" data-en="Achievements"></a>
             <a href="#sponsors" class="hover:text-fusion transition" data-tr="Sponsorlar" data-en="Sponsors"></a>
+            <a href="#faq" class="hover:text-fusion transition" data-tr="SSS" data-en="FAQ"></a>
             <a href="#location" class="hover:text-fusion transition" data-tr="Konum" data-en="Location"></a>
         </div>
         <div class="flex space-x-2">
@@ -227,6 +228,85 @@
             </div>
         </div>
     </section>
+    
+    <section id="faq" class="section">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-fusion mb-16 reveal" data-tr="Sıkça Sorulan Sorular" data-en="Frequently Asked Questions"></h2>
+            
+            <div class="space-y-4">
+                <div class="reveal bg-blue-900 bg-opacity-20 border border-blue-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-fusion">
+                    <button class="w-full py-5 px-8 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                        <span class="text-lg font-semibold" data-tr="Takıma katılmak için tecrübe şart mı?" data-en="Do I need experience to join the team?"></span>
+                        <svg class="w-6 h-6 text-fusion transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="p-8 pt-0 text-gray-400 border-t border-blue-900 border-opacity-50" 
+                           data-tr="Hayır, öğrenmeye istekli olman yeterli! Teknik ekiplerimiz (yazılım, mekanik) ve idari ekiplerimiz için gerekli eğitimleri takım içinde kendi mentorlarımız ve tecrübeli üyelerimizle veriyoruz." 
+                           data-en="No, being eager to learn is enough! We provide the necessary training for our technical (software, mechanics) and administrative teams within the team through our mentors and experienced members.">
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal bg-blue-900 bg-opacity-20 border border-blue-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-fusion">
+                    <button class="w-full py-5 px-8 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                        <span class="text-lg font-semibold" data-tr="Sadece mühendislik mi yapıyorsunuz?" data-en="Do you only do engineering?"></span>
+                        <svg class="w-6 h-6 text-fusion transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="p-8 pt-0 text-gray-400 border-t border-blue-900 border-opacity-50" 
+                           data-tr="Kesinlikle hayır. Takımımızda sosyal medya yönetimi, grafik tasarım, sponsorluk ilişkileri ve sosyal sorumluluk projeleri gibi idari görevler de mevcut. Her yeteneğe uygun bir alanımız var." 
+                           data-en="Definitely not. Our team also has administrative roles such as social media management, graphic design, sponsorship relations, and social responsibility projects. We have a place for every talent.">
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal bg-blue-900 bg-opacity-20 border border-blue-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-fusion">
+                    <button class="w-full py-5 px-8 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                        <span class="text-lg font-semibold" data-tr="Sponsorluk desteği sadece maddi mi olmalı?" data-en="Should sponsorship support only be financial?"></span>
+                        <svg class="w-6 h-6 text-fusion transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="p-8 pt-0 text-gray-400 border-t border-blue-900 border-opacity-50" 
+                           data-tr="Hayır; parça desteği, atölye imkanı, teknik eğitim veya mentorluk gibi ayni destekleri de çok değerli buluyoruz. Takımımıza her türlü katkı, geleceğin mühendislerini yetiştirmemize yardımcı olur." 
+                           data-en="No; we also find in-kind supports such as parts, workshop facilities, technical training, or mentorship very valuable. Any contribution to our team helps us raise the engineers of the future.">
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal bg-blue-900 bg-opacity-20 border border-blue-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-fusion">
+                    <button class="w-full py-5 px-8 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                        <span class="text-lg font-semibold" data-tr="'It Should Work In Theory' ne anlama geliyor?" data-en="What does 'It Should Work In Theory' mean?"></span>
+                        <svg class="w-6 h-6 text-fusion transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="p-8 pt-0 text-gray-400 border-t border-blue-900 border-opacity-50" 
+                           data-tr="Bu bizim sloganımız! Mühendislik süreçlerindeki deneme-yanılma kültürüne ve teoride her şeyin mükemmel olsa da pratikteki sürprizlere esprili ve gerçekçi bakış açımızı yansıtıyor." 
+                           data-en="This is our slogan! It reflects our humorous and realistic perspective on the trial-and-error culture in engineering processes and the surprises in practice, even if everything is perfect in theory.">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+            // Akordiyon efekti: Diğerlerini kapat
+            document.querySelectorAll('#faq div.max-h-screen').forEach(el => {
+                el.style.maxHeight = '0px';
+                el.previousElementSibling.querySelector('svg').style.transform = 'rotate(0deg)';
+            });
+
+            if (!isOpen) {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
     
     <section id="location" class="section">
         <div class="max-w-5xl mx-auto">
