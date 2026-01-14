@@ -1,510 +1,77 @@
 <!DOCTYPE html>
-<html lang="tr" style="scroll-behavior:smooth;">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fusion Robotics 7682 | It Should Work In Theory</title>
-    <meta name="description" content="Fusion Robotics #7682 - Füsun Yönder Anadolu Lisesi FRC ve Teknofest Takımı. Mühendislik, robotik ve inovasyon yolculuğumuz.">
-    <meta name="keywords" content="Fusion Robotics, 7682, FRC, Teknofest, Füsun Yönder Anadolu Lisesi, Robotik Takımı, İstanbul Robotik">
-    <meta name="author" content="Fusion Robotics #7682">
-    <meta property="og:title" content="Fusion Robotics 7682">
-    <meta property="og:description" content="Teoriyi pratiğe dönüştüren mühendislik topluluğu.">
-    <meta property="og:image" content="https://fusion7682.github.io/navbarlogo.png"> 
-    <meta property="og:url" content="https://fusion7682.github.io">
-    <meta name="google-site-verification" content="IYXo7XVPff58_eW2vegEzdwZxqfCO0JOJkH1FUPEqqo" />
-    
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    
+    <title>Geliştirme Aşamasındayız | Fusion Robotics 7682</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background: radial-gradient(circle at top, #061c3a, #001233);
+            background: radial-gradient(circle at center, #061c3a, #000000);
             color: #e5e7eb;
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        .navbar {
-            backdrop-filter: blur(12px);
-            background: rgba(0,18,51,.85);
-        }
-
-        /* Sections */
-        .section {
-            scroll-margin-top: 90px;
-            padding: 5rem 1.5rem;
-            border-bottom: 1px solid rgba(30, 58, 138, 0.5);
-        }
-
-        /* Colors & Glows */
-        .text-fusion { color: #00a8e8; }
-        .bg-fusion-blue { background: #002366; }
-        .hero-glow { text-shadow: 0 0 35px rgba(0,168,232,.45); }
-
-        /* Timeline (Başarı Çizelgesi) */
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(to bottom, #00a8e8, #002366);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            width: 45%;
-            background: rgba(0,35,102,.92);
-            padding: 1.75rem;
-            border-radius: 16px;
-            box-shadow: 0 12px 32px rgba(0,0,0,.35);
-            transition: .4s ease;
-        }
-
-        .timeline-item:hover { transform: translateY(-8px); border: 1px solid #00a8e8; }
-        .timeline-item.left { margin-left: 55%; }
-        .timeline-item.right { margin-right: 55%; }
-
-        /* Timeline Dots */
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            top: 26px;
-            width: 16px;
-            height: 16px;
-            background: #00a8e8;
-            border-radius: 50%;
-            box-shadow: 0 0 14px rgba(0,168,232,1);
-            z-index: 2;
-        }
-        .timeline-item.left::after { left: -36px; }
-        .timeline-item.right::after { right: -36px; }
-
-        /* Scroll Animations (Reveal) */
-        .reveal, .reveal-left, .reveal-right {
-            opacity: 0;
-            transition: all 1s ease-out;
-        }
-        .reveal { transform: translateY(50px); }
-        .reveal-left { transform: translateX(-70px); }
-        .reveal-right { transform: translateX(70px); }
-
-        .active {
-            opacity: 1 !important;
-            transform: translate(0) !important;
-        }
-
-        /* Map Container */
-        .map-container {
-            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            box-shadow: 0 0 40px rgba(0,168,232,.2);
         }
 
-        /* Mobile Adjustments */
-        @media(max-width:768px){
-            .timeline::before { left: 20px; }
-            .timeline-item {
-                width: calc(100% - 60px);
-                margin-left: 40px !important;
-                margin-right: 0 !important;
-            }
-            .timeline-item.left::after, .timeline-item.right::after { left: -28px; }
+        .glow {
+            text-shadow: 0 0 20px rgba(0, 168, 232, 0.5);
+        }
+
+        .border-animation {
+            border: 1px solid rgba(0, 168, 232, 0.3);
+            position: relative;
+            padding: 3rem;
+            border-radius: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Küçük bir animasyon dokunuşu */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
-
 <body>
 
-    <nav class="navbar fixed top-0 w-full z-50 py-4 px-6 flex justify-between items-center border-b border-blue-900">
-        <div class="text-2xl font-bold tracking-wider">
-            <img src="navbarlogo.png" alt="Fusion Logo">
-        </div>
-        <div class="hidden md:flex space-x-8 font-medium">
-            <a href="#home" class="hover:text-fusion transition" data-tr="Ana Sayfa" data-en="Home"></a>
-            <a href="#about" class="hover:text-fusion transition" data-tr="Hakkımızda" data-en="About"></a>
-            <a href="#events" class="hover:text-fusion transition" data-tr="Başarılar" data-en="Achievements"></a>
-            <a href="#gallery" class="hover:text-fusion transition" data-tr="Galeri" data-en="Gallery"></a>
-            <a href="#sponsors" class="hover:text-fusion transition" data-tr="Sponsorlar" data-en="Sponsors"></a>
-            <a href="#faq" class="hover:text-fusion transition" data-tr="SSS" data-en="FAQ"></a>
-            <a href="#location" class="hover:text-fusion transition" data-tr="Konum" data-en="Location"></a>
-        </div>
-        <div class="flex space-x-2">
-            <button onclick="setLang('tr')" class="bg-blue-900 hover:bg-fusion text-white px-3 py-1 rounded text-xs font-bold transition">TR</button>
-            <button onclick="setLang('en')" class="bg-blue-900 hover:bg-fusion text-white px-3 py-1 rounded text-xs font-bold transition">EN</button>
-        </div>
-    </nav>
+    <div class="max-w-2xl px-6 text-center">
+        <div class="border-animation">
+            <div class="text-4xl font-black text-[#00a8e8] mb-8 tracking-tighter glow">
+                FUSION <span class="text-white">7682</span>
+            </div>
 
-    <section id="home" class="min-h-screen flex items-center justify-center text-center">
-        <div>
-            <h1 class="text-6xl md:text-8xl font-black mb-4 hero-glow reveal active">
-                FUSION ROBOTICS
+            <h1 class="text-2xl md:text-3xl font-bold mb-4 leading-tight">
+                Sitemiz şu an geliştiriliyor.
             </h1>
-            <p class="text-2xl text-fusion italic mb-10 reveal active">
-                "It Should Work In Theory"
+            
+            <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                En yakın zamanda tekrardan aktif olacağız. <br>
+                Anlayışınız için teşekkürler!
             </p>
-            <a href="#events" class="px-10 py-4 bg-blue-600 rounded-full font-bold hover:bg-blue-500 transition shadow-lg reveal active" 
-               data-tr="Serüvenimizi Gör" data-en="Explore Our Journey">
-            </a>
-        </div>
-    </section>
 
-    <section id="about" class="section">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div class="reveal">
-                <h2 class="text-4xl font-bold text-fusion mb-6" data-tr="Biz Kimiz?" data-en="Who Are We?"></h2>
-                <p class="text-lg leading-relaxed text-gray-300" 
-                   data-tr="Füsun Yönder Anadolu Lisesi'nde doğan Fusion Robotics #7682, teoriyi pratiğe dönüştüren bir mühendislik topluluğudur. FRC ve Teknofest sahnelerinde okulumuzu ve ülkemizi temsil ediyoruz."
-                   data-en="Born in Fusun Yonder Anatolian High School, Fusion Robotics #7682 is an engineering community that turns theory into practice. We represent our school and country in FRC and Teknofest stages.">
-                </p>
-            </div>
-            <div class="bg-fusion-blue p-12 rounded-3xl text-center border-2 border-fusion reveal shadow-2xl">
-                <span class="text-7xl font-black text-white">#7682</span>
-                <p class="mt-4 font-bold tracking-widest text-fusion">FÜSUN YÖNDER A.L.</p>
-                <p class="text-xs text-gray-400 mt-2">BAHÇELİEVLER / İSTANBUL</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="events" class="section">
-        <h2 class="text-4xl font-bold text-center text-fusion mb-20 reveal" data-tr="Başarı Yolculuğumuz" data-en="Our Journey of Success"></h2>
-        
-        <div class="timeline relative max-w-5xl mx-auto space-y-16">
-            
-            <div class="timeline-item left reveal-left">
-                <span class="text-fusion font-black">2024</span>
-                <h3 class="text-xl font-bold" data-tr="Aerospace Valley Regional" data-en="Aerospace Valley Regional"></h3>
-                <p class="text-gray-400" data-tr="California – 7.’lik Derecesi" data-en="California – 7th Place Ranking"></p>
-            </div>
-
-            <div class="timeline-item right reveal-right">
-                <span class="text-fusion font-black">2023</span>
-                <h3 class="text-xl font-bold" data-tr="Haliç Regional" data-en="Halic Regional"></h3>
-                <p class="text-gray-400" data-tr="En İyi 3. İttifak Başarısı" data-en="Top 3rd Alliance Success"></p>
-            </div>
-
-            <div class="timeline-item left reveal-left border-l-4 border-yellow-500">
-                <span class="text-yellow-500 font-black">2022</span>
-                <h3 class="text-xl font-bold" data-tr="Pendik Off-Season" data-en="Pendik Off-Season"></h3>
-                <p class="text-fusion font-bold">🏆 <span data-tr="Şampiyon (Winner)" data-en="Winner (Champion)"></span></p>
-            </div>
-
-            <div class="timeline-item right reveal-right border-l-4 border-gray-300">
-                <span class="text-gray-300 font-black">2021</span>
-                <h3 class="text-xl font-bold">Teknofest</h3>
-                <p class="text-fusion font-bold">🥈 <span data-tr="Türkiye 2.liği" data-en="Turkey 2nd Place"></span></p>
-                <p class="text-xs text-gray-400" data-tr="Eğitim Teknolojileri Kategorisi" data-en="Educational Technologies Category"></p>
-            </div>
-
-        </div>
-    </section>
-    
-    <section id="gallery" class="py-20 bg-black">
-    <div class="max-w-6xl mx-auto px-4">
-        <div class="text-center mb-12 reveal">
-            <h2 class="text-4xl font-bold text-fusion mb-4" data-tr="Galerimiz" data-en="Our Journey"></h2>
-            
-            <div class="flex flex-wrap justify-center gap-4 mt-8">
-                <button onclick="filterGallery('all')" class="px-6 py-2 rounded-full border border-fusion text-fusion hover:bg-fusion hover:text-black transition-all duration-300 active-filter" id="filter-all">ALL</button>
-                <button onclick="filterGallery('2023')" class="px-6 py-2 rounded-full border border-gray-700 text-gray-400 hover:border-fusion hover:text-fusion transition-all duration-300">2023</button>
-                <button onclick="filterGallery('2022')" class="px-6 py-2 rounded-full border border-gray-700 text-gray-400 hover:border-fusion hover:text-fusion transition-all duration-300">2022</button>
-                <button onclick="filterGallery('2021')" class="px-6 py-2 rounded-full border border-gray-700 text-gray-400 hover:border-fusion hover:text-fusion transition-all duration-300">2021</button>
-            </div>
-        </div>
-
-        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
-            
-            <div class="gallery-item 2023 reveal md:row-span-2 relative group overflow-hidden rounded-2xl border border-blue-900 shadow-lg transition-all duration-500">
-                <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a1930" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span class="text-fusion font-bold">2023</span>
-                    <p class="text-white text-sm">Season: Charged Up</p>
-                </div>
-            </div>
-
-            <div class="gallery-item 2022 reveal md:row-span-2 relative group overflow-hidden rounded-2xl border border-blue-900 shadow-lg transition-all duration-500">
-                <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a1930" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span class="text-fusion font-bold">2022</span>
-                    <p class="text-white text-sm">Season: Charged Up</p>
-                </div>
-            </div>
-
-            <div class="gallery-item 2022 reveal md:col-span-2 relative group overflow-hidden rounded-2xl border border-blue-900 shadow-lg transition-all duration-500">
-                <img src="https://images.unsplash.com/photo-1561144409-519391e5518b" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span class="text-white text-xl font-bold">2022 - Rapid React</span>
-                </div>
-            </div>
-
-            <div class="gallery-item 2021 reveal relative group overflow-hidden rounded-2xl border border-blue-900 shadow-lg transition-all duration-500">
-                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-fusion/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span class="text-black font-bold text-lg">2021</span>
-                </div>
-            </div>
-
-            </div>
-    </div>
-</section>
-
-<script>
-function filterGallery(year) {
-    const items = document.querySelectorAll('.gallery-item');
-    const buttons = document.querySelectorAll('#gallery button');
-
-    // Buton stilini güncelle
-    buttons.forEach(btn => {
-        btn.classList.remove('border-fusion', 'text-fusion');
-        btn.classList.add('border-gray-700', 'text-gray-400');
-    });
-    event.target.classList.add('border-fusion', 'text-fusion');
-    event.target.classList.remove('border-gray-700', 'text-gray-400');
-
-    // Filtreleme yap
-    items.forEach(item => {
-        item.style.transform = 'scale(0.8)';
-        item.style.opacity = '0';
-        
-        setTimeout(() => {
-            if (year === 'all' || item.classList.contains(year)) {
-                item.style.display = 'block';
-                setTimeout(() => {
-                    item.style.transform = 'scale(1)';
-                    item.style.opacity = '1';
-                }, 10);
-            } else {
-                item.style.display = 'none';
-            }
-        }, 300);
-    });
-}
-</script>
-    
-    <section id="sponsors" class="section">
-        <div class="max-w-5xl mx-auto text-center">
-            <h2 class="text-4xl font-bold text-fusion mb-12 reveal" data-tr="Sponsorlarımız" data-en="Our Sponsors"></h2>
-            
-            <div class="reveal border-2 border-dashed border-blue-900 rounded-3xl p-20 bg-blue-900 bg-opacity-10 hover:bg-opacity-20 transition-all duration-500">
-                <div class="flex flex-col items-center justify-center space-y-4">
-                    <svg class="w-16 h-16 text-blue-800 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                    </svg>
-                    
-                    <p class="text-2xl md:text-3xl font-medium text-gray-500 tracking-widest italic" 
-                       data-tr="Burası Boş, Şimdilik..." 
-                       data-en="It's Empty, For Now...">
-                    </p>
-                    
-                    <p class="text-gray-400 max-w-md mx-auto" 
-                       data-tr="Takımımıza destek olmak ve burada yer almak için bizimle iletişime geçin." 
-                       data-en="Contact us to support our team and take your place here.">
-                    </p>
-
-                    <a href="mailto:fusionrobo7682@gmail.com" 
-                       class="mt-6 inline-block text-fusion border border-fusion px-6 py-2 rounded-full hover:bg-fusion hover:text-white transition-all text-sm font-bold uppercase tracking-tighter"
-                       data-tr="Sponsor Ol" data-en="Become a Sponsor">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-<section id="faq" class="section">
-    <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center text-fusion mb-16 reveal" data-tr="Sıkça Sorulan Sorular" data-en="Frequently Asked Questions"></h2>
-        
-        <div class="grid md:grid-cols-2 gap-6 items-start">
-            
-            <div class="reveal md:order-1 bg-blue-900 bg-opacity-20 border border-blue-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-fusion">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-fusion mr-2"><span data-tr="S1" data-en="Q1"></span>.</span>
-                    <span class="flex-1 font-semibold" data-tr="Takıma katılmak için tecrübe şart mı?" data-en="Is experience required to join?"></span>
-                    <svg class="w-5 h-5 text-fusion transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black bg-opacity-20">
-                    <p class="p-6 text-gray-400 border-t border-blue-900 border-opacity-50" data-tr="Hayır, öğrenmeye istekli olman yeterli! Teknik ekiplerimiz (yazılım, mekanik) ve idari ekiplerimiz için gerekli eğitimleri takım içinde veriyoruz." data-en="No, being eager to learn is enough! We provide necessary training for our technical and administrative teams within the team."></p>
-                </div>
-            </div>
-
-            <div class="reveal md:order-3 bg-blue-900 bg-opacity-20 border border-blue-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-fusion">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-fusion mr-2"><span data-tr="S2" data-en="Q2"></span>.</span>
-                    <span class="flex-1 font-semibold" data-tr="Sadece mühendislik mi yapıyorsunuz?" data-en="Do you only do engineering?"></span>
-                    <svg class="w-5 h-5 text-fusion transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black bg-opacity-20">
-                    <p class="p-6 text-gray-400 border-t border-blue-900 border-opacity-50" data-tr="Kesinlikle hayır. Takımımızda sosyal medya yönetimi, grafik tasarım, sponsorluk bulma ve sosyal sorumluluk projeleri gibi idari görevler de mevcut." data-en="Absolutely not. Our team also has administrative roles like social media management, graphic design, and sponsorship."></p>
-                </div>
-            </div>
-
-            <div class="reveal md:order-5 bg-blue-900 bg-opacity-20 border border-blue-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-fusion">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-fusion mr-2"><span data-tr="S3" data-en="Q3"></span>.</span>
-                    <span class="flex-1 font-semibold" data-tr="Takımımıza nasıl sponsor olunur?" data-en="How to become a sponsor?"></span>
-                    <svg class="w-5 h-5 text-fusion transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black bg-opacity-20">
-                    <p class="p-6 text-gray-400 border-t border-blue-900 border-opacity-50" data-tr="Web sitemizdeki iletişim formundan veya mail adresimizden bize ulaşarak sponsorluk dosyamızı talep edebilirsiniz." data-en="You can request our sponsorship file by contacting us via our website or email."></p>
-                </div>
-            </div>
-
-            <div class="reveal md:order-2 bg-blue-900 bg-opacity-20 border border-blue-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-fusion">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-fusion mr-2"><span data-tr="S4" data-en="Q4"></span>.</span>
-                    <span class="flex-1 font-semibold" data-tr="Sponsorluk sadece maddi mi olmalı?" data-en="Must sponsorship be only financial?"></span>
-                    <svg class="w-5 h-5 text-fusion transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black bg-opacity-20">
-                    <p class="p-6 text-gray-400 border-t border-blue-900 border-opacity-50" data-tr="Hayır; parça desteği, atölye imkanı, teknik eğitim veya mentorluk gibi ayni destekleri de çok değerli buluyoruz." data-en="No; we also find in-kind supports such as parts, workshop facilities, technical training, or mentorship very valuable."></p>
-                </div>
-            </div>
-
-            <div class="reveal md:order-4 bg-blue-900 bg-opacity-20 border border-blue-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-fusion">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-fusion mr-2"><span data-tr="S5" data-en="Q5"></span>.</span>
-                    <span class="flex-1 font-semibold" data-tr="FIRST Robotics Competition (FRC) nedir?" data-en="What is FRC?"></span>
-                    <svg class="w-5 h-5 text-fusion transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black bg-opacity-20">
-                    <p class="p-6 text-gray-400 border-t border-blue-900 border-opacity-50" data-tr="Lise öğrencileri için düzenlenen, liderlik ve iş birliğini merkeze alan uluslararası bir mühendislik yarışmasıdır." data-en="It's an international engineering competition for high school students, focusing on leadership and cooperation."></p>
-                </div>
-            </div>
-
-            <div class="reveal md:order-6 bg-blue-900 bg-opacity-20 border border-blue-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-fusion">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-fusion mr-2"><span data-tr="S6" data-en="Q6"></span>.</span>
-                    <span class="flex-1 font-semibold" data-tr="'It Should Work In Theory' ne anlama geliyor?" data-en="What does our slogan mean?"></span>
-                    <svg class="w-5 h-5 text-fusion transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black bg-opacity-20">
-                    <p class="p-6 text-gray-400 border-t border-blue-900 border-opacity-50" data-tr="Mühendislik süreçlerindeki deneme-yanılma kültürüne ve teoride her şeyin mükemmel olsa da pratikteki sürprizlere esprili bir bakış açımızdır." data-en="It's our humorous take on the trial-and-error culture in engineering and the surprises in practice."></p>
-                </div>
-            </div>
-
-            <div class="reveal md:order-7 md:col-span-2 bg-blue-900 bg-opacity-20 border border-blue-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-fusion">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-fusion mr-2"><span data-tr="S7" data-en="Q7"></span>.</span>
-                    <span class="flex-1 font-semibold" data-tr="Robot çalışmaları derslerimizi etkiler mi?" data-en="Does robotics affect school lessons?"></span>
-                    <svg class="w-5 h-5 text-fusion transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black bg-opacity-20">
-                    <p class="p-6 text-gray-400 border-t border-blue-900 border-opacity-50" data-tr="Tam tersine! Takım üyelerimiz zaman yönetimi kazanırken, fizik ve matematik gibi dersleri pratikte uygulama şansı buluyorlar." data-en="On the contrary! Our members gain time management skills while applying physics and math in practice."></p>
-                </div>
+            <div class="text-sm font-mono text-[#00a8e8] pulse uppercase tracking-widest">
+                - Fusion Robotics Development Team
             </div>
         </div>
     </div>
-</section>
 
-<script>
-function toggleFAQ(button) {
-    const content = button.nextElementSibling;
-    const icon = button.querySelector('svg');
-    
-    // Açık mı kontrol et
-    const isOpen = content.style.maxHeight !== '0px' && content.style.maxHeight !== '';
-
-    // Hepsini kapat
-    document.querySelectorAll('.faq-content').forEach(el => {
-        el.style.maxHeight = '0px';
-        const otherIcon = el.previousElementSibling.querySelector('svg');
-        if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-    });
-
-    // Eğer tıklanan kapalıysa aç
-    if (!isOpen) {
-        content.style.maxHeight = content.scrollHeight + "px";
-        icon.style.transform = 'rotate(180deg)';
-    }
-}
-</script>
-    <section id="location" class="section">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-10 reveal">
-                <h2 class="text-4xl font-bold text-fusion mb-4" data-tr="Atölyemizin Konumu" data-en="Our Location"></h2>
-                <p class="text-gray-400">Bahçelievler, İstanbul - Füsun Yönder Anadolu Lisesi</p>
-            </div>
-            
-            <div class="map-container reveal">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d376.328977706265!2d28.848675430032337!3d41.01143106942207!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa4c8198d209f%3A0x23f25ec94f21680a!2sF%C3%BCsun%20Y%C3%B6nder%20Anadolu%20Lisesi!5e0!3m2!1str!2sus!4v1768158924546!5m2!1str!2su"
-                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
-                </iframe>
-            </div>
-        </div>
-    </section>
-
-<footer id="contact" class="bg-black bg-opacity-40 py-16">
-    <div class="max-w-4xl mx-auto text-center reveal">
-        <h2 class="text-3xl font-bold text-fusion mb-12" data-tr="Bize Ulaşın" data-en="Contact Us"></h2>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 px-4">
-            
-            <a href="https://www.instagram.com/fusionrobotics7682" target="_blank" class="group flex flex-col items-center">
-                <div class="w-16 h-16 bg-blue-900 bg-opacity-30 rounded-2xl flex items-center justify-center border border-blue-800 group-hover:border-fusion transition-all duration-300 group-hover:-translate-y-2">
-                    <svg class="w-8 h-8 text-fusion" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                </div>
-                <span class="mt-3 text-sm font-medium text-gray-400 group-hover:text-white">Instagram</span>
-            </a>
-
-            <a href="https://www.youtube.com/@FusionRobo7682" target="_blank" class="group flex flex-col items-center">
-                <div class="w-16 h-16 bg-blue-900 bg-opacity-30 rounded-2xl flex items-center justify-center border border-blue-800 group-hover:border-fusion transition-all duration-300 group-hover:-translate-y-2">
-                    <svg class="w-8 h-8 text-fusion" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
-                </div>
-                <span class="mt-3 text-sm font-medium text-gray-400 group-hover:text-white">YouTube</span>
-            </a>
-
-            <a href="https://x.com/Fusion7682" target="_blank" class="group flex flex-col items-center">
-                <div class="w-16 h-16 bg-blue-900 bg-opacity-30 rounded-2xl flex items-center justify-center border border-blue-800 group-hover:border-fusion transition-all duration-300 group-hover:-translate-y-2">
-                    <svg class="w-7 h-7 text-fusion" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
-                </div>
-                <span class="mt-3 text-sm font-medium text-gray-400 group-hover:text-white">X / Twitter</span>
-            </a>
-
-            <a href="mailto:fusionrobo7682@gmail.com" class="group flex flex-col items-center">
-                <div class="w-16 h-16 bg-blue-900 bg-opacity-30 rounded-2xl flex items-center justify-center border border-blue-800 group-hover:border-fusion transition-all duration-300 group-hover:-translate-y-2">
-                    <svg class="w-8 h-8 text-fusion" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                </div>
-                <span class="mt-3 text-sm font-medium text-gray-400 group-hover:text-white">E-Mail</span>
-            </a>
-
-        </div>
-
-        <p class="text-gray-600 text-sm italic border-t border-blue-900 pt-8 inline-block px-12">© 2026 FUSION ROBOTICS. Tüm Hakları Saklıdır.</p>
-    </div>
-</footer>
-    
-    <script>
-        // Language System
-        function setLang(lang) {
-            document.querySelectorAll('[data-tr]').forEach(el => {
-                el.textContent = el.getAttribute('data-' + lang);
-            });
-            // Update button styles if needed
-            localStorage.setItem('fusion_lang', lang);
-        }
-
-        // Initialize Language
-        const savedLang = localStorage.getItem('fusion_lang') || 'tr';
-        setLang(savedLang);
-
-        // Intersection Observer (Scroll Reveal)
-        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-        
-        const revealObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    // Bir kez göründükten sonra izlemeyi bırak (performans için)
-                    // revealObserver.unobserve(entry.target); 
-                }
-            });
-        }, { threshold: 0.15 });
-
-        revealElements.forEach(el => revealObserver.observe(el));
-    </script>
+    <footer class="absolute bottom-8 w-full text-center">
+        <p class="text-gray-600 text-xs tracking-[0.3em] uppercase">
+            © 2026 FUSION ROBOTICS. Tüm Hakları Saklıdır.
+        </p>
+    </footer>
 
 </body>
 </html>
