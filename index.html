@@ -113,12 +113,49 @@
         <a href="#events" data-tr="/BAŞARILAR" data-en="/ACHIEVEMENTS" class="hover:text-blue-500 transition-colors">/BAŞARILAR</a>
         <a href="#contact" data-tr="/İLETİŞİM" data-en="/CONTACT" class="hover:text-blue-500 transition-colors">/İLETİŞİM</a>
         
-        <div class="flex gap-4 ml-4 border-l border-white/10 pl-10 text-white/40">
+        <div class="flex gap-4 ml-4 border-l border-white/10 pl-10">
             <button onclick="setLang('tr')" id="btn-tr" class="hover:text-blue-500 transition-colors cursor-pointer text-white">TR</button>
-            <button onclick="setLang('en')" id="btn-en" class="hover:text-blue-500 transition-colors cursor-pointer">EN</button>
+            <button onclick="setLang('en')" id="btn-en" class="hover:text-blue-500 transition-colors cursor-pointer text-white/40">EN</button>
         </div>
     </div>
 </nav>
+
+<script>
+    function setLang(lang) {
+        // Sayfadaki tüm data-tr özellikli elemanları bulur
+        const elements = document.querySelectorAll('[data-tr]');
+        
+        elements.forEach(el => {
+            // Seçilen dile göre içeriği günceller
+            const translation = el.getAttribute(`data-${lang}`);
+            if (translation) {
+                el.textContent = translation;
+            }
+        });
+
+        // Butonların aktiflik durumunu (parlaklığını) günceller
+        const btnTr = document.getElementById('btn-tr');
+        const btnEn = document.getElementById('btn-en');
+        
+        if (lang === 'tr') {
+            btnTr.classList.replace('text-white/40', 'text-white');
+            btnEn.classList.replace('text-white', 'text-white/40');
+        } else {
+            btnEn.classList.replace('text-white/40', 'text-white');
+            btnTr.classList.replace('text-white', 'text-white/40');
+        }
+
+        // Seçilen dili tarayıcıya kaydeder
+        localStorage.setItem('fusion_lang', lang);
+        console.log("System Language Update: " + lang.toUpperCase());
+    }
+
+    // Sayfa yüklendiğinde hafızadaki dili kontrol eder
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('fusion_lang') || 'tr';
+        setLang(savedLang);
+    });
+</script>
 
     <main class="min-h-screen pt-48 px-6 md:px-20 relative flex flex-col items-start">
         <div class="relative z-10 reveal w-full">
