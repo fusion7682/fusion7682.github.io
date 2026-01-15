@@ -157,24 +157,74 @@
     });
 </script>
 
-    <main class="min-h-screen pt-48 px-6 md:px-20 relative flex flex-col items-start">
-        <div class="relative z-10 reveal w-full">
-            <div class="mb-4 text-blue-400 text-[10px] font-bold tracking-[0.5em] opacity-80 uppercase">System: Online</div>
-            <h1 class="text-6xl md:text-8xl font-extrabold leading-[0.9] mb-12 uppercase tracking-tighter">
-                Teoriyi <br> 
-                <span class="text-blue-500 italic">Pratiğe</span> <br> 
-                Dönüştür.
-            </h1>
-            
-            <div id="about" class="terminal-border p-8 max-w-2xl group">
-                <div class="terminal-header mb-4 w-fit">BİZ_KİMİZ?</div>
-                <p class="text-sm md:text-base text-gray-300 leading-relaxed">
-                    > Füsun Yönder Anadolu Lisesi'nde doğan <span class="text-white font-bold">Fusion Robotics #7682</span>, FRC ve Teknofest sahnelerinde teoriyi pratiğe dönüştüren bir mühendislik topluluğudur.<span class="cursor"></span>
-                </p>
-            </div>
+<main class="min-h-screen pt-48 px-6 md:px-20 relative flex flex-col items-start">
+    <div class="relative z-10 reveal w-full">
+        <div class="mb-4 text-blue-400 text-[10px] font-bold tracking-[0.5em] opacity-80 uppercase"
+             data-tr="System: Online" 
+             data-en="System: Online">
+             System: Online
         </div>
-    </main>
 
+        <h1 class="text-6xl md:text-8xl font-extrabold leading-[0.9] mb-12 uppercase tracking-tighter"
+            data-tr="Teoriyi <br> <span class='text-blue-500 italic'>Pratiğe</span> <br> Dönüştür."
+            data-en="Turn <br> <span class='text-blue-500 italic'>Theory</span> <br> Into Practice.">
+            Teoriyi <br> 
+            <span class="text-blue-500 italic">Pratiğe</span> <br> 
+            Dönüştür.
+        </h1>
+        
+        <div id="about" class="terminal-border p-8 max-w-2xl group">
+            <div class="terminal-header mb-4 w-fit" 
+                 data-tr="BİZ_KİMİZ?" 
+                 data-en="WHO_ARE_WE?">
+                 BİZ_KİMİZ?
+            </div>
+            <p class="text-sm md:text-base text-gray-300 leading-relaxed">
+                <span data-tr="> Füsun Yönder Anadolu Lisesi'nde doğan <span class='text-white font-bold'>Fusion Robotics #7682</span>, FRC ve Teknofest sahnelerinde teoriyi pratiğe dönüştüren bir mühendislik topluluğudur."
+                      data-en="> Born in Füsun Yönder Anatolian High School, <span class='text-white font-bold'>Fusion Robotics #7682</span> is an engineering community that turns theory into practice in FRC and Teknofest stages.">
+                    > Füsun Yönder Anadolu Lisesi'nde doğan <span class="text-white font-bold">Fusion Robotics #7682</span>, FRC ve Teknofest sahnelerinde teoriyi pratiğe dönüştüren bir mühendislik topluluğudur.
+                </span>
+                <span class="cursor"></span>
+            </p>
+        </div>
+    </div>
+</main>
+
+<script>
+    function setLang(lang) {
+        const elements = document.querySelectorAll('[data-tr]');
+        
+        elements.forEach(el => {
+            const translation = el.getAttribute(`data-${lang}`);
+            if (translation) {
+                // HTML etiketlerini (br, span vb.) tanıyabilmesi için innerHTML kullandık
+                el.innerHTML = translation;
+            }
+        });
+
+        // Butonların aktiflik durumunu güncelleme (Navbar butonları için)
+        const btnTr = document.getElementById('btn-tr');
+        const btnEn = document.getElementById('btn-en');
+        
+        if (btnTr && btnEn) {
+            if (lang === 'tr') {
+                btnTr.className = 'hover:text-blue-500 transition-colors cursor-pointer text-white';
+                btnEn.className = 'hover:text-blue-500 transition-colors cursor-pointer text-white/40';
+            } else {
+                btnEn.className = 'hover:text-blue-500 transition-colors cursor-pointer text-white';
+                btnTr.className = 'hover:text-blue-500 transition-colors cursor-pointer text-white/40';
+            }
+        }
+
+        localStorage.setItem('fusion_lang', lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('fusion_lang') || 'tr';
+        setLang(savedLang);
+    });
+</script>
+	
 <section id="events" class="py-24 px-6 relative">
     <h2 class="text-4xl md:text-5xl font-black text-center mb-20 uppercase tracking-tighter">
         Başarı <span class="text-blue-500 italic">Yolculuğumuz</span>
