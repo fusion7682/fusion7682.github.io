@@ -323,41 +323,78 @@
 </script>
 
 <section id="sponsors" class="py-24 px-6 relative">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-black text-center mb-16 uppercase tracking-tighter">
-                Sponsorlar <span class="text-blue-500 italic">// LOGS</span>
-            </h2>
-            
-            <div class="terminal-border p-12 md:p-20 relative overflow-hidden group">
-                <div class="absolute top-4 right-4 text-[10px] text-blue-500/20 font-mono select-none">
-                    ST_NULL_DATA_FOUND<br>
-                    WAITING_FOR_UPLINK...
-                </div>
+    <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-black text-center mb-16 uppercase tracking-tighter"
+            data-tr="Sponsorlar <span class='text-blue-500 italic'>// LOGS</span>"
+            data-en="Sponsors <span class='text-blue-500 italic'>// LOGS</span>">
+            Sponsorlar <span class="text-blue-500 italic">// LOGS</span>
+        </h2>
+        
+        <div class="terminal-border p-12 md:p-20 relative overflow-hidden group">
+            <div class="absolute top-4 right-4 text-[10px] text-blue-500/20 font-mono select-none text-right"
+                 data-tr="ST_NULL_DATA_FOUND<br>WAITING_FOR_UPLINK..."
+                 data-en="ST_NULL_DATA_FOUND<br>WAITING_FOR_UPLINK...">
+                 ST_NULL_DATA_FOUND<br>
+                 WAITING_FOR_UPLINK...
+            </div>
 
-                <div class="flex flex-col items-center justify-center space-y-6 text-center">
-                    <div class="relative">
-                        <svg class="w-16 h-16 text-blue-500/50 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="square" stroke-linejoin="round" stroke-width="1" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                        </svg>
-                    </div>
+            <div class="flex flex-col items-center justify-center space-y-6 text-center">
+                <div class="relative">
+                    <svg class="w-16 h-16 text-blue-500/50 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="square" stroke-linejoin="round" stroke-width="1" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                    </svg>
+                </div>
+                
+                <div>
+                    <p class="text-2xl md:text-3xl font-bold text-gray-400 tracking-tighter uppercase mb-2"
+                       data-tr="> VERİ_BULUNAMADI <span class='cursor'></span>"
+                       data-en="> DATA_NOT_FOUND <span class='cursor'></span>">
+                        > VERİ_BULUNAMADI <span class="cursor"></span>
+                    </p>
                     
-                    <div>
-                        <p class="text-2xl md:text-3xl font-bold text-gray-400 tracking-tighter uppercase mb-2">
-                            > VERİ_BULUNAMADI <span class="cursor"></span>
-                        </p>
-                        <p class="text-sm md:text-base text-gray-500 max-w-md mx-auto leading-relaxed">
-                            Sistem şu anda aktif sponsor kaydı bekliyor. Takımımıza destek olarak bu bloktaki yerinizi alabilir, mühendislik yolculuğumuza güç katabilirsiniz.
-                        </p>
-                    </div>
-
-                    <a href="mailto:fusionrobo7682@gmail.com" 
-                       class="mt-4 px-10 py-4 bg-transparent border border-blue-500 text-blue-500 text-xs font-bold uppercase tracking-[0.3em] hover:bg-blue-500 hover:text-white transition-all duration-300 transform active:scale-95">
-                        [ SPONSOR_OL_ ]
-                    </a>
+                    <p class="text-sm md:text-base text-gray-500 max-w-md mx-auto leading-relaxed"
+                       data-tr="Sistem şu anda aktif sponsor kaydı bekliyor. Takımımıza destek olarak bu bloktaki yerinizi alabilir, mühendislik yolculuğumuza güç katabilirsiniz."
+                       data-en="The system is currently waiting for active sponsor records. You can take your place in this block by supporting our team and empower our engineering journey.">
+                        Sistem şu anda aktif sponsor kaydı bekliyor. Takımımıza destek olarak bu bloktaki yerinizi alabilir, mühendislik yolculuğumuza güç katabilirsiniz.
+                    </p>
                 </div>
+
+                <a href="mailto:fusionrobo7682@gmail.com" 
+                   class="mt-4 px-10 py-4 bg-transparent border border-blue-500 text-blue-500 text-xs font-bold uppercase tracking-[0.3em] hover:bg-blue-500 hover:text-white transition-all duration-300 transform active:scale-95"
+                   data-tr="[ SPONSOR_OL_ ]"
+                   data-en="[ BECOME_A_SPONSOR_ ]">
+                    [ SPONSOR_OL_ ]
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<script>
+    function setLang(lang) {
+        const elements = document.querySelectorAll('[data-tr]');
+        
+        elements.forEach(el => {
+            const translation = el.getAttribute('data-' + lang);
+            if (translation) {
+                el.innerHTML = translation;
+            }
+        });
+
+        const btnTr = document.getElementById('btn-tr');
+        const btnEn = document.getElementById('btn-en');
+        if (btnTr && btnEn) {
+            btnTr.style.opacity = (lang === 'tr') ? "1" : "0.4";
+            btnEn.style.opacity = (lang === 'en') ? "1" : "0.4";
+        }
+        localStorage.setItem('fusion_lang', lang);
+    }
+
+    window.addEventListener('load', () => {
+        const savedLang = localStorage.getItem('fusion_lang') || 'tr';
+        setLang(savedLang);
+    });
+</script>
 	
 	<section id="faq" class="py-24 px-6 relative">
     <div class="max-w-6xl mx-auto">
