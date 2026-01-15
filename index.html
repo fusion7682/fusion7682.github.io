@@ -234,7 +234,9 @@
 </script>
 	
 <section id="events" class="py-24 px-6 relative">
-    <h2 class="text-4xl md:text-5xl font-black text-center mb-20 uppercase tracking-tighter">
+    <h2 class="text-4xl md:text-5xl font-black text-center mb-20 uppercase tracking-tighter"
+        data-tr="Başarı <span class='text-blue-500 italic'>Yolculuğumuz</span>"
+        data-en="Our <span class='text-blue-500 italic'>Journey</span> of Success">
         Başarı <span class="text-blue-500 italic">Yolculuğumuz</span>
     </h2>
 
@@ -242,36 +244,83 @@
         <div class="timeline-item left">
             <div class="timeline-card">
                 <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">2024</span>
-                <h3 class="font-bold mt-1 uppercase">Aerospace Valley Regional</h3>
-                <p class="text-gray-400 text-xs mt-1 italic">California – 7. Sıra</p>
+                <h3 class="font-bold mt-1 uppercase" data-tr="Aerospace Valley Regional" data-en="Aerospace Valley Regional">Aerospace Valley Regional</h3>
+                <p class="text-gray-400 text-xs mt-1 italic" 
+                   data-tr="California – 7. Sıra" 
+                   data-en="California – 7th Rank">
+                   California – 7. Sıra
+                </p>
             </div>
         </div>
 
         <div class="timeline-item right">
             <div class="timeline-card">
                 <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">2023</span>
-                <h3 class="font-bold mt-1 uppercase">Haliç Regional</h3>
-                <p class="text-gray-400 text-xs mt-1 italic">En İyi 3. İttifak Başarısı</p>
+                <h3 class="font-bold mt-1 uppercase" data-tr="Haliç Regional" data-en="Haliç Regional">Haliç Regional</h3>
+                <p class="text-gray-400 text-xs mt-1 italic" 
+                   data-tr="En İyi 3. İttifak Başarısı" 
+                   data-en="Best 3rd Alliance Success">
+                   En İyi 3. İttifak Başarısı
+                </p>
             </div>
         </div>
 
         <div class="timeline-item left">
             <div class="timeline-card border-l-4 border-yellow-500">
                 <span class="text-yellow-500 font-bold text-xs uppercase tracking-widest">2022</span>
-                <h3 class="font-bold mt-1 uppercase">Pendik Off-Season</h3>
-                <p class="text-yellow-500 font-bold text-xs mt-1 italic">🏆 ŞAMPİYON (WINNER)</p>
+                <h3 class="font-bold mt-1 uppercase" data-tr="Pendik Off-Season" data-en="Pendik Off-Season">Pendik Off-Season</h3>
+                <p class="text-yellow-500 font-bold text-xs mt-1 italic" 
+                   data-tr="🏆 ŞAMPİYON (WINNER)" 
+                   data-en="🏆 WINNER (CHAMPION)">
+                   🏆 ŞAMPİYON (WINNER)
+                </p>
             </div>
         </div>
 
         <div class="timeline-item right">
             <div class="timeline-card border-l-4 border-gray-400">
                 <span class="text-gray-400 font-bold text-xs uppercase tracking-widest">2021</span>
-                <h3 class="font-bold mt-1 uppercase">Teknofest</h3>
-                <p class="text-blue-400 font-bold text-xs mt-1">🥈 Türkiye 2.liği</p>
+                <h3 class="font-bold mt-1 uppercase" data-tr="Teknofest" data-en="Teknofest">Teknofest</h3>
+                <p class="text-blue-400 font-bold text-xs mt-1" 
+                   data-tr="🥈 Türkiye 2.liği" 
+                   data-en="🥈 2nd Place in Turkey">
+                   🥈 Türkiye 2.liği
+                </p>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    function setLang(lang) {
+        // Sayfadaki tüm çevrilecek elemanları bul
+        const elements = document.querySelectorAll('[data-tr]');
+        
+        elements.forEach(el => {
+            const translation = el.getAttribute('data-' + lang);
+            if (translation) {
+                // innerHTML kullanımı etiketleri (span, br vb.) korur
+                el.innerHTML = translation;
+            }
+        });
+
+        // Navbar butonlarının durumunu güncelle
+        const btnTr = document.getElementById('btn-tr');
+        const btnEn = document.getElementById('btn-en');
+        if (btnTr && btnEn) {
+            btnTr.style.opacity = (lang === 'tr') ? "1" : "0.4";
+            btnEn.style.opacity = (lang === 'en') ? "1" : "0.4";
+        }
+
+        localStorage.setItem('fusion_lang', lang);
+    }
+
+    // Sayfa yüklendiğinde ve dil değiştirildiğinde her şeyi tetikle
+    window.addEventListener('load', () => {
+        const savedLang = localStorage.getItem('fusion_lang') || 'tr';
+        setLang(savedLang);
+    });
+</script>
 
 <section id="sponsors" class="py-24 px-6 relative">
         <div class="max-w-5xl mx-auto">
