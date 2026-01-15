@@ -105,14 +105,20 @@
     <div class="grid-bg"></div>
     <div class="scanline"></div>
 
-    <nav class="p-6 flex justify-between items-center fixed top-0 w-full z-50 bg-[#0d0d0d]/60 backdrop-blur-md border-b border-white/5">
-        <div class="font-black text-xl tracking-tighter text-white">Fusion Robotics #7682</div>
-        <div class="hidden md:flex gap-10 text-[10px] font-bold tracking-[0.3em]">
-            <a href="#about" class="hover:text-blue-500 transition-colors">/BIZ_KIMIZ</a>
-            <a href="#events" class="hover:text-blue-500 transition-colors">/BAŞARILAR</a>
-            <a href="#contact" class="hover:text-blue-500 transition-colors">/İLETİŞİM</a>
+<nav class="p-6 flex justify-between items-center fixed top-0 w-full z-50 bg-[#0d0d0d]/60 backdrop-blur-md border-b border-white/5">
+    <div class="font-black text-xl tracking-tighter text-white">Fusion Robotics #7682</div>
+    
+    <div class="hidden md:flex items-center gap-10 text-[10px] font-bold tracking-[0.3em]">
+        <a href="#about" data-tr="/BIZ_KIMIZ" data-en="/ABOUT_US" class="hover:text-blue-500 transition-colors">/BIZ_KIMIZ</a>
+        <a href="#events" data-tr="/BAŞARILAR" data-en="/ACHIEVEMENTS" class="hover:text-blue-500 transition-colors">/BAŞARILAR</a>
+        <a href="#contact" data-tr="/İLETİŞİM" data-en="/CONTACT" class="hover:text-blue-500 transition-colors">/İLETİŞİM</a>
+        
+        <div class="flex gap-4 ml-4 border-l border-white/10 pl-10 text-white/40">
+            <button onclick="setLang('tr')" id="btn-tr" class="hover:text-blue-500 transition-colors cursor-pointer text-white">TR</button>
+            <button onclick="setLang('en')" id="btn-en" class="hover:text-blue-500 transition-colors cursor-pointer">EN</button>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <main class="min-h-screen pt-48 px-6 md:px-20 relative flex flex-col items-start">
         <div class="relative z-10 reveal w-full">
