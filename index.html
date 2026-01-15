@@ -160,51 +160,53 @@
 <main class="min-h-screen pt-48 px-6 md:px-20 relative flex flex-col items-start overflow-hidden">
     <style>
         .gear-container {
-            mask-image: radial-gradient(circle at center, black, transparent 80%);
-            -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+            /* Kenarlardan yumuşak geçiş için maskeleme */
+            mask-image: radial-gradient(circle at center, black, transparent 90%);
+            -webkit-mask-image: radial-gradient(circle at center, black, transparent 90%);
         }
         .gear-svg {
-            transition: transform 1.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
-            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.2));
+            /* Mekanik ve tok bir hareket için transition ayarı */
+            transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.15));
             will-change: transform;
         }
     </style>
 
-    <div class="gear-container absolute right-[-10%] top-[10%] w-[60%] h-[80%] pointer-events-none opacity-20 z-0 hidden md:block">
-        <div id="gear-large" class="gear-svg absolute top-[10%] right-[15%] w-80 h-80 text-gray-500">
-            <svg viewBox="0 0 100 100" fill="currentColor">
-                <path d="M94.5,41.5L82.1,38.9c-0.6-2.1-1.5-4-2.6-5.9l7.4-10.2c1.1-1.5,0.7-3.6-0.9-4.6l-6.4-4c-1.5-1-3.6-0.5-4.6,1l-7.4,10.2 c-1.8-1-3.8-1.7-5.9-2.2L58.5,5.5c-0.2-1.8-1.8-3-3.6-3h-7.6c-1.8,0-3.4,1.3-3.6,3l-2.6,12.4c-2.1,0.5-4,1.2-5.9,2.2l-7.4-10.2 c-1.1-1.5-3.1-2-4.6-1l-6.4,4c-1.5,1-2,3.1-0.9,4.6l7.4,10.2c-1.1,1.8-2,3.8-2.6,5.9L5.5,41.5c-1.8,0.2-3,1.8-3,3.6v7.6 c0,1.8,1.3,3.4,3,3.6l12.4,2.6c0.6,2.1,1.5,4,2.6,5.9l-7.4,10.2c-1.1,1.5-0.7,3.6,0.9,4.6l6.4,4c1.5,1,3.6,0.5,4.6-1l7.4-10.2 c1.8,1,3.8,1.7,5.9,2.2l2.6,12.4c0.2,1.8,1.8,3,3.6,3h7.6c1.8,0,3.4-1.3,3.6-3l2.6-12.4c2.1-0.5,4-1.2,5.9-2.2l7.4,10.2 c1.1,1.5,3.1,2,4.6,1l6.4-4c1.5-1,2-3.1,0.9-4.6l-7.4-10.2c1.1-1.8,2-3.8,2.6-5.9l12.4-2.6c1.8-0.2,3-1.8,3-3.6v-7.6 C97.5,43.3,96.2,41.7,94.5,41.5z M50,65c-8.3,0-15-6.7-15-15s6.7-15,15-15s15,6.7,15,15S58.3,65,50,65z"/>
-            </svg>
+    <div class="gear-container absolute right-[-5%] top-[5%] w-[70%] h-[90%] pointer-events-none opacity-20 z-0 hidden md:block">
+        
+        <div id="gear-1" class="gear-svg absolute top-[10%] right-[10%] w-96 h-96 text-gray-500">
+            <svg viewBox="0 0 100 100" fill="currentColor"><path d="M94.5,41.5L82.1,38.9c-0.6-2.1-1.5-4-2.6-5.9l7.4-10.2c1.1-1.5,0.7-3.6-0.9-4.6l-6.4-4c-1.5-1-3.6-0.5-4.6,1l-7.4,10.2 c-1.8-1-3.8-1.7-5.9-2.2L58.5,5.5c-0.2-1.8-1.8-3-3.6-3h-7.6c-1.8,0-3.4,1.3-3.6,3l-2.6,12.4c-2.1,0.5-4,1.2-5.9,2.2l-7.4-10.2 c-1.1-1.5-3.1-2-4.6-1l-6.4,4c-1.5,1-2,3.1-0.9,4.6l7.4,10.2c-1.1,1.8-2,3.8-2.6,5.9L5.5,41.5c-1.8,0.2-3,1.8-3,3.6v7.6 c0,1.8,1.3,3.4,3,3.6l12.4,2.6c0.6,2.1,1.5,4,2.6,5.9l-7.4,10.2c-1.1,1.5-0.7,3.6,0.9,4.6l6.4,4c1.5,1,3.6,0.5,4.6-1l7.4-10.2 c1.8,1,3.8,1.7,5.9,2.2l2.6,12.4c0.2,1.8,1.8,3,3.6,3h7.6c1.8,0,3.4-1.3,3.6-3l2.6-12.4c2.1-0.5,4-1.2,5.9-2.2l7.4,10.2 c1.1,1.5,3.1,2,4.6,1l6.4-4c1.5-1,2-3.1,0.9-4.6l-7.4-10.2c1.1-1.8,2-3.8,2.6-5.9l12.4-2.6c1.8-0.2,3-1.8,3-3.6v-7.6 C97.5,43.3,96.2,41.7,94.5,41.5z M50,65c-8.3,0-15-6.7-15-15s6.7-15,15-15s15,6.7,15,15S58.3,65,50,65z"/></svg>
         </div>
 
-        <div id="gear-medium" class="gear-svg absolute top-[45%] right-[40%] w-52 h-52 text-blue-500/40">
-            <svg viewBox="0 0 100 100" fill="currentColor">
-                <path d="M94.5,41.5L82.1,38.9c-0.6-2.1-1.5-4-2.6-5.9l7.4-10.2c1.1-1.5,0.7-3.6-0.9-4.6l-6.4-4c-1.5-1-3.6-0.5-4.6,1l-7.4,10.2 c-1.8-1-3.8-1.7-5.9-2.2L58.5,5.5c-0.2-1.8-1.8-3-3.6-3h-7.6c-1.8,0-3.4,1.3-3.6,3l-2.6,12.4c-2.1,0.5-4,1.2-5.9,2.2l-7.4-10.2 c-1.1-1.5-3.1-2-4.6-1l-6.4,4c-1.5,1-2,3.1-0.9,4.6l7.4,10.2c-1.1,1.8-2,3.8-2.6,5.9L5.5,41.5c-1.8,0.2-3,1.8-3,3.6v7.6 c0,1.8,1.3,3.4,3,3.6l12.4,2.6c0.6,2.1,1.5,4,2.6,5.9l-7.4,10.2c-1.1,1.5-0.7,3.6,0.9,4.6l6.4,4c1.5,1,3.6,0.5,4.6-1l7.4-10.2 c1.8,1,3.8,1.7,5.9,2.2l2.6,12.4c0.2,1.8,1.8,3,3.6,3h7.6c1.8,0,3.4-1.3,3.6-3l2.6-12.4c2.1-0.5,4-1.2,5.9-2.2l7.4,10.2 c1.1,1.5,3.1,2,4.6,1l6.4-4c1.5-1,2-3.1,0.9-4.6l-7.4-10.2c1.1-1.8,2-3.8,2.6-5.9l12.4-2.6c1.8-0.2,3-1.8,3-3.6v-7.6 C97.5,43.3,96.2,41.7,94.5,41.5z M50,65c-8.3,0-15-6.7-15-15s6.7-15,15-15s15,6.7,15,15S58.3,65,50,65z"/>
-            </svg>
+        <div id="gear-2" class="gear-svg absolute top-[42%] right-[32%] w-60 h-60 text-blue-500/40">
+            <svg viewBox="0 0 100 100" fill="currentColor"><path d="M94.5,41.5L82.1,38.9c-0.6-2.1-1.5-4-2.6-5.9l7.4-10.2c1.1-1.5,0.7-3.6-0.9-4.6l-6.4-4c-1.5-1-3.6-0.5-4.6,1l-7.4,10.2 c-1.8-1-3.8-1.7-5.9-2.2L58.5,5.5c-0.2-1.8-1.8-3-3.6-3h-7.6c-1.8,0-3.4,1.3-3.6,3l-2.6,12.4c-2.1,0.5-4,1.2-5.9,2.2l-7.4-10.2 c-1.1-1.5-3.1-2-4.6-1l-6.4,4c-1.5,1-2,3.1-0.9,4.6l7.4,10.2c-1.1,1.8-2,3.8-2.6,5.9L5.5,41.5c-1.8,0.2-3,1.8-3,3.6v7.6 c0,1.8,1.3,3.4,3,3.6l12.4,2.6c0.6,2.1,1.5,4,2.6,5.9l-7.4,10.2c-1.1,1.5-0.7,3.6,0.9,4.6l6.4,4c1.5,1,3.6,0.5,4.6-1l7.4-10.2 c1.8,1,3.8,1.7,5.9,2.2l2.6,12.4c0.2,1.8,1.8,3,3.6,3h7.6c1.8,0,3.4-1.3,3.6-3l2.6-12.4c2.1-0.5,4-1.2,5.9-2.2l7.4,10.2 c1.1,1.5,3.1,2,4.6,1l6.4-4c1.5-1,2-3.1,0.9-4.6l-7.4-10.2c1.1-1.8,2-3.8,2.6-5.9l12.4-2.6c1.8-0.2,3-1.8,3-3.6v-7.6 C97.5,43.3,96.2,41.7,94.5,41.5z M50,65c-8.3,0-15-6.7-15-15s6.7-15,15-15s15,6.7,15,15S58.3,65,50,65z"/></svg>
+        </div>
+
+        <div id="gear-3" class="gear-svg absolute top-[65%] right-[25%] w-36 h-36 text-gray-600">
+            <svg viewBox="0 0 100 100" fill="currentColor"><path d="M94.5,41.5L82.1,38.9c-0.6-2.1-1.5-4-2.6-5.9l7.4-10.2c1.1-1.5,0.7-3.6-0.9-4.6l-6.4-4c-1.5-1-3.6-0.5-4.6,1l-7.4,10.2 c-1.8-1-3.8-1.7-5.9-2.2L58.5,5.5c-0.2-1.8-1.8-3-3.6-3h-7.6c-1.8,0-3.4,1.3-3.6,3l-2.6,12.4c-2.1,0.5-4,1.2-5.9,2.2l-7.4-10.2 c-1.1-1.5-3.1-2-4.6-1l-6.4,4c-1.5,1-2,3.1-0.9,4.6l7.4,10.2c-1.1,1.8-2,3.8-2.6,5.9L5.5,41.5c-1.8,0.2-3,1.8-3,3.6v7.6 c0,1.8,1.3,3.4,3,3.6l12.4,2.6c0.6,2.1,1.5,4,2.6,5.9l-7.4,10.2c-1.1,1.5-0.7,3.6,0.9,4.6l6.4,4c1.5,1,3.6,0.5,4.6-1l7.4-10.2 c1.8,1,3.8,1.7,5.9,2.2l2.6,12.4c0.2,1.8,1.8,3,3.6,3h7.6c1.8,0,3.4-1.3,3.6-3l2.6-12.4c2.1-0.5,4-1.2,5.9-2.2l7.4,10.2 c1.1,1.5,3.1,2,4.6,1l6.4-4c1.5-1,2-3.1,0.9-4.6l-7.4-10.2c1.1-1.8,2-3.8,2.6-5.9l12.4-2.6c1.8-0.2,3-1.8,3-3.6v-7.6 C97.5,43.3,96.2,41.7,94.5,41.5z M50,65c-8.3,0-15-6.7-15-15s6.7-15,15-15s15,6.7,15,15S58.3,65,50,65z"/></svg>
+        </div>
+
+        <div id="gear-4" class="gear-svg absolute top-[5%] right-[38%] w-28 h-28 text-gray-700">
+            <svg viewBox="0 0 100 100" fill="currentColor"><path d="M94.5,41.5L82.1,38.9c-0.6-2.1-1.5-4-2.6-5.9l7.4-10.2c1.1-1.5,0.7-3.6-0.9-4.6l-6.4-4c-1.5-1-3.6-0.5-4.6,1l-7.4,10.2 c-1.8-1-3.8-1.7-5.9-2.2L58.5,5.5c-0.2-1.8-1.8-3-3.6-3h-7.6c-1.8,0-3.4,1.3-3.6,3l-2.6,12.4c-2.1,0.5-4,1.2-5.9,2.2l-7.4-10.2 c-1.1-1.5-3.1-2-4.6-1l-6.4,4c-1.5,1-2,3.1-0.9,4.6l7.4,10.2c-1.1,1.8-2,3.8-2.6,5.9L5.5,41.5c-1.8,0.2-3,1.8-3,3.6v7.6 c0,1.8,1.3,3.4,3,3.6l12.4,2.6c0.6,2.1,1.5,4,2.6,5.9l-7.4,10.2c-1.1,1.5-0.7,3.6,0.9,4.6l6.4,4c1.5,1,3.6,0.5,4.6-1l7.4-10.2 c1.8,1,3.8,1.7,5.9,2.2l2.6,12.4c0.2,1.8,1.8,3,3.6,3h7.6c1.8,0,3.4-1.3,3.6-3l2.6-12.4c2.1-0.5,4-1.2,5.9-2.2l7.4,10.2 c1.1,1.5,3.1,2,4.6,1l6.4-4c1.5-1,2-3.1,0.9-4.6l-7.4-10.2c1.1-1.8,2-3.8,2.6-5.9l12.4-2.6c1.8-0.2,3-1.8,3-3.6v-7.6 C97.5,43.3,96.2,41.7,94.5,41.5z M50,65c-8.3,0-15-6.7-15-15s6.7-15,15-15s15,6.7,15,15S58.3,65,50,65z"/></svg>
+        </div>
+
+        <div id="gear-5" class="gear-svg absolute top-[35%] right-[55%] w-44 h-44 text-gray-800">
+            <svg viewBox="0 0 100 100" fill="currentColor"><path d="M94.5,41.5L82.1,38.9c-0.6-2.1-1.5-4-2.6-5.9l7.4-10.2c1.1-1.5,0.7-3.6-0.9-4.6l-6.4-4c-1.5-1-3.6-0.5-4.6,1l-7.4,10.2 c-1.8-1-3.8-1.7-5.9-2.2L58.5,5.5c-0.2-1.8-1.8-3-3.6-3h-7.6c-1.8,0-3.4,1.3-3.6,3l-2.6,12.4c-2.1,0.5-4,1.2-5.9,2.2l-7.4-10.2 c-1.1-1.5-3.1-2-4.6-1l-6.4,4c-1.5,1-2,3.1-0.9,4.6l7.4,10.2c-1.1,1.8-2,3.8-2.6,5.9L5.5,41.5c-1.8,0.2-3,1.8-3,3.6v7.6 c0,1.8,1.3,3.4,3,3.6l12.4,2.6c0.6,2.1,1.5,4,2.6,5.9l-7.4,10.2c-1.1,1.5-0.7,3.6,0.9,4.6l6.4,4c1.5,1,3.6,0.5,4.6-1l7.4-10.2 c1.8,1,3.8,1.7,5.9,2.2l2.6,12.4c0.2,1.8,1.8,3,3.6,3h7.6c1.8,0,3.4-1.3,3.6-3l2.6-12.4c2.1-0.5,4-1.2,5.9-2.2l7.4,10.2 c1.1,1.5,3.1,2,4.6,1l6.4-4c1.5-1,2-3.1,0.9-4.6l-7.4-10.2c1.1-1.8,2-3.8,2.6-5.9l12.4-2.6c1.8-0.2,3-1.8,3-3.6v-7.6 C97.5,43.3,96.2,41.7,94.5,41.5z M50,65c-8.3,0-15-6.7-15-15s6.7-15,15-15s15,6.7,15,15S58.3,65,50,65z"/></svg>
         </div>
     </div>
 
     <div class="relative z-10 reveal w-full">
         <div class="mb-4 text-blue-400 text-[10px] font-bold tracking-[0.5em] opacity-80 uppercase"
-             data-tr="System: Online" 
-             data-en="System: Online">
-             System: Online
-        </div>
+             data-tr="System: Online" data-en="System: Online">System: Online</div>
 
         <h1 class="text-6xl md:text-8xl font-extrabold leading-[0.9] mb-12 uppercase tracking-tighter"
             data-tr="Teoriyi <br> <span class='text-blue-500 italic'>Pratiğe</span> <br> Dönüştür."
             data-en="Turn <br> <span class='text-blue-500 italic'>Theory</span> <br> Into Practice.">
-            Teoriyi <br> 
-            <span class="text-blue-500 italic">Pratiğe</span> <br> 
-            Dönüştür.
+            Teoriyi <br> <span class="text-blue-500 italic">Pratiğe</span> <br> Dönüştür.
         </h1>
         
         <div id="about" class="terminal-border p-8 max-w-2xl group relative bg-black/20 backdrop-blur-sm">
-            <div class="terminal-header mb-4 w-fit" 
-                 data-tr="BİZ_KİMİZ?" 
-                 data-en="WHO_ARE_WE?">
-                 BİZ_KİMİZ?
-            </div>
+            <div class="terminal-header mb-4 w-fit" data-tr="BİZ_KİMİZ?" data-en="WHO_ARE_WE?">BİZ_KİMİZ?</div>
             <p class="text-sm md:text-base text-gray-300 leading-relaxed">
                 <span id="about-text" 
                       data-tr="> Füsun Yönder Anadolu Lisesi'nde doğan <span class='text-white font-bold'>Fusion Robotics #7682</span>, FRC ve Teknofest sahnelerinde teoriyi pratiğe dönüştüren bir mühendislik topluluğudur."
@@ -215,6 +217,48 @@
             </p>
         </div>
     </div>
+
+    <script>
+        function initConnectedGears() {
+            const gear1 = document.getElementById('gear-1');
+            const gear2 = document.getElementById('gear-2');
+            const gear3 = document.getElementById('gear-3');
+            const gear4 = document.getElementById('gear-4');
+            const gear5 = document.getElementById('gear-5');
+
+            let currentMasterRotation = 0;
+
+            function rotateSystem() {
+                // Rastgele bir açı seç (Örn: 90 derece sağa veya 180 derece sola)
+                const steps = [90, -90, 180, -180, 45, -45];
+                const move = steps[Math.floor(Math.random() * steps.length)];
+                
+                currentMasterRotation += move;
+
+                // FİZİKSEL BAĞLANTI MANTIĞI:
+                // 1. Ana Dişli döner
+                gear1.style.transform = `rotate(${currentMasterRotation}deg)`;
+                
+                // 2. Dişli 1'e dokunanlar (2 ve 4) TERS yöne döner
+                gear2.style.transform = `rotate(${-currentMasterRotation}deg)`;
+                gear4.style.transform = `rotate(${-currentMasterRotation}deg)`;
+
+                // 3. Dişli 2'ye dokunanlar (3 ve 5) tekrar DÜZ yöne döner
+                gear3.style.transform = `rotate(${currentMasterRotation}deg)`;
+                gear5.style.transform = `rotate(${currentMasterRotation}deg)`;
+
+                // Bir sonraki hareket için rastgele kısa bekleme (1.5sn - 3.5sn)
+                const delay = Math.random() * 2000 + 1500;
+                setTimeout(rotateSystem, delay);
+            }
+
+            // İlk hareketi başlat
+            setTimeout(rotateSystem, 1000);
+        }
+
+        document.addEventListener('DOMContentLoaded', initConnectedGears);
+    </script>
+</main>
 
     <script>
         function initGears() {
