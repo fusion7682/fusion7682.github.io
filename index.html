@@ -105,7 +105,7 @@
     <div class="grid-bg"></div>
     <div class="scanline"></div>
 
-<nav class="p-6 flex justify-between items-center fixed top-0 w-full z-50 bg-[#0d0d0d]/60 backdrop-blur-md border-b border-white/5">
+<nav class="p-6 flex justify-between items-center fixed top-0 w-full z-[100] bg-[#0d0d0d]/60 backdrop-blur-md border-b border-white/5">
     <div class="font-black text-xl tracking-tighter text-white">Fusion Robotics #7682</div>
     
     <div class="hidden md:flex items-center gap-10 text-[10px] font-bold tracking-[0.3em]">
@@ -119,28 +119,27 @@
         </div>
     </div>
 
-    <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 z-[60] relative">
-        <span id="line1" class="w-6 h-0.5 bg-white transition-all"></span>
-        <span id="line2" class="w-6 h-0.5 bg-white transition-all"></span>
-        <span id="line3" class="w-6 h-0.5 bg-white transition-all"></span>
+    <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 z-[110] relative p-2">
+        <span id="line1" class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+        <span id="line2" class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+        <span id="line3" class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
     </button>
 </nav>
 
-<div id="mobile-panel" class="fixed inset-0 bg-black/95 z-[55] translate-x-full transition-transform duration-500 md:hidden flex flex-col items-center justify-center gap-8">
-    <div class="flex flex-col items-center gap-10 text-[14px] font-bold tracking-[0.4em]">
-        <a href="#about" onclick="toggleMobileMenu()" data-tr="/BIZ_KIMIZ" data-en="/ABOUT_US" class="hover:text-blue-500 text-white transition-colors">/BIZ_KIMIZ</a>
-        <a href="#events" onclick="toggleMobileMenu()" data-tr="/BAŞARILAR" data-en="/ACHIEVEMENTS" class="hover:text-blue-500 text-white transition-colors">/BAŞARILAR</a>
-        <a href="#contact" onclick="toggleMobileMenu()" data-tr="/İLETİŞİM" data-en="/CONTACT" class="hover:text-blue-500 text-white transition-colors">/İLETİŞİM</a>
+<div id="mobile-panel" class="fixed inset-0 bg-[#0d0d0d] z-[105] translate-x-full transition-transform duration-500 md:hidden flex flex-col items-center justify-center">
+    <div class="flex flex-col items-center gap-12 text-[16px] font-bold tracking-[0.5em]">
+        <a href="#about" onclick="toggleMobileMenu()" data-tr="/BIZ_KIMIZ" data-en="/ABOUT_US" class="text-white hover:text-blue-500 transition-colors">/BIZ_KIMIZ</a>
+        <a href="#events" onclick="toggleMobileMenu()" data-tr="/BAŞARILAR" data-en="/ACHIEVEMENTS" class="text-white hover:text-blue-500 transition-colors">/BAŞARILAR</a>
+        <a href="#contact" onclick="toggleMobileMenu()" data-tr="/İLETİŞİM" data-en="/CONTACT" class="text-white hover:text-blue-500 transition-colors">/İLETİŞİM</a>
         
-        <div class="flex gap-8 mt-10 border-t border-white/10 pt-10">
-            <button onclick="setLang('tr')" id="m-btn-tr" class="text-white text-lg font-bold">TR</button>
-            <button onclick="setLang('en')" id="m-btn-en" class="text-white/40 text-lg font-bold">EN</button>
+        <div class="flex gap-10 mt-8 border-t border-white/10 pt-10">
+            <button onclick="setLang('tr')" id="m-btn-tr" class="text-white text-xl">TR</button>
+            <button onclick="setLang('en')" id="m-btn-en" class="text-white/40 text-xl">EN</button>
         </div>
     </div>
 </div>
 
 <script>
-    // Menü Açma/Kapama Fonksiyonu
     function toggleMobileMenu() {
         const panel = document.getElementById('mobile-panel');
         const l1 = document.getElementById('line1');
@@ -148,15 +147,17 @@
         const l3 = document.getElementById('line3');
 
         if (panel.classList.contains('translate-x-full')) {
-            // Açılış
+            // MENÜ AÇILIYOR
             panel.classList.remove('translate-x-full');
+            // X Animasyonu
             l1.style.transform = "translateY(8px) rotate(45deg)";
             l2.style.opacity = "0";
             l3.style.transform = "translateY(-8px) rotate(-45deg)";
-            document.body.style.overflow = "hidden"; // Sayfanın arkada kaymasını engeller
+            document.body.style.overflow = "hidden"; 
         } else {
-            // Kapanış
+            // MENÜ KAPANIYOR
             panel.classList.add('translate-x-full');
+            // Çizgilere geri dönüş
             l1.style.transform = "none";
             l2.style.opacity = "1";
             l3.style.transform = "none";
@@ -164,7 +165,7 @@
         }
     }
 
-    // Dil Değiştirme (Mobil butonlar dahil edildi)
+    // Dil Fonksiyonu (Hem masaüstü hem mobil butonları yönetir)
     function setLang(lang) {
         const elements = document.querySelectorAll('[data-tr]');
         elements.forEach(el => {
@@ -172,20 +173,15 @@
             if (translation) el.textContent = translation;
         });
 
-        // Buton parlamalarını güncelle (Masaüstü ve Mobil)
-        const btns = {
-            tr: [document.getElementById('btn-tr'), document.getElementById('m-btn-tr')],
-            en: [document.getElementById('btn-en'), document.getElementById('m-btn-en')]
+        const updateBtnStyle = (langType) => {
+            const isTr = langType === 'tr';
+            document.getElementById('btn-tr').className = isTr ? "text-white" : "text-white/40";
+            document.getElementById('m-btn-tr').className = isTr ? "text-white text-xl" : "text-white/40 text-xl";
+            document.getElementById('btn-en').className = isTr ? "text-white/40" : "text-white";
+            document.getElementById('m-btn-en').className = isTr ? "text-white/40 text-xl" : "text-white text-xl";
         };
 
-        if (lang === 'tr') {
-            btns.tr.forEach(b => b.classList.replace('text-white/40', 'text-white'));
-            btns.en.forEach(b => b.classList.replace('text-white', 'text-white/40'));
-        } else {
-            btns.en.forEach(b => b.classList.replace('text-white/40', 'text-white'));
-            btns.tr.forEach(b => b.classList.replace('text-white', 'text-white/40'));
-        }
-
+        updateBtnStyle(lang);
         localStorage.setItem('fusion_lang', lang);
     }
 
