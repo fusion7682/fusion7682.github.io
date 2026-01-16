@@ -105,38 +105,39 @@
     <div class="grid-bg"></div>
     <div class="scanline"></div>
 
-<nav class="p-6 flex justify-between items-center fixed top-0 w-full z-[100] bg-[#0d0d0d]/60 backdrop-blur-md border-b border-white/5">
+<nav class="p-6 flex justify-between items-center fixed top-0 w-full z-50 bg-[#0d0d0d]/60 backdrop-blur-md border-b border-white/5">
     <div class="font-black text-xl tracking-tighter text-white">Fusion Robotics #7682</div>
     
     <div class="hidden md:flex items-center gap-10 text-[10px] font-bold tracking-[0.3em]">
-        <a href="#about" data-tr="/BIZ_KIMIZ" data-en="/ABOUT_US" class="hover:text-blue-500 transition-colors">/BIZ_KIMIZ</a>
-        <a href="#events" data-tr="/BAŞARILAR" data-en="/ACHIEVEMENTS" class="hover:text-blue-500 transition-colors">/BAŞARILAR</a>
-        <a href="#contact" data-tr="/İLETİŞİM" data-en="/CONTACT" class="hover:text-blue-500 transition-colors">/İLETİŞİM</a>
-        
+        <a href="#about" class="hover:text-blue-500 transition-colors text-white">/BIZ_KIMIZ</a>
+        <a href="#events" class="hover:text-blue-500 transition-colors text-white">/BAŞARILAR</a>
+        <a href="#contact" class="hover:text-blue-500 transition-colors text-white">/İLETİŞİM</a>
         <div class="flex gap-4 ml-4 border-l border-white/10 pl-10">
-            <button onclick="setLang('tr')" id="btn-tr" class="hover:text-blue-500 transition-colors cursor-pointer text-white">TR</button>
-            <button onclick="setLang('en')" id="btn-en" class="hover:text-blue-500 transition-colors cursor-pointer text-white/40">EN</button>
+            <button onclick="setLang('tr')" class="text-white">TR</button>
+            <button onclick="setLang('en')" class="text-white/40">EN</button>
         </div>
     </div>
 
-    <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 z-[110] relative p-2">
-        <span id="line1" class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+    <button id="menu-trigger" onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 z-[200] relative p-4">
+        <span id="line1" class="w-6 h-0.5 bg-white transition-all duration-300"></span>
         <span id="line2" class="w-6 h-0.5 bg-white transition-all duration-300"></span>
-        <span id="line3" class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+        <span id="line3" class="w-6 h-0.5 bg-white transition-all duration-300"></span>
     </button>
 </nav>
 
-<div id="mobile-panel" class="fixed inset-0 bg-[#0d0d0d] z-[105] translate-x-full transition-transform duration-500 md:hidden flex flex-col items-center justify-center">
-    <div class="flex flex-col items-center gap-12 text-[16px] font-bold tracking-[0.5em]">
-        <a href="#about" onclick="toggleMobileMenu()" data-tr="/BIZ_KIMIZ" data-en="/ABOUT_US" class="text-white hover:text-blue-500 transition-colors">/BIZ_KIMIZ</a>
-        <a href="#events" onclick="toggleMobileMenu()" data-tr="/BAŞARILAR" data-en="/ACHIEVEMENTS" class="text-white hover:text-blue-500 transition-colors">/BAŞARILAR</a>
-        <a href="#contact" onclick="toggleMobileMenu()" data-tr="/İLETİŞİM" data-en="/CONTACT" class="text-white hover:text-blue-500 transition-colors">/İLETİŞİM</a>
+<div id="mobile-panel" class="fixed inset-0 bg-black/98 z-[150] translate-x-full transition-transform duration-500 md:hidden flex flex-col items-center justify-center">
+    
+    <div class="flex flex-col items-center gap-10 text-[14px] font-bold tracking-[0.4em]">
+        <a href="#about" onclick="toggleMobileMenu()" class="text-white">/ABOUT_US</a>
+        <a href="#events" onclick="toggleMobileMenu()" class="text-white">/ACHIEVEMENTS</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="text-white">/CONTACT</a>
         
-        <div class="flex gap-10 mt-8 border-t border-white/10 pt-10">
-            <button onclick="setLang('tr')" id="m-btn-tr" class="text-white text-xl">TR</button>
-            <button onclick="setLang('en')" id="m-btn-en" class="text-white/40 text-xl">EN</button>
+        <div class="flex gap-8 mt-10 border-t border-white/10 pt-10">
+            <button onclick="setLang('tr')" class="text-white text-xl">TR</button>
+            <button onclick="setLang('en')" class="text-white/40 text-xl">EN</button>
         </div>
-    </div>
+
+        </div>
 </div>
 
 <script>
@@ -145,52 +146,39 @@
         const l1 = document.getElementById('line1');
         const l2 = document.getElementById('line2');
         const l3 = document.getElementById('line3');
+        const trigger = document.getElementById('menu-trigger');
 
         if (panel.classList.contains('translate-x-full')) {
-            // MENÜ AÇILIYOR
+            // PANEL AÇILIYOR
             panel.classList.remove('translate-x-full');
+            
             // X Animasyonu
             l1.style.transform = "translateY(8px) rotate(45deg)";
             l2.style.opacity = "0";
             l3.style.transform = "translateY(-8px) rotate(-45deg)";
-            document.body.style.overflow = "hidden"; 
+            
+            // Butonu ekranın sağ üstüne sabitle (Panel üstünde kalsın)
+            trigger.classList.add('fixed');
+            trigger.style.right = '24px';
+            trigger.style.top = '24px';
+            
+            document.body.style.overflow = "hidden";
         } else {
-            // MENÜ KAPANIYOR
+            // PANEL KAPANIYOR
             panel.classList.add('translate-x-full');
-            // Çizgilere geri dönüş
+            
+            // Eski haline dön
             l1.style.transform = "none";
             l2.style.opacity = "1";
             l3.style.transform = "none";
+            
+            trigger.classList.remove('fixed');
+            
             document.body.style.overflow = "auto";
         }
     }
-
-    // Dil Fonksiyonu (Hem masaüstü hem mobil butonları yönetir)
-    function setLang(lang) {
-        const elements = document.querySelectorAll('[data-tr]');
-        elements.forEach(el => {
-            const translation = el.getAttribute(`data-${lang}`);
-            if (translation) el.textContent = translation;
-        });
-
-        const updateBtnStyle = (langType) => {
-            const isTr = langType === 'tr';
-            document.getElementById('btn-tr').className = isTr ? "text-white" : "text-white/40";
-            document.getElementById('m-btn-tr').className = isTr ? "text-white text-xl" : "text-white/40 text-xl";
-            document.getElementById('btn-en').className = isTr ? "text-white/40" : "text-white";
-            document.getElementById('m-btn-en').className = isTr ? "text-white/40 text-xl" : "text-white text-xl";
-        };
-
-        updateBtnStyle(lang);
-        localStorage.setItem('fusion_lang', lang);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const savedLang = localStorage.getItem('fusion_lang') || 'tr';
-        setLang(savedLang);
-    });
 </script>
-
+	
 <main class="min-h-screen pt-48 px-6 md:px-20 relative flex flex-col items-start">
     <div class="relative z-10 reveal w-full">
         <div class="mb-4 text-blue-400 text-[10px] font-bold tracking-[0.5em] opacity-80 uppercase"
