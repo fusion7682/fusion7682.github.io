@@ -105,7 +105,7 @@
     <div class="grid-bg"></div>
     <div class="scanline"></div>
 
-<nav class="p-6 flex justify-between items-center fixed top-0 w-full z-50 bg-[#0d0d0d]/60 backdrop-blur-md border-b border-white/5">
+<nav class="p-6 flex justify-between items-center fixed top-0 w-full z-[100] bg-[#0d0d0d]/60 backdrop-blur-md border-b border-white/5">
     <div class="font-black text-xl tracking-tighter text-white">Fusion Robotics #7682</div>
     
     <div class="hidden md:flex items-center gap-10 text-[10px] font-bold tracking-[0.3em]">
@@ -118,26 +118,23 @@
         </div>
     </div>
 
-    <button id="menu-trigger" onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 z-[200] relative p-4">
-        <span id="line1" class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+    <button id="menu-btn" onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 z-[110] relative p-2 focus:outline-none">
+        <span id="line1" class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
         <span id="line2" class="w-6 h-0.5 bg-white transition-all duration-300"></span>
-        <span id="line3" class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+        <span id="line3" class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
     </button>
 </nav>
 
-<div id="mobile-panel" class="fixed inset-0 bg-black/98 z-[150] translate-x-full transition-transform duration-500 md:hidden flex flex-col items-center justify-center">
-    
-    <div class="flex flex-col items-center gap-10 text-[14px] font-bold tracking-[0.4em]">
-        <a href="#about" onclick="toggleMobileMenu()" class="text-white">/ABOUT_US</a>
-        <a href="#events" onclick="toggleMobileMenu()" class="text-white">/ACHIEVEMENTS</a>
-        <a href="#contact" onclick="toggleMobileMenu()" class="text-white">/CONTACT</a>
-        
-        <div class="flex gap-8 mt-10 border-t border-white/10 pt-10">
-            <button onclick="setLang('tr')" class="text-white text-xl">TR</button>
+<div id="mobile-panel" class="fixed inset-0 bg-[#0d0d0d] z-[105] translate-x-full transition-transform duration-500 md:hidden flex flex-col items-center justify-center">
+    <div class="flex flex-col items-center gap-12 text-[16px] font-bold tracking-[0.5em] text-white">
+        <a href="#about" onclick="toggleMobileMenu()">/BIZ_KIMIZ</a>
+        <a href="#events" onclick="toggleMobileMenu()">/BAŞARILAR</a>
+        <a href="#contact" onclick="toggleMobileMenu()">/İLETİŞİM</a>
+        <div class="flex gap-10 mt-10 border-t border-white/10 pt-10">
+            <button onclick="setLang('tr')" class="text-xl">TR</button>
             <button onclick="setLang('en')" class="text-white/40 text-xl">EN</button>
         </div>
-
-        </div>
+    </div>
 </div>
 
 <script>
@@ -146,34 +143,22 @@
         const l1 = document.getElementById('line1');
         const l2 = document.getElementById('line2');
         const l3 = document.getElementById('line3');
-        const trigger = document.getElementById('menu-trigger');
 
         if (panel.classList.contains('translate-x-full')) {
-            // PANEL AÇILIYOR
+            // AÇILIŞ
             panel.classList.remove('translate-x-full');
-            
-            // X Animasyonu
+            // X Hareketi (Y ekseninde tam hizalama)
             l1.style.transform = "translateY(8px) rotate(45deg)";
             l2.style.opacity = "0";
             l3.style.transform = "translateY(-8px) rotate(-45deg)";
-            
-            // Butonu ekranın sağ üstüne sabitle (Panel üstünde kalsın)
-            trigger.classList.add('fixed');
-            trigger.style.right = '24px';
-            trigger.style.top = '24px';
-            
             document.body.style.overflow = "hidden";
         } else {
-            // PANEL KAPANIYOR
+            // KAPANIŞ
             panel.classList.add('translate-x-full');
-            
-            // Eski haline dön
+            // Normal Çizgi Hareketi
             l1.style.transform = "none";
             l2.style.opacity = "1";
             l3.style.transform = "none";
-            
-            trigger.classList.remove('fixed');
-            
             document.body.style.overflow = "auto";
         }
     }
