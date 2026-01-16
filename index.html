@@ -182,28 +182,38 @@
     }
 
     // Dil Fonksiyonu
-    function setLang(lang) {
+function setLang(lang) {
         const elements = document.querySelectorAll('[data-tr]');
         elements.forEach(el => {
             const translation = el.getAttribute(`data-${lang}`);
-            if (translation) el.textContent = translation;
+            if (translation) {
+                // Eğer çeviri içinde HTML etiketi varsa (span, br vb.) innerHTML kullan
+                if (translation.includes('<')) {
+                    el.innerHTML = translation;
+                } else {
+                    el.textContent = translation;
+                }
+            }
         });
 
         const updateBtnStyle = (langType) => {
             const isTr = langType === 'tr';
-            document.getElementById('btn-tr').className = isTr ? "text-white" : "text-white/40";
+            // Masaüstü Butonlar
+            document.getElementById('btn-tr').className = isTr ? "text-white cursor-pointer" : "text-white/40 cursor-pointer";
+            document.getElementById('btn-en').className = isTr ? "text-white/40 cursor-pointer" : "text-white cursor-pointer";
+            // Mobil Butonlar
             document.getElementById('m-btn-tr').className = isTr ? "text-white text-xl" : "text-white/40 text-xl";
-            document.getElementById('btn-en').className = isTr ? "text-white/40" : "text-white";
             document.getElementById('m-btn-en').className = isTr ? "text-white/40 text-xl" : "text-white text-xl";
         };
 
         updateBtnStyle(lang);
-        localStorage.setItem('fusion_lang', lang);
+        // localStorage kaydını sildik, artık hafızaya almıyor.
     }
 
+    // Site her yüklendiğinde hafızaya bakmaksızın TR diliyle başla
     document.addEventListener('DOMContentLoaded', () => {
-        const savedLang = localStorage.getItem('fusion_lang') || 'tr';
-        setLang(savedLang);
+        setLang('tr');
+        console.log("System Initialized: Language forced to TR");
     });
 </script>
 	
