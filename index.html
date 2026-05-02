@@ -1,771 +1,1158 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fusion Robotics 7682 | It Should Work In Theory</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <meta name="description" content="Fusion Robotics #7682 - Füsun Yönder Anadolu Lisesi FRC ve Teknofest Takımı. Mühendislik, robotik ve inovasyon yolculuğumuz.">
-    <meta name="keywords" content="Fusion Robotics, 7682, FRC, Teknofest, Füsun Yönder Anadolu Lisesi, Robotik Takımı, İstanbul Robotik">
-    <meta name="author" content="Fusion Robotics #7682">
-    <meta property="og:title" content="Fusion Robotics 7682">
-    <meta property="og:description" content="Teoriyi pratiğe dönüştüren mühendislik topluluğu.">
-    <meta property="og:image" content="https://fusion7682.github.io/navbarlogo.png"> 
-    <meta property="og:url" content="https://fusion7682.github.io">
-	<meta name="google-site-verification" content="IYXo7XVPff58_eW2vegEzdwZxqfCO0JOJkH1FUPEqqo" />
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;800&display=swap');
-        :root {
-    --fusion: #3b82f6;
-    --fusion-glow: rgba(59,130,246,0.5);
-    --bg-dark: #0d0d0d;
-    --bg-soft: #111111;
-    --white: #ffffff;
-    --text-dim: rgba(255,255,255,0.6);
-		}
-        
-        /* GPU Katmanı ve Donanım Hızlandırma */
-		.grid-bg {
-    animation: gridMove 20s linear infinite;
-		}
-		@keyframes gridMove {
-			from { background-position: 0 0; }
-			to { background-position: 40px 40px; }
-		}
+<!-- saved from url=(0064)https://text-editor-45.preview.emergentagent.com/fusion7682.html -->
+<html lang="tr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
 
-        body {
-    background: radial-gradient(circle at top, #111 0%, #0d0d0d 60%);
-    color: var(--white);
-    font-family: 'JetBrains Mono', monospace;
-    overflow-x: hidden;
-		}
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .reveal { animation: fadeInUp 0.8s ease-out forwards; }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fusion Robotics #7682 · It should work in theory</title>
+<meta name="description" content="FRC Team 7682 Fusion Robotics — Füsun Yönder Anadolu Lisesi, Bahçelievler, İstanbul. It should work in theory.">
+<meta property="og:url" content="https://fusion7682.github.io">
+<meta name="google-site-verification" content="IYXo7XVPff58_eW2vegEzdwZxqfCO0JOJkH1FUPEqqo" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 38 38'><rect width='38' height='38' rx='8' fill='%2305070C'/><circle cx='19' cy='19' r='3.5' fill='%2300c8ff'/><ellipse cx='19' cy='19' rx='17' ry='6.5' stroke='%232a3aff' stroke-width='1.8' fill='none'/><ellipse cx='19' cy='19' rx='17' ry='6.5' stroke='%231a8aff' stroke-width='1.8' fill='none' transform='rotate(60 19 19)'/><ellipse cx='19' cy='19' rx='17' ry='6.5' stroke='%2300c8ff' stroke-width='1.8' fill='none' transform='rotate(120 19 19)'/></svg>">
+<link rel="icon" type="image/png" href="logo.png">
+	
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Fusion Robotics #7682 · It should work in theory_files/css2" rel="stylesheet">
+<link rel="stylesheet" href="./Fusion Robotics #7682 · It should work in theory_files/line.css">
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
-        .grid-bg {
-            position: fixed; inset: 0;
-            background-image: linear-gradient(to right, rgba(59, 130, 246, 0.03) 1px, transparent 1px), 
-                              linear-gradient(to bottom, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px; z-index: -1;
-            opacity: 0.2;
-        }
-		.scanline {
-			width: 100%;
-			height: 1px;
-			background: linear-gradient(
-				to right,
-				transparent,
-				rgba(59,130,246,0.4),
-				transparent
-			);
-    animation: scanline 6s linear infinite;
-		}
-        }
-        @keyframes scanline { 0% { top: -10px; } 100% { top: 100vh; } }
+<style>
+:root{
+  --bg:#05070C;--bg-2:#0A0E14;--bg-3:#0E1626;--bg-4:#121B30;
+  --line:rgba(255,255,255,.07);--line-2:rgba(255,255,255,.14);
+  --blue:#2a3aff;--blue-2:#1a8aff;--cyan:#00c8ff;--cyan-2:#00e5ff;
+  --accent:#4A7CFF;--text:#E8ECF4;--text-2:#A8B0C0;--text-3:#6B7285;
+  --body-font:"Poppins",sans-serif;--title-font:"Space Grotesk","Poppins",sans-serif;
+  --nav-h:68px;--r:14px;--trans:.4s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body-font);background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+ul{list-style:none}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:#05070C}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--blue),var(--cyan));border-radius:4px}
+::selection{background:var(--blue);color:#fff}
 
-        /* Optimize Edilmiş Blur (Hafif ve Akıcı) */
-		.terminal-border {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(20, 20, 20, 0.6);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-    transition: all 0.4s ease;
-    box-shadow: 0 0 0 transparent;
+/* LOADING + PAGE TRANSITION (shared atom spinner) */
+.atom-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:radial-gradient(circle at 50% 50%, #0A0E14 0%, #000 100%);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .45s ease, visibility .45s ease;
+}
+.atom-overlay.show{opacity:1;visibility:visible;pointer-events:all}
+.atom-overlay .loader{width:140px;height:140px;animation:rotate 1.8s linear infinite}
+
+/* HEADER */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);
+  background:rgba(5,7,12,.78);backdrop-filter:blur(18px) saturate(1.2);
+  -webkit-backdrop-filter:blur(18px) saturate(1.2);
+  border-bottom:1px solid var(--line);transition:var(--trans);
+}
+.nav{max-width:1280px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav__logo{display:flex;align-items:center;gap:12px;cursor:pointer}
+.nav__logo .logo-spin{width:36px;height:36px;animation:rotate 14s linear infinite}
+.nav__logo b{font-family:var(--title-font);font-size:15px;font-weight:700;color:#fff;letter-spacing:.3px}
+.nav__logo small{display:block;font-size:9.5px;color:var(--cyan);letter-spacing:2.5px;font-weight:600;margin-top:2px}
+.nav__menu{display:flex;align-items:center;gap:4px}
+.nav__link{
+  position:relative;padding:9px 15px;font-size:12.5px;font-weight:500;
+  color:var(--text-2);letter-spacing:.5px;border-radius:8px;cursor:pointer;
+  transition:var(--trans);text-transform:uppercase;
+}
+.nav__link:hover{color:var(--text)}
+.nav__link.active{color:var(--cyan)}
+.nav__link.active::after{content:"";position:absolute;left:15px;right:15px;bottom:4px;height:2px;background:var(--cyan);border-radius:2px}
+.lang-switch{display:flex;align-items:center;margin-left:14px;border:1px solid var(--line-2);border-radius:8px;padding:3px;background:rgba(255,255,255,.03)}
+.lang-btn{padding:5px 9px;font-size:10.5px;font-weight:700;letter-spacing:1px;background:transparent;border:none;color:var(--text-3);cursor:pointer;border-radius:5px;transition:var(--trans)}
+.lang-btn.active{background:var(--blue);color:#fff;box-shadow:0 4px 12px rgba(42,58,255,.4)}
+.nav__toggle{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer}
+
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:var(--nav-h)}
+.page.active{display:block;animation:pageIn .6s ease both}
+@keyframes pageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+.container{max-width:1280px;margin:0 auto;padding:0 28px}
+.section{padding:100px 0}
+.section-inner{max-width:1200px;margin:0 auto;padding:0 28px}
+
+.section__tag{display:inline-flex;align-items:center;gap:10px;font-family:var(--title-font);font-size:11px;font-weight:600;letter-spacing:4px;color:var(--cyan);text-transform:uppercase;margin-bottom:18px}
+.section__tag::before{content:"";width:28px;height:1.5px;background:var(--cyan)}
+.section__title{font-family:var(--title-font);font-size:clamp(32px,4.5vw,52px);font-weight:700;color:#fff;line-height:1.1;letter-spacing:-.5px;margin-bottom:20px}
+.section__sub{color:var(--text-2);font-size:15px;max-width:720px;line-height:1.7;margin-bottom:56px}
+.center{text-align:center}
+.center .section__tag{justify-content:center}
+.center .section__tag::before{display:none}
+.center .section__sub{margin-left:auto;margin-right:auto}
+
+.gal-item.zoomed {
+  transform: scale(1.08) !important;
+  z-index: 10;
+  box-shadow: 0 30px 80px rgba(0,200,255,.3);
+  border-color: var(--cyan) !important;
 }
 
-.terminal-border:hover {
-    border-color: var(--fusion);
-    background: rgba(30, 30, 30, 0.85);
-    box-shadow: 0 0 25px var(--fusion-glow);
+/* HERO */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;padding:var(--nav-h) 28px 60px;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(42,58,255,.2) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 90%, rgba(0,200,255,.12) 0%, transparent 55%),
+    linear-gradient(180deg, #05070C 0%, #0A0E14 60%, #000 100%);
 }
-        
-        .cursor {
-            display: inline-block; width: 8px; height: 1.1em; background: var(--fusion);
-            margin-left: 5px; vertical-align: middle; animation: blink 1.2s step-end infinite;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(74,124,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,124,255,.05) 1px, transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse at center, #000 0%, transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse at center, #000 0%, transparent 70%);
+}
+.hero__grid{position:relative;z-index:2;max-width:1280px;width:100%;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
+.hero__kicker{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid var(--line-2);border-radius:100px;font-size:10.5px;font-weight:600;letter-spacing:3.5px;color:var(--cyan);background:rgba(0,200,255,.05);margin-bottom:28px;text-transform:uppercase}
+.hero__kicker .dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;box-shadow:0 0 12px var(--cyan);animation:pulse 1.8s ease-in-out infinite}
+.hero__title{font-family:var(--title-font);font-size:clamp(64px,10vw,132px);font-weight:700;line-height:.92;letter-spacing:-3px;color:#fff;margin-bottom:14px}
+.hero__title .num{background:linear-gradient(135deg,#fff 0%,#7AA8FF 50%,#00E5FF 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero__slogan{font-family:var(--title-font);font-size:16px;font-weight:500;color:var(--cyan);letter-spacing:4px;text-transform:uppercase;margin-bottom:28px;font-style:italic}
+.hero__desc{font-size:15px;color:var(--text-2);max-width:520px;margin-bottom:34px;line-height:1.75}
+.hero__buttons{display:flex;gap:12px;flex-wrap:wrap}
+.hero__logo-img {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 12px;
+  /* Eğer hala sola yapışıyorsa: */
+  align-self: flex-start;
+}
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* ya da center, tasarıma göre */
+}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;font-size:12.5px;font-weight:600;letter-spacing:1.2px;border-radius:100px;cursor:pointer;text-transform:uppercase;transition:var(--trans);border:1px solid transparent;font-family:var(--body-font)}
+.btn-primary{background:linear-gradient(135deg,var(--blue) 0%,var(--cyan) 100%);color:#fff;box-shadow:0 10px 30px rgba(42,58,255,.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(0,200,255,.45)}
+.btn-ghost{background:rgba(255,255,255,.04);color:var(--text);border-color:var(--line-2)}
+.btn-ghost:hover{background:rgba(255,255,255,.08);border-color:var(--cyan);color:var(--cyan)}
+.hero__visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:460px}
+.atom-stage{position:relative;width:min(440px,92%);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+.atom-stage::before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle, rgba(42,58,255,.28) 0%, transparent 60%);filter:blur(40px);animation:breathe 4s ease-in-out infinite}
+.atom-stage::after{content:"";position:absolute;inset:8%;border-radius:50%;border:1px dashed rgba(0,200,255,.18);animation:rotate 40s linear infinite reverse}
+.atom-big{width:100%;height:100%;position:relative;z-index:2;animation:rotate 22s linear infinite;filter:drop-shadow(0 0 30px rgba(42,58,255,.35)) drop-shadow(0 0 60px rgba(0,200,255,.15))}
+.atom-label{position:absolute;bottom:-10px;left:0;right:0;text-align:center;font-family:var(--title-font);font-size:10.5px;font-weight:700;color:rgba(0,200,255,.55);letter-spacing:6px}
 
-        .timeline-container { position: relative; max-width: 64rem; margin: auto; }
-        .timeline-container::before {
-            content: ''; position: absolute; left: 50%; transform: translateX(-50%);
-            width: 1px; height: 100%; background: rgba(59, 130, 246, 0.2);
-        }
-        .timeline-card {
-            background: rgba(30, 30, 30, 0.4); 
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(2px); /* Kartlar için çok hafif blur */
-            padding: 1.5rem; border-radius: 12px; transition: all 0.3s ease;
-        }
-        .timeline-card:hover {
-            border-color: var(--fusion);
-            transform: translateY(-3px);
-            background: rgba(59, 130, 246, 0.05);
-        }
+/* STATS STRIP */
+.stats-strip{padding:50px 28px;background:linear-gradient(180deg,transparent,rgba(42,58,255,.04));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats-strip__inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat b{display:block;font-family:var(--title-font);font-size:38px;font-weight:700;color:#fff;line-height:1}
+.stat b .plus{color:var(--cyan)}
+.stat span{display:block;margin-top:8px;font-size:11px;color:var(--text-3);letter-spacing:2px;text-transform:uppercase}
 
-        @media (min-width: 768px) {
-            .timeline-item { width: 45%; margin-bottom: 3rem; position: relative; }
-            .timeline-item.left { margin-right: auto; text-align: right; }
-            .timeline-item.right { margin-left: auto; text-align: left; }
-            .timeline-item::after {
-                content: ''; position: absolute; top: 24px; width: 8px; height: 8px;
-                background: var(--bg-dark); border: 2px solid var(--fusion); border-radius: 50%; z-index: 10;
-            }
-            .timeline-item.left::after { right: -12.3%; }
-            .timeline-item.right::after { left: -12.3%; }
-        }
-        @media (max-width: 767px) {
-            .timeline-container::before { left: 20px; }
-            .timeline-item { width: 100%; padding-left: 45px; margin-bottom: 2rem; }
-        }
-    </style>
+/* CARDS */
+.card{background:linear-gradient(160deg,rgba(255,255,255,.03) 0%,rgba(42,58,255,.03) 100%);border:1px solid var(--line);border-radius:var(--r);padding:32px;position:relative;overflow:hidden;transition:var(--trans)}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .6s}
+.card:hover::before{transform:scaleX(1)}
+.card:hover{border-color:var(--line-2);transform:translateY(-4px)}
+.card__icon{width:52px;height:52px;border-radius:12px;background:rgba(42,58,255,.12);border:1px solid rgba(42,58,255,.25);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:22px;margin-bottom:20px}
+.card h3{font-family:var(--title-font);font-size:18px;font-weight:600;color:#fff;margin-bottom:10px}
+.card p{font-size:14px;color:var(--text-2);line-height:1.7}
+
+/* HOME FEATURES */
+.features{background:var(--bg-2)}
+.features__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+
+/* DASHBOARD */
+.dash__grid{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+.kpi-row{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:18px}
+.kpi{padding:26px;background:linear-gradient(180deg,rgba(42,58,255,.08),rgba(0,200,255,.03));border:1px solid rgba(42,58,255,.15);border-radius:var(--r)}
+.kpi b{display:block;font-family:var(--title-font);font-size:42px;font-weight:700;color:#fff;line-height:1}
+.kpi span{color:var(--cyan);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;margin-top:8px;display:block;font-weight:600}
+.kpi small{display:block;margin-top:14px;font-size:13px;color:var(--text-2)}
+.chart-card{padding:28px;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:var(--r)}
+.chart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.chart-head h4{font-family:var(--title-font);font-size:14px;color:#fff;font-weight:600}
+.chart-head small{color:var(--text-3);font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
+.bar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;font-size:12px}
+.bar-row .yr{font-family:var(--title-font);font-weight:700;color:var(--cyan);min-width:42px}
+.bar-track{flex:1;height:8px;background:rgba(255,255,255,.05);border-radius:100px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:100px;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+.bar-row .val{color:var(--text-2);min-width:50px;text-align:right;font-weight:500}
+
+/* EDUCATION */
+.edu__tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.edu-tab{padding:12px 22px;background:rgba(255,255,255,.03);border:1px solid var(--line-2);border-radius:100px;font-size:12px;font-weight:600;letter-spacing:1.5px;color:var(--text-2);cursor:pointer;transition:var(--trans);text-transform:uppercase;display:inline-flex;align-items:center;gap:8px}
+.edu-tab:hover{color:#fff;border-color:var(--cyan)}
+.edu-tab.active{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;border-color:transparent;box-shadow:0 6px 20px rgba(42,58,255,.3)}
+.edu__content{display:none}
+.edu__content.active{display:block;animation:pageIn .5s ease}
+.edu__head{max-width:820px;margin:0 auto 44px;text-align:center}
+.edu__head h3{font-family:var(--title-font);font-size:28px;font-weight:600;color:#fff;margin-bottom:14px}
+.edu__head p{color:var(--text-2);line-height:1.7}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px}
+.video-card{background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:var(--trans);cursor:pointer}
+.video-card:hover{border-color:var(--cyan);transform:translateY(-4px)}
+.video-thumb{aspect-ratio:16/9;position:relative;background:linear-gradient(135deg,#0E1626,#121B30);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.video-thumb::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(circle at 30% 40%,rgba(42,58,255,.3),transparent 60%),
+  radial-gradient(circle at 70% 70%,rgba(0,200,255,.2),transparent 60%)}
+.video-thumb .play{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:2px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;position:relative;z-index:2;transition:var(--trans)}
+.video-card:hover .play{background:var(--cyan);border-color:var(--cyan);transform:scale(1.1)}
+.video-thumb .dur{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.7);color:#fff;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;z-index:2}
+.video-body{padding:18px}
+.video-body h4{font-family:var(--title-font);font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
+.video-body small{font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase}
+
+/* PROJECTS */
+.proj-hero{padding:80px 28px;background:
+  radial-gradient(ellipse at center,rgba(42,58,255,.22) 0%,transparent 60%),
+  linear-gradient(135deg,#000,#0A0E14);
+  text-align:center;border-bottom:1px solid var(--line)}
+.proj-hero h2{font-family:var(--title-font);font-size:clamp(44px,7vw,88px);font-weight:800;color:#fff;line-height:.95;background:linear-gradient(180deg,#fff,#7AA8FF,#00E5FF);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px}
+.proj-hero h3{font-family:var(--title-font);font-size:clamp(32px,4.5vw,52px);font-weight:700;color:#fff;line-height:1.1;letter-spacing:-.5px;margin-bottom:20px}
+.genesis-box{max-width:1100px;margin:60px auto;padding:56px;background:linear-gradient(135deg,rgba(42,58,255,.12),rgba(0,200,255,.06));border:1px solid rgba(0,200,255,.25);border-radius:20px;position:relative;overflow:hidden}
+.genesis-box::before{content:"";position:absolute;top:-50%;right:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(0,200,255,.2),transparent 70%);filter:blur(40px)}
+.genesis-box__inner{position:relative;z-index:2}
+.genesis-big{font-family:var(--title-font);font-size:clamp(56px,10vw,112px);font-weight:800;line-height:.9;letter-spacing:-3px;background:linear-gradient(180deg,#fff,#7AA8FF,#00E5FF);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px}
+.genesis-pair{font-family:var(--title-font);font-size:clamp(22px,3vw,32px);font-weight:600;color:#fff;margin:12px 0;letter-spacing:1px}
+.genesis-pair .x{color:var(--cyan);margin:0 18px;font-weight:300}
+.genesis-desc {
+  margin-left: auto;
+  margin-right: auto;
+}
+.genesis-big {
+  text-align: center;
+}
+
+/* PROJECT CARDS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.proj-card{background:linear-gradient(180deg,rgba(18,27,48,.5),rgba(5,7,12,.8));border:1px solid var(--line);border-radius:var(--r);padding:30px;transition:var(--trans);position:relative;overflow:hidden}
+.proj-card:hover{border-color:var(--blue);transform:translateY(-4px)}
+.proj-tag{display:inline-block;padding:4px 10px;background:rgba(0,200,255,.1);color:var(--cyan);font-size:10px;font-weight:700;letter-spacing:1.5px;border-radius:4px;margin-bottom:14px;text-transform:uppercase}
+.proj-card h3{font-family:var(--title-font);font-size:20px;font-weight:600;color:#fff;margin-bottom:10px}
+.proj-card p{font-size:14px;color:var(--text-2);line-height:1.7;margin-bottom:16px}
+.proj-card ul{padding:0;margin-top:14px}
+.proj-card li{padding:8px 0;border-top:1px solid var(--line);font-size:13px;color:var(--text-2);display:flex;align-items:center;gap:10px}
+.proj-card li i{color:var(--cyan);font-size:14px}
+
+/* SCHOOL FORM */
+.school-form{max-width:820px;margin:60px auto 0;padding:44px;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:var(--r)}
+.form-head{margin-bottom:28px;text-align:center}
+.form-head h3{font-family:var(--title-font);font-size:22px;color:#fff;margin-bottom:8px}
+.form-head p{color:var(--text-2);font-size:14px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-field{display:flex;flex-direction:column;gap:8px}
+.form-field.full{grid-column:1/-1}
+.form-field label{font-size:11px;color:var(--text-3);letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+.form-field input,.form-field select,.form-field textarea{
+  padding:13px 16px;background:rgba(0,0,0,.3);border:1px solid var(--line-2);border-radius:10px;
+  color:var(--text);font-family:var(--body-font);font-size:14px;transition:var(--trans);resize:vertical;
+}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{outline:none;border-color:var(--cyan);background:rgba(0,200,255,.04)}
+.form-field textarea{min-height:120px}
+
+/* GALLERY */
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;grid-auto-rows:220px}
+.gal-item{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer;transition:var(--trans);border:1px solid var(--line)}
+.gal-item:nth-child(3n+1){grid-row:span 2}
+.gal-item:hover{transform:scale(1.02);border-color:var(--cyan);box-shadow:0 20px 50px rgba(0,200,255,.15)}
+.gal-item .gal-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.gal-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.85))}
+.gal-item .gal-meta{position:absolute;bottom:16px;left:16px;right:16px;z-index:2}
+.gal-item .gal-meta b{color:#fff;font-family:var(--title-font);font-size:15px;display:block}
+.gal-item .gal-meta span{color:var(--cyan);font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+.gal-tag{position:absolute;top:14px;left:14px;padding:4px 10px;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);color:var(--cyan);border-radius:6px;font-size:10px;font-weight:700;letter-spacing:1.5px;z-index:2;text-transform:uppercase}
+
+/* COMPETITIONS TIMELINE */
+.comp-timeline{max-width:980px;margin:0 auto;position:relative}
+.comp-timeline::before{content:"";position:absolute;left:160px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--blue),var(--cyan),transparent)}
+.comp-item{display:grid;grid-template-columns:180px 1fr;gap:24px;margin-bottom:28px;align-items:start}
+.comp-year{font-family:var(--title-font);font-size:18px;font-weight:700;color:var(--cyan);position:relative;white-space:nowrap;text-align:right;padding-right:24px}
+.comp-year::before{content:"";position:absolute;right:-8px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--cyan);border:3px solid var(--bg);box-shadow:0 0 0 2px var(--cyan)}
+.comp-card{padding:22px 26px;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:var(--r);transition:var(--trans)}
+.comp-card:hover{border-color:var(--blue);background:rgba(42,58,255,.06)}
+.comp-card h4{font-family:var(--title-font);font-size:17px;font-weight:600;color:#fff;margin-bottom:6px}
+.comp-card .loc{font-size:12px;color:var(--text-3);letter-spacing:1px}
+.comp-awards{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.award-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(255,215,0,.05));border:1px solid rgba(255,215,0,.3);color:#FFD966;border-radius:100px;font-size:11px;font-weight:600}
+.award-badge.safe{background:linear-gradient(135deg,rgba(0,200,255,.1),rgba(0,200,255,.05));border-color:rgba(0,200,255,.3);color:var(--cyan)}
+/* FIRST/FRC/FYF */
+.frf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.frf-card{padding:36px 28px;background:linear-gradient(180deg,rgba(18,27,48,.4),rgba(5,7,12,.7));border:1px solid var(--line);border-radius:var(--r);text-align:center;transition:var(--trans)}
+.frf-card:hover{border-color:var(--cyan);transform:translateY(-5px)}
+.frf-logo{width:72px;height:72px;margin:0 auto 22px;border-radius:50%;background:linear-gradient(135deg,rgba(42,58,255,.15),rgba(0,200,255,.08));border:1px solid rgba(0,200,255,.3);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:30px;font-family:var(--title-font);font-weight:800;letter-spacing:-1px}
+.frf-card h3{font-family:var(--title-font);font-size:18px;font-weight:700;color:#fff;margin-bottom:6px}
+.frf-card small{color:var(--cyan);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+.frf-card p{margin-top:18px;font-size:13.5px;color:var(--text-2);line-height:1.7}
+
+/* CONTACT */
+.contact__grid{display:grid;grid-template-columns:1fr 1.2fr;gap:40px}
+.contact__info{display:flex;flex-direction:column;gap:20px}
+.contact__item{display:flex;gap:18px;padding:22px;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:var(--r);transition:var(--trans)}
+.contact__item:hover{border-color:var(--cyan);background:rgba(0,200,255,.04)}
+.contact__item .ic{width:48px;height:48px;border-radius:12px;background:rgba(0,200,255,.1);border:1px solid rgba(0,200,255,.3);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:20px;flex-shrink:0}
+.contact__item h4{font-family:var(--title-font);font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;font-weight:600}
+.contact__item a,.contact__item span{font-size:14px;color:var(--text);font-weight:500;word-break:break-all}
+.contact__item a:hover{color:var(--cyan)}
+.contact__form{padding:34px;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:var(--r)}
+.map-wrap{margin-top:40px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line-2);aspect-ratio:21/9}
+.map-wrap iframe{width:100%;height:100%;border:none;filter:invert(.88) hue-rotate(180deg) contrast(.9)}
+
+/* SOCIAL ICONS */
+.socials{display:flex;gap:12px;flex-wrap:wrap}
+.social-ic{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);color:var(--text-2);display:flex;align-items:center;justify-content:center;font-size:17px;transition:var(--trans)}
+.social-ic:hover{background:var(--blue);border-color:var(--blue);color:#fff;transform:translateY(-3px)}
+
+/* TOAST */
+#toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);padding:14px 24px;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;border-radius:100px;font-size:13px;font-weight:500;z-index:9998;opacity:0;transition:var(--trans);box-shadow:0 14px 40px rgba(0,200,255,.3)}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* FOOTER */
+.footer{background:#020408;padding:40px 28px;border-top:1px solid var(--line);text-align:center}
+.footer__copy{font-size:12px;color:var(--text-3);letter-spacing:.8px}
+.footer__copy b{color:var(--text-2)}
+
+/* ANIMATIONS */
+@keyframes rotate{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6}}
+@keyframes breathe{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.9;transform:scale(1.08)}}
+[data-reveal]{opacity:0;transform:translateY(30px);transition:opacity .8s ease, transform .8s ease}
+[data-reveal].in{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media (max-width:900px){
+  .hero__grid{grid-template-columns:1fr;gap:50px;text-align:center}
+  .hero__buttons{justify-content:center}
+  .stats-strip__inner{grid-template-columns:repeat(2,1fr)}
+  .dash__grid,.contact__grid,.frf-grid,.form-grid{grid-template-columns:1fr}
+  .nav__menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(5,7,12,.98);backdrop-filter:blur(20px);flex-direction:column;padding:22px;border-bottom:1px solid var(--line);gap:4px;align-items:stretch}
+  .nav__menu.open{display:flex}
+  .nav__toggle{display:block}
+  .section{padding:70px 0}
+  .comp-item{grid-template-columns:80px 1fr;gap:18px}
+  .comp-timeline::before{left:33px}
+  .comp-year::before{left:23px}
+  .genesis-box{padding:36px 24px}
+}
+</style>
 </head>
 <body>
-    <div class="grid-bg"></div>
-    <div class="scanline"></div>
 
-<nav class="fixed top-0 w-full z-[100] bg-[#0d0d0d]/60 backdrop-blur-md border-b border-white/5">
-  <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-    
-    <div class="hidden md:flex items-center gap-10 text-[10px] font-bold tracking-[0.3em]">
-        <a href="#about" data-tr="/BIZ_KIMIZ" data-en="/ABOUT_US" class="hover:text-blue-500 transition-colors text-white">/BIZ_KIMIZ</a>
-        <a href="#events" data-tr="/BAŞARILAR" data-en="/ACHIEVEMENTS" class="hover:text-blue-500 transition-colors text-white">/BAŞARILAR</a>
-        <a href="#sponsors" onclick="closeMenu()" data-tr="/SPONSORLAR" data-en="/SPONSORS" class="hover:text-blue-500 transition-colors">/SPONSORLAR</a>
-		<a href="#faq" onclick="closeMenu()" data-tr="/SSS" data-en="/FAQ" class="hover:text-blue-500 transition-colors">/SSS</a>
-		<a href="#location" onclick="closeMenu()" data-tr="/KONUM" data-en="/LOCATION" class="hover:text-blue-500 transition-colors">/KONUM</a>
-		<a href="#contact" data-tr="/İLETİŞİM" data-en="/CONTACT" class="hover:text-blue-500 transition-colors text-white">/İLETİŞİM</a>
-        
-        <div class="flex gap-4 ml-4 border-l border-white/10 pl-10 text-white">
-            <button onclick="setLang('tr')" id="btn-tr" class="cursor-pointer">TR</button>
-            <button onclick="setLang('en')" id="btn-en" class="cursor-pointer">EN</button>
-        </div>
-    </div>
-
-    <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 z-[110] relative p-2">
-        <span id="line1" class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
-        <span id="line2" class="w-6 h-0.5 bg-white transition-all duration-300"></span>
-        <span id="line3" class="w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
-    </button>
-</nav>
-
-<div id="mobile-panel" class="fixed inset-0 bg-[#0d0d0d] z-[105] translate-x-full transition-transform duration-500 md:hidden flex flex-col items-center justify-center">
-    <div class="flex flex-col items-center gap-12 text-[16px] font-bold tracking-[0.5em] text-white">
-        <a href="#about" onclick="closeMenu()" data-tr="/BIZ_KIMIZ" data-en="/ABOUT_US" class="hover:text-blue-500 transition-colors">/BIZ_KIMIZ</a>
-        <a href="#events" onclick="closeMenu()" data-tr="/BAŞARILAR" data-en="/ACHIEVEMENTS" class="hover:text-blue-500 transition-colors">/BAŞARILAR</a>
-		<a href="#sponsors" onclick="closeMenu()" data-tr="/SPONSORLAR" data-en="/SPONSORS" class="hover:text-blue-500 transition-colors">/SPONSORLAR</a>
-		<a href="#faq" onclick="closeMenu()" data-tr="/SSS" data-en="/FAQ" class="hover:text-blue-500 transition-colors">/SSS</a>
-		<a href="#location" onclick="closeMenu()" data-tr="/KONUM" data-en="/LOCATION" class="hover:text-blue-500 transition-colors">/KONUM</a>
-        <a href="#contact" onclick="closeMenu()" data-tr="/İLETİŞİM" data-en="/CONTACT" class="hover:text-blue-500 transition-colors">/İLETİŞİM</a>
-        
-        <div class="flex gap-10 mt-8 border-t border-white/10 pt-10">
-            <button onclick="setLang('tr'); closeMenu();" id="m-btn-tr" class="text-xl">TR</button>
-            <button onclick="setLang('en'); closeMenu();" id="m-btn-en" class="text-white/40 text-xl">EN</button>
-        </div>
-    </div>
+<!-- PAGE TRANSITION OVERLAY (atom rotates during page changes) -->
+<div class="atom-overlay" id="atom-overlay">
+  <svg class="loader" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="10" fill="#00c8ff"></circle>
+    <circle cx="100" cy="100" r="5" fill="#fff"></circle>
+    <ellipse cx="100" cy="100" rx="80" ry="30" stroke="#2a3aff" stroke-width="2.2" fill="none"></ellipse>
+    <ellipse cx="100" cy="100" rx="80" ry="30" stroke="#00c8ff" stroke-width="2.2" fill="none" transform="rotate(60 100 100)"></ellipse>
+    <ellipse cx="100" cy="100" rx="80" ry="30" stroke="#4A7CFF" stroke-width="2.2" fill="none" transform="rotate(120 100 100)"></ellipse>
+  </svg>
 </div>
 
-<script>
-    // Genel Kapatma Fonksiyonu
-    function closeMenu() {
-        const panel = document.getElementById('mobile-panel');
-        const l1 = document.getElementById('line1');
-        const l2 = document.getElementById('line2');
-        const l3 = document.getElementById('line3');
-
-        // Sadece menü açıksa kapat (gereksiz tetiklemeyi önler)
-        if (!panel.classList.contains('translate-x-full')) {
-            panel.classList.add('translate-x-full');
-            l1.style.transform = "none";
-            l2.style.opacity = "1";
-            l3.style.transform = "none";
-            document.body.style.overflow = "auto";
-        }
-    }
-
-    // Açma-Kapama (Toggle) Fonksiyonu
-    function toggleMobileMenu() {
-        const panel = document.getElementById('mobile-panel');
-        const l1 = document.getElementById('line1');
-        const l2 = document.getElementById('line2');
-        const l3 = document.getElementById('line3');
-
-        if (panel.classList.contains('translate-x-full')) {
-            panel.classList.remove('translate-x-full');
-            l1.style.transform = "translateY(8px) rotate(45deg)";
-            l2.style.opacity = "0";
-            l3.style.transform = "translateY(-8px) rotate(-45deg)";
-            document.body.style.overflow = "hidden"; 
-        } else {
-            closeMenu();
-        }
-    }
-
-    // Dil Fonksiyonu
-function setLang(lang) {
-        const elements = document.querySelectorAll('[data-tr]');
-        elements.forEach(el => {
-            const translation = el.getAttribute(`data-${lang}`);
-            if (translation) {
-                // Eğer çeviri içinde HTML etiketi varsa (span, br vb.) innerHTML kullan
-                if (translation.includes('<')) {
-                    el.innerHTML = translation;
-                } else {
-                    el.textContent = translation;
-                }
-            }
-        });
-
-        const updateBtnStyle = (langType) => {
-            const isTr = langType === 'tr';
-            // Masaüstü Butonlar
-            document.getElementById('btn-tr').className = isTr ? "text-white cursor-pointer" : "text-white/40 cursor-pointer";
-            document.getElementById('btn-en').className = isTr ? "text-white/40 cursor-pointer" : "text-white cursor-pointer";
-            // Mobil Butonlar
-            document.getElementById('m-btn-tr').className = isTr ? "text-white text-xl" : "text-white/40 text-xl";
-            document.getElementById('m-btn-en').className = isTr ? "text-white/40 text-xl" : "text-white text-xl";
-        };
-
-        updateBtnStyle(lang);
-        // localStorage kaydını sildik, artık hafızaya almıyor.
-    }
-
-    // Site her yüklendiğinde hafızaya bakmaksızın TR diliyle başla
-    document.addEventListener('DOMContentLoaded', () => {
-        setLang('tr');
-        console.log("System Initialized: Language forced to TR");
-    });
-</script>
-	
-<main class="min-h-screen pt-48 px-6 md:px-20 relative flex flex-col items-start">
-    <div class="relative z-10 reveal w-full">
-        <div class="mb-4 text-blue-400 text-[10px] font-bold tracking-[0.5em] opacity-80 uppercase"
-             data-tr="System: Online" 
-             data-en="System: Online">
-             System: Online
-        </div>
-
-        <h1 class="text-6xl md:text-8xl font-extrabold leading-[0.9] mb-12 uppercase tracking-tighter"
-            data-tr="Teoriyi <br> <span class='text-blue-500 italic'>Pratiğe</span> <br> Dönüştür."
-            data-en="Turn <br> <span class='text-blue-500 italic'>Theory</span> <br> Into Practice.">
-            Teoriyi <br> 
-            <span class="text-blue-500 italic">Pratiğe</span> <br> 
-            Dönüştür.
-        </h1>
-        
-        <div id="about" class="terminal-border p-8 max-w-2xl group">
-            <div class="terminal-header mb-4 w-fit" 
-                 data-tr="BİZ_KİMİZ?" 
-                 data-en="WHO_ARE_WE?">
-                 BİZ_KİMİZ?
-            </div>
-            <p class="text-sm md:text-base text-gray-300 leading-relaxed">
-                <span id="about-text" 
-                      data-tr="> Füsun Yönder Anadolu Lisesi'nde doğan <span class='text-white font-bold'>Fusion Robotics #7682</span>, FRC ve Teknofest sahnelerinde teoriyi pratiğe dönüştüren bir mühendislik topluluğudur."
-                      data-en="> Born in Füsun Yönder Anatolian High School, <span class='text-white font-bold'>Fusion Robotics #7682</span> is an engineering community that turns theory into practice in FRC and Teknofest stages.">
-                    > Füsun Yönder Anadolu Lisesi'nde doğan <span class="text-white font-bold">Fusion Robotics #7682</span>, FRC ve Teknofest sahnelerinde teoriyi pratiğe dönüştüren bir mühendislik topluluğudur.
-                </span>
-                <span class="cursor"></span>
-            </p>
-        </div>
+<!-- HEADER -->
+<header class="header" id="header" style="background: rgba(5, 7, 12, 0.94);">
+  <nav class="nav">
+    <div class="nav__logo" data-nav="home" data-testid="nav-logo">
+      <svg class="logo-spin" viewBox="0 0 38 38" fill="none">
+        <circle cx="19" cy="19" r="3.5" fill="#00c8ff"></circle>
+        <ellipse cx="19" cy="19" rx="17" ry="6.5" stroke="#2a3aff" stroke-width="1.8" fill="none"></ellipse>
+        <ellipse cx="19" cy="19" rx="17" ry="6.5" stroke="#1a8aff" stroke-width="1.8" fill="none" transform="rotate(60 19 19)"></ellipse>
+        <ellipse cx="19" cy="19" rx="17" ry="6.5" stroke="#00c8ff" stroke-width="1.8" fill="none" transform="rotate(120 19 19)"></ellipse>
+      </svg>
+      <div><b>FUSION 7682</b><small>ROBOTICS</small></div>
     </div>
-</main>
-
-<script>
-    function setLang(lang) {
-        // data-tr veya data-en olan her şeyi seç
-        const elements = document.querySelectorAll('[data-tr]');
-        
-        elements.forEach(el => {
-            const translation = el.getAttribute('data-' + lang);
-            
-            if (translation) {
-                // Sadece text değil, içindeki HTML yapısını tanıması için kesin komut
-                el.innerHTML = translation; 
-            }
-        });
-
-        // Buton renkleri için Navbar kontrolü
-        const btnTr = document.getElementById('btn-tr');
-        const btnEn = document.getElementById('btn-en');
-        
-        if (btnTr && btnEn) {
-            if (lang === 'tr') {
-                btnTr.style.color = "#ffffff";
-                btnTr.style.opacity = "1";
-                btnEn.style.color = "#ffffff";
-                btnEn.style.opacity = "0.4";
-            } else {
-                btnEn.style.color = "#ffffff";
-                btnEn.style.opacity = "1";
-                btnTr.style.color = "#ffffff";
-                btnTr.style.opacity = "0.4";
-            }
-        }
-
-        localStorage.setItem('fusion_lang', lang);
-    }
-
-    // Sayfa yüklendiğinde hatayı önlemek için 100ms gecikmeli çalıştır
-    window.onload = () => {
-        const savedLang = localStorage.getItem('fusion_lang') || 'tr';
-        setLang(savedLang);
-    };
-</script>
-
-<section id="events" class="py-24 px-6 relative">
-    <h2 class="text-4xl md:text-5xl font-black text-center mb-20 uppercase tracking-tighter"
-        data-tr="Başarı <span class='text-blue-500 italic'>Yolculuğumuz</span>"
-        data-en="Our <span class='text-blue-500 italic'>Journey</span> of Success">
-        Başarı <span class="text-blue-500 italic">Yolculuğumuz</span>
-    </h2>
-
-    <div class="timeline-container">
-        <div class="timeline-item left">
-            <div class="timeline-card">
-                <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">2024</span>
-                <h3 class="font-bold mt-1 uppercase" data-tr="Aerospace Valley Regional" data-en="Aerospace Valley Regional">Aerospace Valley Regional</h3>
-                <p class="text-gray-400 text-xs mt-1 italic" 
-                   data-tr="California – 7. Sıra" 
-                   data-en="California – 7th Rank">
-                   California – 7. Sıra
-                </p>
-            </div>
+    <ul class="nav__menu" id="nav-menu">
+      <li><a class="nav__link active" data-nav="home" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a></li>
+      <li><a class="nav__link" data-nav="about" data-tr="Hakkımızda" data-en="About">Hakkımızda</a></li>
+      <li><a class="nav__link" data-nav="dashboard" data-tr="Dashboard" data-en="Dashboard">Dashboard</a></li>
+      <li><a class="nav__link" data-nav="education" data-tr="Eğitim" data-en="Education">Eğitim</a></li>
+      <li><a class="nav__link" data-nav="projects" data-tr="Projeler" data-en="Projects">Projeler</a></li>
+      <li><a class="nav__link" data-nav="gallery" data-tr="Galeri" data-en="Gallery">Galeri</a></li>
+      <li><a class="nav__link" data-nav="competitions" data-tr="Yarışmalar" data-en="Competitions">Yarışmalar</a></li>
+      <li><a class="nav__link" data-nav="first" data-tr="FIRST&FRC&FYF" data-en="FIRST&FRC&FYF">FIRST/FRC</a></li>
+      <li><a class="nav__link" data-nav="contact" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+      <li>
+        <div class="lang-switch" data-testid="lang-switch">
+          <button class="lang-btn active" data-lang="tr" data-testid="lang-tr">TR</button>
+          <button class="lang-btn" data-lang="en" data-testid="lang-en">EN</button>
         </div>
+      </li>
+    </ul>
+    <button class="nav__toggle" id="nav-toggle" aria-label="menu"><i class="uil uil-apps"></i></button>
+  </nav>
+</header>
 
-        <div class="timeline-item right">
-            <div class="timeline-card">
-                <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">2023</span>
-                <h3 class="font-bold mt-1 uppercase" data-tr="Haliç Regional" data-en="Haliç Regional">Haliç Regional</h3>
-                <p class="text-gray-400 text-xs mt-1 italic" 
-                   data-tr="En İyi 3. İttifak Başarısı" 
-                   data-en="Best 3rd Alliance Success">
-                   En İyi 3. İttifak Başarısı
-                </p>
-            </div>
+<!-- ═══════════════════ HOME PAGE ═══════════════════ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero__grid">
+      <div class="hero__content in" data-reveal="">
+        <h1 class="hero__title">FUSION <span class="num">ROBOTICS</span></h1>
+        <div class="hero__slogan">"It should work in theory"</div>
+        <p class="hero__desc" data-tr="Füsun Yönder Anadolu Lisesi bünyesinde faaliyet gösteren FRC Takımı #7682. Mühendisliği, topluluk etkisini ve STEM eğitimini buluşturan bir oluşum." data-en="FRC Team #7682 based at Füsun Yönder Anatolian High School. An organization combining engineering, community impact and STEM education.">Füsun Yönder Anadolu Lisesi bünyesinde faaliyet gösteren FRC Takımı #7682. Mühendisliği, topluluk etkisini ve STEM eğitimini buluşturan bir oluşum.</p>
+        <div class="hero__buttons">
+          <a class="btn btn-primary" data-nav="about" data-testid="hero-btn-about"><i class="uil uil-rocket"></i><span data-tr="Hakkımızda" data-en="About Us">Hakkımızda</span></a>
+          <a class="btn btn-ghost" data-nav="contact" data-testid="hero-btn-contact"><i class="uil uil-message"></i><span data-tr="İletişim" data-en="Contact">İletişim</span></a>
         </div>
-
-        <div class="timeline-item left">
-            <div class="timeline-card border-l-4 border-yellow-500">
-                <span class="text-yellow-500 font-bold text-xs uppercase tracking-widest">2022</span>
-                <h3 class="font-bold mt-1 uppercase" data-tr="Pendik Off-Season" data-en="Pendik Off-Season">Pendik Off-Season</h3>
-                <p class="text-yellow-500 font-bold text-xs mt-1 italic" 
-                   data-tr="🏆 ŞAMPİYON (WINNER)" 
-                   data-en="🏆 WINNER (CHAMPION)">
-                   🏆 ŞAMPİYON (WINNER)
-                </p>
-            </div>
+      </div>
+      <div class="hero__visual in" data-reveal="">
+        <div class="atom-stage">
+          <svg class="atom-big" viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="16" fill="#2a3aff"></circle>
+            <circle cx="100" cy="100" r="10" fill="#00c8ff"></circle>
+            <circle cx="100" cy="100" r="5" fill="#fff"></circle>
+            <ellipse cx="100" cy="100" rx="88" ry="34" stroke="#2a3aff" stroke-width="2.5" fill="none" opacity=".9"></ellipse>
+            <ellipse cx="100" cy="100" rx="88" ry="34" stroke="#1a8aff" stroke-width="2.5" fill="none" opacity=".7" transform="rotate(60 100 100)"></ellipse>
+            <ellipse cx="100" cy="100" rx="88" ry="34" stroke="#00c8ff" stroke-width="2.5" fill="none" opacity=".7" transform="rotate(120 100 100)"></ellipse>
+            <circle r="6" fill="#00e5ff"><animatemotion dur="2.2s" repeatCount="indefinite"><mpath href="#o1"></mpath></animatemotion></circle>
+            <circle r="5" fill="#2a3aff"><animatemotion dur="2.8s" repeatCount="indefinite" begin="-.9s"><mpath href="#o2"></mpath></animatemotion></circle>
+            <circle r="5" fill="#1a8aff"><animatemotion dur="3.4s" repeatCount="indefinite" begin="-1.7s"><mpath href="#o3"></mpath></animatemotion></circle>
+            <defs>
+              <path id="o1" d="M188,100 a88,34 0 1,1 -0.01,0"></path>
+              <path id="o2" d="M100,12.9 a88,34 0 1,1 -0.01,0" transform="rotate(60 100 100)"></path>
+              <path id="o3" d="M100,12.9 a88,34 0 1,1 -0.01,0" transform="rotate(120 100 100)"></path>
+            </defs>
+          </svg>
         </div>
-
-        <div class="timeline-item right">
-            <div class="timeline-card border-l-4 border-gray-400">
-                <span class="text-gray-400 font-bold text-xs uppercase tracking-widest">2021</span>
-                <h3 class="font-bold mt-1 uppercase" data-tr="Teknofest" data-en="Teknofest">Teknofest</h3>
-                <p class="text-blue-400 font-bold text-xs mt-1" 
-                   data-tr="🥈 Türkiye 2.liği" 
-                   data-en="🥈 2nd Place in Turkey">
-                   🥈 Türkiye 2.liği
-                </p>
-            </div>
-        </div>
+      </div>
     </div>
+  </section>
+
+
+  <!-- STATS -->
+  <section class="stats-strip">
+    <div class="stats-strip__inner">
+      <div class="stat" data-reveal=""><b>6</b><span data-tr="Aktif Sezon" data-en="Active Seasons">Aktif Sezon</span></div>
+      <div class="stat" data-reveal=""><b>30<span class="plus">+</span></b><span data-tr="Aktif Üye" data-en="Active Members">Aktif Üye</span></div>
+      <div class="stat" data-reveal=""><b>9</b><span data-tr="Turnuva" data-en="Competitions">Turnuva</span></div>
+      <div class="stat" data-reveal=""><b>2018</b><span data-tr="Kuruluş Yılı" data-en="Rookie Year">Kuruluş Yılı</span></div>
+    </div>
+  </section>
+
+  <!-- HOME FEATURES -->
+  <section class="section features">
+    <div class="section-inner center" data-reveal="">
+      <div class="section__tag" data-tr="NE YAPIYORUZ" data-en="WHAT WE DO">NE YAPIYORUZ</div>
+      <h2 class="section__title" data-tr="MÜHENDİSLİK EĞİTİM VE ETKİ" data-en="ENGINEERING EDUCATION AND IMPACT.">MÜHENDİSLİK EĞİTİM VE ETKİ.</h2>
+      <p class="section__sub" data-tr="Yalnızca bir robotik takımı değil, topluluğa dokunan bir oluşumuz. Yaptığımız her şey bu üç sütun üzerine kurulu." data-en="Not just a robotics team — an organization that touches the community. Everything we do is built on these three pillars.">Yalnızca bir robotik takımı değil, topluluğa dokunan bir oluşumuz. Yaptığımız her şey bu üç sütun üzerine kurulu.</p>
+    </div>
+    <div class="section-inner">
+      <div class="features__grid">
+        <div class="card" data-reveal=""><div class="card__icon"><i class="uil uil-setting"></i></div>
+          <h3 data-tr="FRC Robot Tasarımı" data-en="FRC Robot Design">FRC Robot Tasarımı</h3>
+          <p data-tr="Her sezon, altı haftada fikirden sahaya; mekanik, yazılım ve elektronik tüm disiplinlerle bir robot inşa ederiz." data-en="Every season, from idea to field in six weeks; we build a robot with mechanical, software and electronics disciplines.">Her sezon, altı haftada fikirden sahaya; mekanik, yazılım ve elektronik tüm disiplinlerle bir robot inşa ederiz.</p>
+        </div>
+        <div class="card" data-reveal=""><div class="card__icon"><i class="uil uil-graduation-cap"></i></div>
+          <h3 data-tr="STEM Eğitimi" data-en="STEM Education">STEM Eğitimi</h3>
+          <p data-tr="Farklı okullara giderek FRC ve robotik alanında tanıtım, atölye ve eğitim çalışmaları düzenliyoruz." data-en="We visit different schools to run FRC introductions, workshops, and educational programs.">Farklı okullara giderek FRC ve robotik alanında tanıtım, atölye ve eğitim çalışmaları düzenliyoruz.</p>
+        </div>
+        <div class="card" data-reveal=""><div class="card__icon"><i class="uil uil-users-alt"></i></div>
+          <h3 data-tr="Topluluk Etkisi" data-en="Community Impact">Topluluk Etkisi</h3>
+          <p data-tr="Okul projeleri ile çevremizdeki gençlere bilim ve teknoloji kapılarını aralıyoruz." data-en="Through our school projects, we open doors to science and tech for youth around us.">Genesis girişimi ve okul projeleri ile çevremizdeki gençlere bilim ve teknoloji kapılarını aralıyoruz.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="section" style="padding:90px 0;background:radial-gradient(ellipse at center,rgba(42,58,255,.12) 0%,transparent 60%);text-align:center">
+    <div class="section-inner" data-reveal="">
+      <div style="font-family:Georgia,serif;font-size:90px;color:var(--blue);line-height:.3;opacity:.6">"</div>
+      <p style="font-family:var(--title-font);font-size:clamp(22px,3vw,34px);font-weight:400;color:#fff;line-height:1.4;font-style:italic;margin:10px 0 26px;max-width:820px;margin-left:auto;margin-right:auto">
+        <span data-tr="It should work in theory" data-en="It should work in theory.">It should work in theory</span>
+      </p>
+      <span style="font-size:12px;color:var(--cyan);letter-spacing:4px;text-transform:uppercase;font-weight:600">— FUSION ROBOTICS 7682</span>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════ ABOUT PAGE ═══════════════════ -->
+<div class="page" id="page-about">
+  <section class="section" style="padding-top:140px">
+    <div class="section-inner center" data-reveal="">
+      <div class="section__tag" data-tr="HAKKIMIZDA" data-en="ABOUT US">HAKKIMIZDA</div>
+      <h2 class="section__title" data-tr="FUSION&#39;DAN DÜNYAYA." data-en="FROM FUSION TO THE WORLD">Fusion'dan dünyaya.</h2>
+      <p class="section__sub" data-tr="2018&#39;da kurulan Fusion Robotics #7682, Bahçelievler Füsun Yönder Anadolu Lisesi&#39;nin FRC takımıdır. Amacımız bilim, teknoloji ve mühendisliği yaşayarak öğrenmek ve öğretmektir." data-en="Founded in 2018, Fusion Robotics #7682 is the FRC team of Bahçelievler Füsun Yönder Anatolian High School. Our aim is to learn and teach science, technology and engineering by experience.">2019'da kurulan Fusion Robotics #7682, Bahçelievler Füsun Yönder Anadolu Lisesi'nin FRC takımıdır. Amacımız bilim, teknoloji ve mühendisliği yaşayarak öğrenmek ve öğretmektir.</p>
+    </div>
+  </section>
+
+  <!-- MISSION / VISION / HISTORY -->
+  <section class="section" style="padding-top:0;background:var(--bg-2)">
+    <div class="section-inner">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+        <div class="card" data-reveal="">
+          <div class="card__icon"><i class="uil uil-compass"></i></div>
+          <h3 data-tr="Misyonumuz" data-en="Our Mission">Misyonumuz</h3>
+          <p data-tr="Gençlere mühendislik, tasarım ve işbirliği kültürünü kazandırmak; FIRST değerleri olan Gracious Professionalism ve Coopertition&#39;ı yaymak. Yapılmamış olanı deneyerek örnek olmak ve gelecek nesillere ilham vermek." data-en="To instill engineering, design and collaboration culture in youth; to spread the FIRST values of Gracious Professionalism and Coopertition. To set an example by trying the untried and inspiring future generations.">Gençlere mühendislik, tasarım ve işbirliği kültürünü kazandırmak; FIRST değerleri olan Gracious Professionalism ve Coopertition'ı yaymak. Yapılmamış olanı deneyerek örnek olmak ve gelecek nesillere ilham vermek.</p>
+        </div>
+        <div class="card" data-reveal="">
+          <div class="card__icon"><i class="uil uil-eye"></i></div>
+          <h3 data-tr="Vizyonumuz" data-en="Our Vision">Vizyonumuz</h3>
+          <p data-tr="Bilim ve teknolojiyle iç içe, üreten bir gençlik oluşturmak. Çevremizdeki okullara FRC&#39;yi tanıtarak Türkiye&#39;nin robotik ekosistemini büyütmek ve dünya sahnesinde ülkemizi temsil etmek." data-en="To create a producing generation intertwined with science and technology. To grow Türkiye&#39;s robotics ecosystem by introducing FRC to surrounding schools and represent our country on the world stage.">Bilim ve teknolojiyle iç içe, üreten bir gençlik oluşturmak. Çevremizdeki okullara FRC'yi tanıtarak Türkiye'nin robotik ekosistemini büyütmek ve dünya sahnesinde ülkemizi temsil etmek.</p>
+        </div>
+        <div class="card" data-reveal="">
+          <div class="card__icon"><i class="uil uil-history"></i></div>
+          <h3 data-tr="Tarihçemiz" data-en="Our History">Tarihçemiz</h3>
+          <p data-tr="2019&#39;da İstanbul Regional&#39;da &#39;Safety Award&#39; ile çaylak sezonumuzu taçlandırdık. O günden bu yana Aerospace Valley (California), Haliç, Bosphorus ve sayısız off-season etkinliğinde yarıştık. 2026 sezonuna hazırız." data-en="In 2019 we crowned our rookie season with the Safety Award at Istanbul Regional. Since then, we have competed in Aerospace Valley (California), Halic, Bosphorus and countless off-season events. Ready for the 2026 season.">2018'da İstanbul Regional'da 'Safety Award' ile çaylak sezonumuzu taçlandırdık. O günden bu yana Aerospace Valley (California), Haliç, Bosphorus ve sayısız off-season etkinliğinde yarıştık. 2026 sezonuna hazırız.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBTEAMS -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="center" data-reveal="" style="margin-bottom:50px">
+        <div class="section__tag" data-tr="ALT TAKIMLAR" data-en="SUBTEAMS">ALT TAKIMLAR</div>
+        <h2 class="section__title" data-tr="ÜÇ DİSİPLİN TEK ROBOT" data-en="THREE DISCIPLINES PNE ROBOT">Üç disiplin, tek robot.</h2>
+      </div>
+      <div class="features__grid">
+        <div class="card" data-reveal=""><div class="card__icon"><i class="uil uil-wrench"></i></div>
+          <h3 data-tr="Mekanik" data-en="Mechanical">Mekanik</h3>
+          <p data-tr="CAD tasarımı, CNC üretim, şasi ve mekanizma mühendisliği. Robotun fiziksel yapısını biz tasarlıyoruz." data-en="CAD design, CNC production, chassis and mechanism engineering. We design the robot&#39;s physical structure.">CAD tasarımı, CNC üretim, şasi ve mekanizma mühendisliği. Robotun fiziksel yapısını biz tasarlıyoruz.</p>
+        </div>
+        <div class="card" data-reveal=""><div class="card__icon"><i class="uil uil-brackets-curly"></i></div>
+          <h3 data-tr="Yazılım" data-en="Software">Yazılım</h3>
+          <p data-tr="Java/WPILib ile otonom algoritmalar, sensör füzyonu, PID kontrol ve vision işleme. Robotun beynini biz yazıyoruz." data-en="Autonomous algorithms with Java/WPILib, sensor fusion, PID control and vision processing. We write the robot&#39;s brain.">Java/WPILib ile otonom algoritmalar, sensör füzyonu, PID kontrol ve vision işleme. Robotun beynini biz yazıyoruz.</p>
+        </div>
+        <div class="card" data-reveal=""><div class="card__icon"><i class="uil uil-bolt"></i></div>
+          <h3 data-tr="Elektronik" data-en="Electronics">Elektronik</h3>
+          <p data-tr="Güç dağıtımı, motor kontrol cihazları, pnömatik sistem ve kablajı. Robotun damarlarını biz kuruyoruz." data-en="Power distribution, motor controllers, pneumatic system and wiring. We build the robot&#39;s veins.">Güç dağıtımı, motor kontrol cihazları, pnömatik sistem ve kablajı. Robotun damarlarını biz kuruyoruz.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════ DASHBOARD PAGE ═══════════════════ -->
+<div class="page" id="page-dashboard">
+  <section class="section" style="padding-top:140px">
+    <div class="section-inner center in" data-reveal="">
+      <div class="section__tag" data-tr="DASHBOARD" data-en="DASHBOARD">DASHBOARD</div>
+      <h2 class="section__title" data-tr="İSTATİSTİKLER" data-en="STATISTICS">Takım, rakamlarla.</h2>
+      <p class="section__sub" data-tr="Altı sezonluk yolculuğumuzun özeti — performans, katılım ve etkimiz." data-en="Summary of our seven-season journey — performance, participation and impact.">Yedi sezonluk yolculuğumuzun özeti — performans, katılım ve etkimiz.</p>
+    </div>
+
+    <div class="section-inner">
+      <div class="dash__grid">
+        <div>
+          <div class="kpi-row">
+            <div class="kpi in" data-reveal=""><b>6</b><span data-tr="Sezon" data-en="Seasons">Sezon</span><small data-tr="2018&#39;dan bugüne kesintisiz" data-en="Uninterrupted since 2018">2018'dan bugüne kesintisiz</small></div>
+            <div class="kpi in" data-reveal=""><b>9</b><span data-tr="Turnuva" data-en="Events">Turnuva</span><small data-tr="Regional + Off-season" data-en="Regional + Off-season">Regional + Off-season</small></div>
+            <div class="kpi in" data-reveal=""><b>1</b><span data-tr="FRC Ödülü" data-en="FRC Award">FRC Ödülü</span><small data-tr="Safety Award 2019" data-en="Safety Award 2019">Safety Award 2019</small></div>
+          </div>
+          <div class="chart-card in" data-reveal="">
+            <div class="chart-head">
+              <h4 data-tr="Sezon Bazlı Katılım" data-en="Participation by Season">Sezon Bazlı Katılım</h4>
+              <small>2018 — 2026</small>
+            </div>
+            <div class="bar-row"><span class="yr">2024</span><div class="bar-track"><div class="bar-fill" data-w="95" style="width: 95%;"></div></div><span class="val">California</span></div>
+            <div class="bar-row"><span class="yr">2023</span><div class="bar-track"><div class="bar-fill" data-w="85" style="width: 85%;"></div></div><span class="val">Haliç</span></div>
+            <div class="bar-row"><span class="yr">2022</span><div class="bar-track"><div class="bar-fill" data-w="80" style="width: 80%;"></div></div><span class="val">Bosphorus</span></div>
+            <div class="bar-row"><span class="yr">2021</span><div class="bar-track"><div class="bar-fill" data-w="70" style="width: 70%;"></div></div><span class="val">Turkish Regionals</span></div>
+            <div class="bar-row"><span class="yr">2019</span><div class="bar-track"><div class="bar-fill" data-w="60" style="width: 60%;"></div></div><span class="val">Istanbul · Safety Award</span></div>
+          </div>
+        </div>
+        <div>
+<div class="chart-card in" data-reveal="" style="margin-bottom:18px">
+  <div class="chart-head"><h4 data-tr="Takım Dağılımı" data-en="Team Breakdown">Takım Dağılımı</h4><small>2026</small></div>
+  <div class="bar-row"><span class="yr" data-tr="Mek" data-en="Mec">Mek</span><div class="bar-track"><div class="bar-fill" data-w="26" style="width: 26%;"></div></div><span class="val">6</span></div>
+  <div class="bar-row"><span class="yr" data-tr="Yaz" data-en="Sw">Yaz</span><div class="bar-track"><div class="bar-fill" data-w="17" style="width: 17%;"></div></div><span class="val">4</span></div>
+  <div class="bar-row"><span class="yr" data-tr="Elk" data-en="El">Elk</span><div class="bar-track"><div class="bar-fill" data-w="22" style="width: 22%;"></div></div><span class="val">5</span></div>
+  <div class="bar-row"><span class="yr" data-tr="PR" data-en="PR">PR</span><div class="bar-track"><div class="bar-fill" data-w="30" style="width: 30%;"></div></div><span class="val">7</span></div>
+</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════ EDUCATION PAGE ═══════════════════ -->
+<div class="page" id="page-education">
+  <section class="section" style="padding-top:140px">
+    <div class="section-inner center in" data-reveal="">
+      <div class="section__tag" data-tr="EĞİTİM" data-en="EDUCATION">EĞİTİM</div>
+      <h2 class="section__title" data-tr="ÜÇ DİSİPLİN TEK HEDEF." data-en="THREE DISCIPLINES ONE GOAL.">Üç disiplin, tek hedef.</h2>
+      <p class="section__sub" data-tr="Mekanik, yazılım ve elektronik — Fusion Robotics&#39;in üç temel disiplini. Her birini takım içi eğitimlerle genç üyelerimize aktarıyoruz." data-en="Mechanical, software and electronics — the three core disciplines of Fusion Robotics. We pass each one to our young members through internal education.">Mekanik, yazılım ve elektronik — Fusion Robotics'in üç temel disiplini. Her birini takım içi eğitimlerle genç üyelerimize aktarıyoruz.</p>
+    </div>
+
+    <div class="section-inner">
+      <div class="edu__tabs in" data-reveal="">
+        <button class="edu-tab active" data-edu="mec"><i class="uil uil-wrench"></i><span data-tr="Mekanik" data-en="Mechanical">Mekanik</span></button>
+        <button class="edu-tab" data-edu="sw"><i class="uil uil-brackets-curly"></i><span data-tr="Yazılım" data-en="Software">Yazılım</span></button>
+        <button class="edu-tab" data-edu="el"><i class="uil uil-bolt"></i><span data-tr="Elektronik" data-en="Electronics">Elektronik</span></button>
+      </div>
+
+      <div class="edu__content active" data-edu-content="mec">
+        <div class="edu__head in" data-reveal="">
+          <h3 data-tr="Mekanik Mühendisliği" data-en="Mechanical Engineering">Mekanik Mühendisliği</h3>
+          <p data-tr="Robotun iskeletini oluşturan bölümdür. SolidWorks/Onshape üzerinde 3D tasarım, CNC ve lazer kesim ile üretim, montaj ve test aşamalarını kapsar. Yeni üyelerimize CAD eğitimi, atölye güvenliği ve takım çalışması öğretilir." data-en="The section that builds the robot&#39;s skeleton. Covers 3D design with SolidWorks/Onshape, CNC and laser cutting production, assembly and testing. New members learn CAD, shop safety and teamwork.">Robotun iskeletini oluşturan bölümdür. SolidWorks/Onshape üzerinde 3D tasarım, CNC ve lazer kesim ile üretim, montaj ve test aşamalarını kapsar. Yeni üyelerimize CAD eğitimi, atölye güvenliği ve takım çalışması öğretilir.</p>
+        </div>
+        <div class="video-grid">
+          <div class="video-card in" data-reveal=""><div class="video-thumb"><div class="play"><i class="uil uil-play"></i></div><span class="dur">12:34</span></div><div class="video-body"><h4 data-tr="CAD 101 · Onshape&#39;a Giriş" data-en="CAD 101 · Intro to Onshape">CAD 101 · Onshape'a Giriş</h4><small data-tr="MEKANİK · BAŞLANGIÇ" data-en="MECHANICAL · BEGINNER">MEKANİK · BAŞLANGIÇ</small></div></div>
+          <div class="video-card in" data-reveal=""><div class="video-thumb"><div class="play"><i class="uil uil-play"></i></div><span class="dur">18:20</span></div><div class="video-body"><h4 data-tr="Drivetrain Tasarımı" data-en="Drivetrain Design">Drivetrain Tasarımı</h4><small data-tr="MEKANİK · ORTA" data-en="MECHANICAL · INTERMEDIATE">MEKANİK · ORTA</small></div></div>
+          <div class="video-card in" data-reveal=""><div class="video-thumb"><div class="play"><i class="uil uil-play"></i></div><span class="dur">22:07</span></div><div class="video-body"><h4 data-tr="Atölye Güvenliği" data-en="Shop Safety">Atölye Güvenliği</h4><small>MEKANİK · SAFETY</small></div></div>
+        </div>
+      </div>
+
+      <div class="edu__content" data-edu-content="sw">
+        <div class="edu__head in" data-reveal="">
+          <h3 data-tr="Yazılım Geliştirme" data-en="Software Development">Yazılım Geliştirme</h3>
+          <p data-tr="Java ve WPILib ile robot kontrolü. Otonom algoritmalar, PID ayarlaması, sensör entegrasyonu ve vision processing öğretilir. Git/GitHub iş akışı ve versiyon kontrolü de kapsam içindedir." data-en="Robot control with Java and WPILib. Autonomous algorithms, PID tuning, sensor integration and vision processing are taught. Git/GitHub workflow and version control are also covered.">Java ve WPILib ile robot kontrolü. Otonom algoritmalar, PID ayarlaması, sensör entegrasyonu ve vision processing öğretilir. Git/GitHub iş akışı ve versiyon kontrolü de kapsam içindedir.</p>
+        </div>
+        <div class="video-grid">
+          <div class="video-card in" data-reveal=""><div class="video-thumb"><div class="play"><i class="uil uil-play"></i></div><span class="dur">15:45</span></div><div class="video-body"><h4 data-tr="WPILib&#39;e Giriş" data-en="Intro to WPILib">WPILib'e Giriş</h4><small>SOFTWARE · ROOKIE</small></div></div>
+          <div class="video-card in" data-reveal=""><div class="video-thumb"><div class="play"><i class="uil uil-play"></i></div><span class="dur">20:12</span></div><div class="video-body"><h4 data-tr="PID Kontrol Teorisi" data-en="PID Control Theory">PID Kontrol Teorisi</h4><small>SOFTWARE · ADVANCED</small></div></div>
+          <div class="video-card in" data-reveal=""><div class="video-thumb"><div class="play"><i class="uil uil-play"></i></div><span class="dur">14:08</span></div><div class="video-body"><h4 data-tr="Otonom Modları" data-en="Autonomous Modes">Otonom Modları</h4><small>SOFTWARE · PRO</small></div></div>
+        </div>
+      </div>
+
+      <div class="edu__content" data-edu-content="el">
+        <div class="edu__head in" data-reveal="">
+          <h3 data-tr="Elektronik Sistemler" data-en="Electronic Systems">Elektronik Sistemler</h3>
+          <p data-tr="PDP/PDH güç dağıtımı, SPARK MAX ve TalonFX motor kontrolcüleri, pnömatik kontrol, kablaj standartları ve sorun giderme. Multimetreyi okumayı öğretmekten roboRIO kurulumuna uzanan geniş bir yelpaze." data-en="PDP/PDH power distribution, SPARK MAX and TalonFX motor controllers, pneumatic control, wiring standards and troubleshooting. From learning to read a multimeter to roboRIO setup.">PDP/PDH güç dağıtımı, SPARK MAX ve TalonFX motor kontrolcüleri, pnömatik kontrol, kablaj standartları ve sorun giderme. Multimetreyi okumayı öğretmekten roboRIO kurulumuna uzanan geniş bir yelpaze.</p>
+        </div>
+        <div class="video-grid">
+          <div class="video-card in" data-reveal=""><div class="video-thumb"><div class="play"><i class="uil uil-play"></i></div><span class="dur">10:22</span></div><div class="video-body"><h4 data-tr="Güç Dağıtımı Temelleri" data-en="Power Distribution Basics">Güç Dağıtımı Temelleri</h4><small>ELECTRONICS · BASIC</small></div></div>
+          <div class="video-card in" data-reveal=""><div class="video-thumb"><div class="play"><i class="uil uil-play"></i></div><span class="dur">16:55</span></div><div class="video-body"><h4 data-tr="Motor Kontrolcüleri" data-en="Motor Controllers">Motor Kontrolcüleri</h4><small>ELECTRONICS · INT.</small></div></div>
+          <div class="video-card in" data-reveal=""><div class="video-thumb"><div class="play"><i class="uil uil-play"></i></div><span class="dur">13:40</span></div><div class="video-body"><h4 data-tr="Pnömatik Sistemler" data-en="Pneumatic Systems">Pnömatik Sistemler</h4><small>ELECTRONICS · ADV</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════ PROJECTS PAGE ═══════════════════ -->
+<div class="page" id="page-projects">
+  <section class="proj-hero">
+    <div data-reveal="" class="in">
+      <div class="section__tag center" style="justify-content:center;margin-bottom:14px"><span data-tr="PROJELER" data-en="PROJECTS">PROJELER</span></div>
+      <h3 data-tr="MÜHENDİSLİĞİN TOPLUMA DOKUNUŞU" data-en="ENGINEERING TOUCHING THE COMMUNITY">Mühendisliğin topluma dokunuşu.</h3>
+    </div>
+  </section>
+
+ <!-- GENESIS -->
+<section class="section" style="padding-top:80px">
+  <div class="section-inner">
+    <div class="genesis-box in" data-reveal="">
+      <div class="genesis-box__inner" style="text-align:center">
+        <div class="section__tag"><span data-tr="PARTNERSHIP · ORTAKLIK" data-en="PARTNERSHIP">PARTNERSHIP · ORTAKLIK</span></div>
+        <div class="genesis-big">WE ARE<br>GENESIS</div>
+        <div class="genesis-pair">FUSION 7682 <span class="x">×</span> BMM 11544</div>
+        <p class="genesis-desc" style="text-align:center" data-tr="Genesis, lise FRC takımlarının birlikte hareket ettiği ortak çatı oluşumudur. Kaynakları, bilgiyi ve mentorluğu paylaşarak Türkiye&#39;deki FRC ekosistemine katkıda bulunuyoruz." data-en="Genesis is the joint initiative of high school FRC teams moving together. We contribute to the FRC ecosystem in Türkiye by sharing resources, knowledge and mentorship.">Genesis, iki lise FRC takımının birlikte hareket ettiği ortak oluşumdur. Kaynakları, bilgiyi ve mentorluğu paylaşarak Türkiye'deki FRC ekosistemine katkıda bulunuyoruz.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<script>
-    function setLang(lang) {
-        // Sayfadaki tüm çevrilecek elemanları bul
-        const elements = document.querySelectorAll('[data-tr]');
-        
-        elements.forEach(el => {
-            const translation = el.getAttribute('data-' + lang);
-            if (translation) {
-                // innerHTML kullanımı etiketleri (span, br vb.) korur
-                el.innerHTML = translation;
-            }
-        });
+  <!-- SCHOOL OUTREACH -->
+  <section class="section" style="padding-top:0;background:var(--bg-2)">
+    <div class="section-inner">
+      <div class="center in" data-reveal="" style="margin-bottom:44px">
+        <div class="section__tag" data-tr="OKUL ETKİLEŞİMİ" data-en="SCHOOL OUTREACH">OKUL ETKİLEŞİMİ</div>
+        <h2 class="section__title" data-tr="FRC&#39;yi okullara taşıyoruz." data-en="We bring FRC to schools.">FRC'yi okullara taşıyoruz.</h2>
+        <p class="section__sub" data-tr="İstanbul ve çevresindeki liselere gidip FRC, robotik ve STEM alanlarında tanıtımlar yapıyoruz. Okulunuz için tanıtım talep edebilirsiniz." data-en="We visit high schools in Istanbul and surroundings to introduce FRC, robotics and STEM. You can request a visit for your school.">İstanbul ve çevresindeki liselere gidip FRC, robotik ve STEM alanlarında tanıtımlar yapıyoruz. Okulunuz için tanıtım talep edebilirsiniz.</p>
+      </div>
 
-        // Navbar butonlarının durumunu güncelle
-        const btnTr = document.getElementById('btn-tr');
-        const btnEn = document.getElementById('btn-en');
-        if (btnTr && btnEn) {
-            btnTr.style.opacity = (lang === 'tr') ? "1" : "0.4";
-            btnEn.style.opacity = (lang === 'en') ? "1" : "0.4";
-        }
-
-        localStorage.setItem('fusion_lang', lang);
-    }
-
-    // Sayfa yüklendiğinde ve dil değiştirildiğinde her şeyi tetikle
-    window.addEventListener('load', () => {
-        const savedLang = localStorage.getItem('fusion_lang') || 'tr';
-        setLang(savedLang);
-    });
-</script>
-
-<section id="sponsors" class="py-24 px-6 relative">
-    <div class="max-w-5xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-black text-center mb-16 uppercase tracking-tighter"
-            data-tr="Sponsorlar <span class='text-blue-500 italic'>// LOGS</span>"
-            data-en="Sponsors <span class='text-blue-500 italic'>// LOGS</span>">
-            Sponsorlar <span class="text-blue-500 italic">// LOGS</span>
-        </h2>
-        
-        <div class="terminal-border p-12 md:p-20 relative overflow-hidden group">
-            <div class="absolute top-4 right-4 text-[10px] text-blue-500/20 font-mono select-none text-right"
-                 data-tr="ST_NULL_DATA_FOUND<br>WAITING_FOR_UPLINK..."
-                 data-en="ST_NULL_DATA_FOUND<br>WAITING_FOR_UPLINK...">
-                 ST_NULL_DATA_FOUND<br>
-                 WAITING_FOR_UPLINK...
-            </div>
-
-            <div class="flex flex-col items-center justify-center space-y-6 text-center">
-                <div class="relative">
-                    <svg class="w-16 h-16 text-blue-500/50 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="square" stroke-linejoin="round" stroke-width="1" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                    </svg>
-                </div>
-                
-                <div>
-                    <p class="text-2xl md:text-3xl font-bold text-gray-400 tracking-tighter uppercase mb-2"
-                       data-tr="> VERİ_BULUNAMADI <span class='cursor'></span>"
-                       data-en="> DATA_NOT_FOUND <span class='cursor'></span>">
-                        > VERİ_BULUNAMADI <span class="cursor"></span>
-                    </p>
-                    
-                    <p class="text-sm md:text-base text-gray-500 max-w-md mx-auto leading-relaxed"
-                       data-tr="Sistem şu anda aktif sponsor kaydı bekliyor. Takımımıza destek olarak bu bloktaki yerinizi alabilir, mühendislik yolculuğumuza güç katabilirsiniz."
-                       data-en="The system is currently waiting for active sponsor records. You can take your place in this block by supporting our team and empower our engineering journey.">
-                        Sistem şu anda aktif sponsor kaydı bekliyor. Takımımıza destek olarak bu bloktaki yerinizi alabilir, mühendislik yolculuğumuza güç katabilirsiniz.
-                    </p>
-                </div>
-
-                <a href="mailto:fusionrobotics7682@gmail.com" 
-                   class="mt-4 px-10 py-4 bg-transparent border border-blue-500 text-blue-500 text-xs font-bold uppercase tracking-[0.3em] hover:bg-blue-500 hover:text-white transition-all duration-300 transform active:scale-95"
-                   data-tr="[ SPONSOR_OL_ ]"
-                   data-en="[ BECOME_A_SPONSOR_ ]">
-                    [ SPONSOR_OL_ ]
-                </a>
-            </div>
+      <div class="proj-grid">
+        <div class="proj-card in" data-reveal="">
+          <span class="proj-tag">Outreach</span>
+          <h3 data-tr="FRC Tanıtım Turu" data-en="FRC Introduction Tour">FRC Tanıtım Turu</h3>
+          <p data-tr="Liseleri ziyaret ederek FIRST Robotics Competition hakkında bilgilendirme sunuyoruz." data-en="We visit high schools to inform about FIRST Robotics Competition.">Liseleri ziyaret ederek FIRST Robotics Competition hakkında bilgilendirme sunuyoruz.</p>
+          <ul>
+            <li><i class="uil uil-check-circle"></i><span data-tr="45 dakikalık sunum" data-en="45-minute presentation">45 dakikalık sunum</span></li>
+            <li><i class="uil uil-check-circle"></i><span data-tr="Canlı robot demosu" data-en="Live robot demo">Canlı robot demosu</span></li>
+            <li><i class="uil uil-check-circle"></i><span data-tr="Soru-cevap bölümü" data-en="Q&amp;A session">Soru-cevap bölümü</span></li>
+          </ul>
         </div>
+        <div class="proj-card in" data-reveal="">
+          <span class="proj-tag">Workshop</span>
+          <h3 data-tr="STEM Atölyeleri" data-en="STEM Workshops">STEM Atölyeleri</h3>
+          <p data-tr="Ortaokul ve lise öğrencilerine yönelik pratik atölye çalışmaları düzenliyoruz." data-en="We organize hands-on workshops for middle and high school students.">Ortaokul ve lise öğrencilerine yönelik pratik atölye çalışmaları düzenliyoruz.</p>
+          <ul>
+            <li><i class="uil uil-check-circle"></i><span data-tr="CAD &amp; 3D tasarım" data-en="CAD &amp; 3D design">CAD &amp; 3D tasarım</span></li>
+            <li><i class="uil uil-check-circle"></i><span data-tr="Arduino ile giriş" data-en="Arduino basics">Arduino ile giriş</span></li>
+            <li><i class="uil uil-check-circle"></i><span data-tr="Mekanizma tasarımı" data-en="Mechanism design">Mekanizma tasarımı</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SCHOOL FORM -->
+      <div class="school-form in" data-reveal="">
+        <div class="form-head">
+          <h3 data-tr="Okulunuz için Başvuru" data-en="School Application">Okulunuz için Başvuru</h3>
+          <p data-tr="Okulunuzda bir seminer düzenlmememizi ister misiniz? Formu doldurun, en kısa sürede geri dönelim." data-en="Want us to organize a seminar at your school? Fill out the form and we&#39;ll get back to you.">Okulunuza gelmemizi ister misiniz? Formu doldurun, en kısa sürede geri dönelim.</p>
+        </div>
+        <form class="form-grid" id="school-form" data-testid="school-form">
+          <div class="form-field"><label data-tr="Okul Adı" data-en="School Name">Okul Adı</label><input type="text" name="school" required=""></div>
+          <div class="form-field"><label data-tr="Şehir / İlçe" data-en="City / District">Şehir / İlçe</label><input type="text" name="city" required=""></div>
+          <div class="form-field"><label data-tr="İletişim Kişisi" data-en="Contact Person">İletişim Kişisi</label><input type="text" name="person" required=""></div>
+          <div class="form-field"><label data-tr="E-posta" data-en="Email">E-posta</label><input type="email" name="email" required=""></div>
+          <div class="form-field"><label data-tr="Talep Türü" data-en="Request Type">Talep Türü</label>
+            <select name="type">
+              <option data-tr="FRC Tanıtımı" data-en="FRC Introduction">FRC Tanıtımı</option>
+              <option data-tr="STEM Atölyesi" data-en="STEM Workshop">STEM Atölyesi</option>
+            </select>
+          </div>
+          <div class="form-field"><label data-tr="Katılımcı Sayısı" data-en="Attendees">Katılımcı Sayısı</label><input type="number" name="count" min="1"></div>
+          <div class="form-field full"><label data-tr="Ek Notlar" data-en="Notes">Ek Notlar</label><textarea name="notes"></textarea></div>
+          <div class="form-field full">
+            <button type="submit" class="btn btn-primary" style="width:auto;justify-self:start"><i class="uil uil-message"></i><span data-tr="Başvuruyu Gönder" data-en="Submit Application">Başvuruyu Gönder</span></button>
+          </div>
+        </form>
+      </div>
     </div>
-</section>
+  </section>
+</div>
 
-<script>
-    function setLang(lang) {
-        const elements = document.querySelectorAll('[data-tr]');
-        
-        elements.forEach(el => {
-            const translation = el.getAttribute('data-' + lang);
-            if (translation) {
-                el.innerHTML = translation;
-            }
-        });
-
-        const btnTr = document.getElementById('btn-tr');
-        const btnEn = document.getElementById('btn-en');
-        if (btnTr && btnEn) {
-            btnTr.style.opacity = (lang === 'tr') ? "1" : "0.4";
-            btnEn.style.opacity = (lang === 'en') ? "1" : "0.4";
-        }
-        localStorage.setItem('fusion_lang', lang);
-    }
-
-    window.addEventListener('load', () => {
-        const savedLang = localStorage.getItem('fusion_lang') || 'tr';
-        setLang(savedLang);
-    });
-</script>
-	
-<section id="faq" class="py-24 px-6 relative">
-    <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-black text-center mb-16 uppercase tracking-tighter"
-            data-tr="Sıkça Sorulan <span class='text-blue-500 italic'>Sorular</span>"
-            data-en="Frequently Asked <span class='text-blue-500 italic'>Questions</span>">
-            Sıkça Sorulan <span class="text-blue-500 italic">Sorular</span>
-        </h2>
-        
-        <div class="grid md:grid-cols-2 gap-4 items-start">
-            
-            <div class="terminal-border overflow-hidden transition-all duration-300">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-blue-500 mr-4" data-tr="S1." data-en="Q1.">S1.</span>
-                    <span class="flex-1 font-bold text-sm tracking-tight uppercase" data-tr="Takıma katılmak için tecrübe şart mı?" data-en="Is experience required to join the team?">Takıma katılmak için tecrübe şart mı?</span>
-                    <svg class="w-4 h-4 text-blue-500 transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white/5">
-                    <p class="p-6 text-xs md:text-sm text-gray-400 border-t border-white/10 leading-relaxed italic"
-                       data-tr="> Hayır, öğrenmeye istekli olman yeterli! Teknik ekiplerimiz için gerekli eğitimleri takım içinde veriyoruz."
-                       data-en="> No, being eager to learn is enough! We provide the necessary training for our technical teams within the team.">> Hayır, öğrenmeye istekli olman yeterli! Teknik ekiplerimiz için gerekli eğitimleri takım içinde veriyoruz.</p>
-                </div>
-            </div>
-
-            <div class="terminal-border overflow-hidden transition-all duration-300">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-blue-500 mr-4" data-tr="S2." data-en="Q2.">S2.</span>
-                    <span class="flex-1 font-bold text-sm tracking-tight uppercase" data-tr="Sadece mühendislik mi yapıyorsunuz?" data-en="Do you only do engineering?">Sadece mühendislik mi yapıyorsunuz?</span>
-                    <svg class="w-4 h-4 text-blue-500 transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white/5">
-                    <p class="p-6 text-xs md:text-sm text-gray-400 border-t border-white/10 leading-relaxed italic"
-                       data-tr="> Kesinlikle hayır. Sosyal medya, tasarım ve sponsorluk gibi idari görevlerimiz de mevcut."
-                       data-en="> Absolutely not. We also have administrative roles such as social media, design, and sponsorship.">> Kesinlikle hayır. Sosyal medya, tasarım ve sponsorluk gibi idari görevlerimiz de mevcut.</p>
-                </div>
-            </div>
-
-            <div class="terminal-border overflow-hidden transition-all duration-300">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-blue-500 mr-4" data-tr="S3." data-en="Q3.">S3.</span>
-                    <span class="flex-1 font-bold text-sm tracking-tight uppercase" data-tr="Takımımıza nasıl sponsor olunur?" data-en="How to become a sponsor for our team?">Takımımıza nasıl sponsor olunur?</span>
-                    <svg class="w-4 h-4 text-blue-500 transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white/5">
-                    <p class="p-6 text-xs md:text-sm text-gray-400 border-t border-white/10 leading-relaxed italic"
-                       data-tr="> Web sitemizdeki iletişim formundan veya mail adresimizden bize ulaşabilirsiniz."
-                       data-en="> You can reach us through the contact form on our website or via our email address.">> Web sitemizdeki iletişim formundan veya mail adresimizden bize ulaşabilirsiniz.</p>
-                </div>
-            </div>
-
-            <div class="terminal-border overflow-hidden transition-all duration-300">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-blue-500 mr-4" data-tr="S4." data-en="Q4.">S4.</span>
-                    <span class="flex-1 font-bold text-sm tracking-tight uppercase" data-tr="Sponsorluk sadece maddi mi olmalı?" data-en="Does sponsorship have to be financial only?">Sponsorluk sadece maddi mi olmalı?</span>
-                    <svg class="w-4 h-4 text-blue-500 transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white/5">
-                    <p class="p-6 text-xs md:text-sm text-gray-400 border-t border-white/10 leading-relaxed italic"
-                       data-tr="> Hayır; parça desteği, teknik eğitim veya mentorluk da çok değerlidir."
-                       data-en="> No; parts support, technical training, or mentorship are also very valuable.">> Hayır; parça desteği, teknik eğitim veya mentorluk da çok değerlidir.</p>
-                </div>
-            </div>
-
-            <div class="terminal-border overflow-hidden transition-all duration-300">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-blue-500 mr-4" data-tr="S5." data-en="Q5.">S5.</span>
-                    <span class="flex-1 font-bold text-sm tracking-tight uppercase" data-tr="FIRST Robotics Competition (FRC) nedir?" data-en="What is FIRST Robotics Competition (FRC)?">FIRST Robotics Competition (FRC) nedir?</span>
-                    <svg class="w-4 h-4 text-blue-500 transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white/5">
-                    <p class="p-6 text-xs md:text-sm text-gray-400 border-t border-white/10 leading-relaxed italic"
-                       data-tr="> Lise öğrencileri için düzenlenen uluslararası bir mühendislik yarışmasıdır."
-                       data-en="> It is an international engineering competition organized for high school students.">> Lise öğrencileri için düzenlenen uluslararası bir mühendislik yarışmasıdır.</p>
-                </div>
-            </div>
-
-            <div class="terminal-border overflow-hidden transition-all duration-300">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-blue-500 mr-4" data-tr="S6." data-en="Q6.">S6.</span>
-                    <span class="flex-1 font-bold text-sm tracking-tight uppercase" data-tr="'It Should Work In Theory' ne anlama geliyor?" data-en="What does 'It Should Work In Theory' mean?">'It Should Work In Theory' ne anlama geliyor?</span>
-                    <svg class="w-4 h-4 text-blue-500 transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white/5">
-                    <p class="p-6 text-xs md:text-sm text-gray-400 border-t border-white/10 leading-relaxed italic"
-                       data-tr="> Mühendislikteki deneme-yanılma kültürüne esprili bir bakış açımızdır."
-                       data-en="> It is our humorous perspective on the trial-and-error culture in engineering.">> Mühendislikteki deneme-yanılma kültürüne esprili bir bakış açımızdır.</p>
-                </div>
-            </div>
-
-            <div class="terminal-border md:col-span-2 overflow-hidden transition-all duration-300">
-                <button class="w-full py-5 px-6 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                    <span class="font-bold text-blue-500 mr-4" data-tr="S7." data-en="Q7.">S7.</span>
-                    <span class="flex-1 font-bold text-sm tracking-tight uppercase" data-tr="Robot çalışmaları derslerimizi etkiler mi?" data-en="Do robotics activities affect our lessons?">Robot çalışmaları derslerimizi etkiler mi?</span>
-                    <svg class="w-4 h-4 text-blue-500 transform transition-transform duration-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white/5">
-                    <p class="p-6 text-xs md:text-sm text-gray-400 border-t border-white/10 leading-relaxed italic"
-                       data-tr="> Hayır! Aksine zaman yönetimi kazandırır ve dersleri pratiğe dökme şansı verir."
-                       data-en="> No! On the contrary, it teaches time management and gives a chance to put lessons into practice.">> Hayır! Aksine zaman yönetimi kazandırır ve dersleri pratiğe dökme şansı verir.</p>
-                </div>
-            </div>
-
-        </div>
+<!-- ═══════════════════ GALLERY PAGE ═══════════════════ -->
+<div class="page" id="page-gallery">
+  <section class="section" style="padding-top:140px">
+    <div class="section-inner center in" data-reveal="">
+      <div class="section__tag" data-tr="GALERİ" data-en="GALLERY">GALERİ</div>
+      <h2 class="section__title" data-tr="SEZON SEZON FUSION." data-en="FUSION, SEASON BY SEASON.">Sezon sezon Fusion.</h2>
+      <p class="section__sub" data-tr="Atölyeden sahaya, tanıtımdan turnuvaya — anılarımızdan bir kesit." data-en="From the shop to the field, from outreach to tournament — a glimpse of our memories.">Atölyeden sahaya, tanıtımdan turnuvaya — anılarımızdan bir kesit.</p>
     </div>
-</section>
 
-<script>
-    // FAQ Toggle Fonksiyonu
-    function toggleFAQ(button) {
-        const content = button.nextElementSibling;
-        const icon = button.querySelector('svg');
-        
-        document.querySelectorAll('.faq-content').forEach(item => {
-            if (item !== content) {
-                item.style.maxHeight = null;
-                const otherIcon = item.previousElementSibling.querySelector('svg');
-                if(otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-            }
-        });
-
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-            icon.style.transform = 'rotate(0deg)';
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-            icon.style.transform = 'rotate(180deg)';
-        }
-    }
-
-    // Dil Değiştirme Fonksiyonu
-    function setLang(lang) {
-        const elements = document.querySelectorAll('[data-tr]');
-        elements.forEach(el => {
-            const translation = el.getAttribute('data-' + lang);
-            if (translation) {
-                el.innerHTML = translation;
-            }
-        });
-
-        // Navbar butonlarının parlaklığını ayarla
-        const btnTr = document.getElementById('btn-tr');
-        const btnEn = document.getElementById('btn-en');
-        if (btnTr && btnEn) {
-            btnTr.style.opacity = (lang === 'tr') ? "1" : "0.4";
-            btnEn.style.opacity = (lang === 'en') ? "1" : "0.4";
-        }
-        localStorage.setItem('fusion_lang', lang);
-    }
-
-    // Sayfa yüklendiğinde dili ayarla
-    window.addEventListener('load', () => {
-        const savedLang = localStorage.getItem('fusion_lang') || 'tr';
-        setLang(savedLang);
-    });
-</script>
-	
-<section id="location" class="py-24 px-6 relative border-t border-white/5 bg-[#0a0a0a]">
-    <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-12">
-            <div class="inline-block border border-blue-500/30 px-3 py-1 mb-4">
-                <span class="text-[10px] text-blue-500 font-bold tracking-[0.4em] uppercase">Status: Satellite_Link_Active</span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4" 
-                data-tr="ATÖLYE <span class='text-blue-500 italic'>KONUMU</span>" 
-                data-en="WORKSHOP <span class='text-blue-500 italic'>LOCATION</span>">
-                ATÖLYE <span class="text-blue-500 italic">KONUMU</span>
-            </h2>
-            <p class="text-gray-400 text-sm font-medium tracking-tight">
-                Soğanlı, Hülya Sk. No:1, 34183 <span class="text-white">Bahçelievler/İstanbul</span>
-            </p>
-        </div>
-        
-        <div class="terminal-border p-1 bg-black/40 relative group overflow-hidden shadow-2xl shadow-blue-500/5">
-            <div class="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-white/5">
-                <div class="flex space-x-2">
-                    <div class="w-2.5 h-2.5 rounded-full bg-red-500/40"></div>
-                    <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></div>
-                    <div class="w-2.5 h-2.5 rounded-full bg-green-500/40"></div>
-                </div>
-                <span class="text-[9px] text-gray-500 font-mono tracking-[0.2em]">FUSION_CORE_COORDINATES.SYS</span>
-            </div>
-
-            <div class="relative overflow-hidden grayscale contrast-125 opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-in-out">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.583321523456!2d28.847516676572!3d41.010947019159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa9b7bb058cd5%3A0x2adcc2ac22f164e9!2sFusion%20Robotics%207682%20-%20Tasar%C4%B1m%20ve%20Geli%C5%9ftirme%20At%C3%B6lyesi!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str" 
-                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-
-            <div class="absolute bottom-6 right-8 pointer-events-none bg-black/80 border border-blue-500/20 p-3 backdrop-blur-md hidden md:block">
-                <p class="text-[10px] text-blue-500 font-mono leading-tight">
-                    <span class="text-gray-500">LAT:</span> 41.0109° N<br>
-                    <span class="text-gray-500">LONG:</span> 28.8497° E<br>
-                    <span class="text-gray-500">SECTOR:</span> B_EVLER_7682
-                </p>
-            </div>
-        </div>
-
-        <div class="mt-8 text-center">
-            <a href="https://maps.app.goo.gl/ChIJ1YzFuwelyhQR6WTxoqxC3Ao" target="_blank" 
-               class="text-[10px] font-bold text-blue-500 hover:text-white transition-all tracking-[0.3em] uppercase border-b border-blue-500/20 pb-1"
-               data-tr="[ Google Haritalarda Aç ]"
-               data-en="[ Open in Google Maps ]">
-                [ Google Haritalarda Aç ]
-            </a>
-        </div>
+    <div class="section-inner">
+      <div class="gal-grid in" data-reveal="">
+        <div class="gal-item"><div class="gal-bg" style="background-image:linear-gradient(135deg,#1a3aff,#00c8ff),url(&#39;https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=800&#39;);background-blend-mode:overlay"></div><span class="gal-tag">2024</span><div class="gal-meta"><b data-tr="Aerospace Valley" data-en="Aerospace Valley">Aerospace Valley</b><span>CALIFORNIA</span></div></div>
+        <div class="gal-item"><div class="gal-bg" style="background-image:linear-gradient(135deg,#2a3aff,#1a8aff),url(&#39;https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800&#39;);background-blend-mode:overlay"></div><span class="gal-tag">2023</span><div class="gal-meta"><b>Haliç Regional</b><span>İSTANBUL</span></div></div>
+        <div class="gal-item"><div class="gal-bg" style="background-image:linear-gradient(135deg,#0E1626,#2a3aff),url(&#39;https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&#39;);background-blend-mode:overlay"></div><span class="gal-tag">Build</span><div class="gal-meta"><b data-tr="Atölye" data-en="Shop">Atölye</b><span>BUILD SEASON</span></div></div>
+        <div class="gal-item"><div class="gal-bg" style="background-image:linear-gradient(135deg,#00c8ff,#0E1626),url(&#39;https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&#39;);background-blend-mode:overlay"></div><span class="gal-tag">2022</span><div class="gal-meta"><b>Bosphorus</b><span>REGIONAL</span></div></div>
+        <div class="gal-item"><div class="gal-bg" style="background-image:linear-gradient(135deg,#1a8aff,#0A0E14),url(&#39;https://images.unsplash.com/photo-1562408590-e32931084e23?w=800&#39;);background-blend-mode:overlay"></div><span class="gal-tag">Outreach</span><div class="gal-meta"><b data-tr="Okul Ziyareti" data-en="School Visit">Okul Ziyareti</b><span>STEM TOUR</span></div></div>
+        <div class="gal-item"><div class="gal-bg" style="background-image:linear-gradient(135deg,#2a3aff,#00e5ff),url(&#39;https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&#39;);background-blend-mode:overlay"></div><span class="gal-tag">Team</span><div class="gal-meta"><b data-tr="Takım Fotoğrafı" data-en="Team Photo">Takım Fotoğrafı</b><span>2024</span></div></div>
+        <div class="gal-item"><div class="gal-bg" style="background-image:linear-gradient(135deg,#0A0E14,#1a3aff),url(&#39;https://images.unsplash.com/photo-1472457897821-70d3819a0e24?w=800&#39;);background-blend-mode:overlay"></div><span class="gal-tag">Genesis</span><div class="gal-meta"><b data-tr="Genesis Buluşması" data-en="Genesis Meetup">Genesis Buluşması</b><span>FUSION × BMM</span></div></div>
+        <div class="gal-item"><div class="gal-bg" style="background-image:linear-gradient(135deg,#00c8ff,#2a3aff),url(&#39;https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&#39;);background-blend-mode:overlay"></div><span class="gal-tag">2019</span><div class="gal-meta"><b data-tr="Safety Award" data-en="Safety Award">Safety Award</b><span>ISTANBUL REGIONAL</span></div></div>
+        <div class="gal-item"><div class="gal-bg" style="background-image:linear-gradient(135deg,#1a8aff,#00c8ff),url(&#39;https://images.unsplash.com/photo-1535378620166-273708d44e4c?w=800&#39;);background-blend-mode:overlay"></div><span class="gal-tag">Workshop</span><div class="gal-meta"><b data-tr="CAD Atölyesi" data-en="CAD Workshop">CAD Atölyesi</b><span>EDUCATION</span></div></div>
+      </div>
     </div>
-</section>
-<footer id="contact" class="bg-[#050505] border-t border-white/5 py-20 relative">
-    <div class="max-w-4xl mx-auto text-center px-6 reveal">
-        <h2 class="text-3xl md:text-4xl font-black text-white mb-12 uppercase tracking-tighter"
-            data-tr="BİZE <span class='text-blue-500 italic'>ULAŞIN</span>"
-            data-en="GET IN <span class='text-blue-500 italic'>TOUCH</span>">
-            BİZE <span class="text-blue-500 italic">ULAŞIN</span>
-        </h2>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-            <a href="https://www.instagram.com/fusionrobotics7682" target="_blank" class="group terminal-border bg-white/5 p-6 transition-all hover:bg-blue-500/10 hover:-translate-y-1">
-                <div class="flex flex-col items-center">
-                    <svg class="w-7 h-7 text-blue-500 mb-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                    <span class="text-[10px] font-bold tracking-widest text-gray-400 group-hover:text-white uppercase">Instagram</span>
-                </div>
-            </a>
+  </section>
+</div>
 
-            <a href="https://www.youtube.com/@FusionRobo7682" target="_blank" class="group terminal-border bg-white/5 p-6 transition-all hover:bg-blue-500/10 hover:-translate-y-1">
-                <div class="flex flex-col items-center">
-                    <svg class="w-7 h-7 text-blue-500 mb-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
-                    <span class="text-[10px] font-bold tracking-widest text-gray-400 group-hover:text-white uppercase">YouTube</span>
-                </div>
-            </a>
-
-            <a href="https://x.com/Fusion7682" target="_blank" class="group terminal-border bg-white/5 p-6 transition-all hover:bg-blue-500/10 hover:-translate-y-1">
-                <div class="flex flex-col items-center">
-                    <svg class="w-6 h-6 text-blue-500 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
-                    <span class="text-[10px] font-bold tracking-widest text-gray-400 group-hover:text-white uppercase">X / Twitter</span>
-                </div>
-            </a>
-
-            <a href="mailto:fusionrobotics7682@gmail.com" class="group terminal-border bg-white/5 p-6 transition-all hover:bg-blue-500/10 hover:-translate-y-1">
-                <div class="flex flex-col items-center">
-                    <svg class="w-7 h-7 text-blue-500 mb-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    <span class="text-[10px] font-bold tracking-widest text-gray-400 group-hover:text-white uppercase">E-Mail</span>
-                </div>
-            </a>
-        </div>
-        
-<p class="text-[10px] text-gray-700 mt-4 uppercase"
-   data-tr="© 2026 Fusion Robotics - TÜM HAKLARI SAKLIDIR <span class='group relative cursor-help'>. <span class='absolute bottom-full right-0 mb-2 w-max opacity-0 group-hover:opacity-100 transition-opacity bg-blue-900 text-white text-[9px] py-1 px-2 rounded font-mono uppercase'>SYS_DEVELOPER: Gökay Tekin</span></span>"
-   data-en="© 2026 Fusion Robotics - ALL RIGHTS RESERVED <span class='group relative cursor-help'>. <span class='absolute bottom-full right-0 mb-2 w-max opacity-0 group-hover:opacity-100 transition-opacity bg-blue-900 text-white text-[9px] py-1 px-2 rounded font-mono uppercase'>SYS_DEVELOPER: Gökay Tekin</span></span>">
-    © 2026 Fusion Robotics - TÜM HAKLARI SAKLIDIR 
-    <span class="group relative cursor-help">.
-        <span class="absolute bottom-full right-0 mb-2 w-max opacity-0 group-hover:opacity-100 transition-opacity bg-blue-900 text-white text-[9px] py-1 px-2 rounded font-mono uppercase">
-            SYS_DEVELOPER: Gökay Tekin
-        </span>
-    </span>
-</p>
+<!-- ═══════════════════ COMPETITIONS PAGE ═══════════════════ -->
+<div class="page" id="page-competitions">
+  <section class="section" style="padding-top:140px">
+    <div class="section-inner center in" data-reveal="">
+      <div class="section__tag" data-tr="YARIŞMALAR" data-en="COMPETITIONS">YARIŞMALAR</div>
+      <h2 class="section__title" data-tr="SAHAYA ÇIKTIĞIMIZ HER AN" data-en="EVERY MOMENT ON THE FIELD</h2>
+      <p class="section__sub" data-tr="2018&#39;den bugüne — Regional&#39;lar, off-season etkinlikleri ve kazandığımız ödüller." data-en="From 2018 to today — Regionals, off-season events, and the awards we&#39;ve earned.">2018'den bugüne — Regional'lar, off-season etkinlikleri ve kazandığımız ödüller.</p>
     </div>
+
+    <div class="section-inner">
+      <div class="comp-timeline">
+
+        <div class="comp-item in" data-reveal="">
+          <div class="comp-year">2026</div>
+          <div class="comp-card">
+            <h4 data-tr="2026-2027 Sezonu · Hazırlık" data-en="2026-2027Season · Preparation">2026-2027 Sezonu · Hazırlık</h4>
+            <div class="loc" data-tr="Aktif katılım" data-en="Active participation">Aktif katılım</div>
+          </div>
+        </div>
+
+        <div class="comp-item in" data-reveal="">
+          <div class="comp-year">2024</div>
+          <div class="comp-card">
+            <h4>Aerospace Valley Regional</h4>
+            <div class="loc">Palmdale, California · USA</div>
+          </div>
+        </div>
+
+        <div class="comp-item in" data-reveal="">
+          <div class="comp-year">2023</div>
+          <div class="comp-card">
+            <h4>Haliç Regional</h4>
+            <div class="loc">İstanbul · Türkiye</div>
+          </div>
+        </div>
+
+        <div class="comp-item in" data-reveal="">
+        <div class="comp-year">2022</div>
+          <div>
+            <div class="comp-card" style="margin-bottom:12px">
+              <h4>Bosphorus Regional</h4>
+            <div class="loc">İstanbul · Türkiye</div>
+          </div>
+            <div class="comp-card">
+              <h4>Pendik '22 Off-Season</h4>
+              <div class="loc">İstanbul · Türkiye</div>
+    </div>
+  </div>
+</div>
+
+        <div class="comp-item in" data-reveal="">
+          <div class="comp-year">2020</div>
+          <div class="comp-card">
+            <h4>SBPLI Long Island Regional #1</h4>
+            <div class="loc" data-tr="New York · İptal edildi (COVID-19)" data-en="New York · Cancelled (COVID-19)">New York · İptal edildi (COVID-19)</div>
+          </div>
+        </div>
+
+        <div class="comp-item in" data-reveal="">
+  <div class="comp-year">2019</div>
+  <div>
+    <div class="comp-card" style="margin-bottom:12px">
+      <h4>Mersin '19 Off-Season</h4>
+      <div class="loc">Mersin · Türkiye</div>
+    </div>
+    <div class="comp-card">
+      <h4>Ankara '19 Off-Season</h4>
+      <div class="loc" data-tr="Çaylak öncesi katılım" data-en="Pre-rookie participation">Çaylak öncesi katılım</div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════ FIRST/FRC/FYF PAGE ═══════════════════ -->
+<div class="page" id="page-first">
+  <section class="section" style="padding-top:140px">
+    <div class="section-inner center" data-reveal="">
+      <div class="section__tag" data-tr="EKOSİSTEM" data-en="ECOSYSTEM">EKOSİSTEM</div>
+      <h2 class="section__title" data-tr="FIRST, FRC &amp; FYF." data-en="FIRST, FRC &amp; FYF.">FIRST, FRC &amp; FYF.</h2>
+      <p class="section__sub" data-tr="İçinde yer aldığımız küresel ve yerel ekosistem. Fusion&#39;ı Fusion yapan yapı taşları." data-en="The global and local ecosystem we&#39;re part of. The building blocks that make Fusion, Fusion.">İçinde yer aldığımız küresel ve yerel ekosistem. Fusion'ı Fusion yapan yapı taşları.</p>
+    </div>
+
+    <div class="section-inner">
+      <div class="frf-grid">
+        <div class="frf-card" data-reveal="">
+          <div class="frf-logo">F</div>
+          <h3>FIRST</h3>
+          <small>For Inspiration &amp; Recognition of Science and Technology</small>
+          <p data-tr="Dean Kamen tarafından 1989&#39;da kurulan, 110+ ülkede milyonlarca genci bilim ve teknolojiyle buluşturan küresel oluşum. Vizyonumuzun temelinde FIRST&#39;in &#39;Gracious Professionalism&#39; felsefesi yatar." data-en="Founded by Dean Kamen in 1989, a global organization connecting millions of youth with science and technology in 110+ countries. The &#39;Gracious Professionalism&#39; philosophy of FIRST is at the core of our vision.">Dean Kamen tarafından 1989'da kurulan, 110+ ülkede milyonlarca genci bilim ve teknolojiyle buluşturan küresel oluşum. Vizyonumuzun temelinde FIRST'in 'Gracious Professionalism' felsefesi yatar.</p>
+        </div>
+        <div class="frf-card" data-reveal="">
+          <div class="frf-logo">FRC</div>
+          <h3>FRC</h3>
+          <small>FIRST Robotics Competition</small>
+          <p data-tr="Lise düzeyindeki en prestijli robotik yarışması. Her yıl Ocak&#39;ta açıklanan oyunla birlikte takımların sadece altı haftası vardır. 3000+ takım, 25+ ülke. Biz de bu arenadayız." data-en="The most prestigious high-school robotics competition. Teams have just six weeks after the game reveal in January. 3000+ teams in 25+ countries. We&#39;re in this arena.">Lise düzeyindeki en prestijli robotik yarışması. Her yıl Ocak'ta açıklanan oyunla birlikte takımların sadece altı haftası vardır. 3000+ takım, 25+ ülke. Biz de bu arenadayız.</p>
+        </div>
+        <div class="frf-card" data-reveal="">
+          <div class="frf-logo">FYF</div>
+          <h3>FYF</h3>
+          <small data-tr="Fikret Yüksel Vakfı" data-en="Fikret Yüksel Foundation">Füsun Yönder Vakfı</small>
+          <p data-tr="Türkiye’deki FIRST organizasyonunun tek temsilcisi ve FRC ekosisteminin resmi yürütücüsüdür. Bölgesel turnuvalardan teknik rehberliğe kadar tüm süreci yöneten, robotlarımızı sahaya çıkaran ve bu dev organizasyonu kurgulayan ana çatı yapıdır." data-en="It is the sole representative of the FIRST organization in Turkey and the official executor of the FRC ecosystem. It is the main umbrella organization that manages the entire process, from regional tournaments to technical guidance, puts our robots on the field, and designs this massive organization.".</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════ CONTACT PAGE ═══════════════════ -->
+<div class="page" id="page-contact">
+  <section class="section" style="padding-top:140px">
+    <div class="section-inner center" data-reveal="">
+      <div class="section__tag" data-tr="İLETİŞİM" data-en="CONTACT">İLETİŞİM</div>
+      <h2 class="section__title" data-tr="BİZE ULAŞIN." data-en="GET IN TOUCH">Bize ulaşın.</h2>
+      <p class="section__sub" data-tr="Soru, iş birliği veya okul ziyareti talebiniz için buradayız." data-en="We&#39;re here for questions, collaborations or school visit requests.">Soru, iş birliği veya okul ziyareti talebiniz için buradayız.</p>
+    </div>
+
+    <div class="section-inner">
+      <div class="contact__grid">
+        <div class="contact__info">
+          <a href="mailto:fusionrobotics7682@gmail.com" class="contact__item" data-testid="contact-email">
+            <div class="ic"><i class="uil uil-envelope-alt"></i></div>
+            <div><h4>Email</h4><span>fusionrobotics7682@gmail.com</span></div>
+          </a>
+          <a href="https://instagram.com/fusionrobotics7682" target="_blank" rel="noopener" class="contact__item" data-testid="contact-instagram">
+            <div class="ic"><i class="uil uil-instagram"></i></div>
+            <div><h4>Instagram</h4><span>@fusionrobotics7682</span></div>
+          </a>
+          <a href="https://youtube.com/@fusionrobotics7682" target="_blank" rel="noopener" class="contact__item" data-testid="contact-youtube">
+            <div class="ic"><i class="uil uil-youtube"></i></div>
+            <div><h4>YouTube</h4><span>fusionrobotics7682</span></div>
+          </a>
+          <a href="https://twitter.com/fusionrobotics" target="_blank" rel="noopener" class="contact__item" data-testid="contact-twitter">
+            <div class="ic"><i class="uil uil-twitter"></i></div>
+            <div><h4>Twitter/X</h4><span>@fusionrobotics</span></div>
+          </a>
+          <a href="https://github.com/fusionrobotics7682" target="_blank" rel="noopener" class="contact__item" data-testid="contact-github">
+            <div class="ic"><i class="uil uil-github"></i></div>
+            <div><h4>GitHub</h4><span>fusionrobotics7682</span></div>
+          </a>
+          <div class="contact__item">
+            <div class="ic"><i class="uil uil-map-marker"></i></div>
+            <div><h4 data-tr="Atölye / Adres" data-en="Workshop / Address">Atölye / Adres</h4>
+              <span data-tr="Füsun Yönder Anadolu Lisesi, Bahçelievler / İstanbul" data-en="Füsun Yönder Anatolian High School, Bahçelievler / Istanbul">Füsun Yönder Anadolu Lisesi, Bahçelievler / İstanbul</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact__form">
+          <div class="form-head" style="text-align:left;margin-bottom:22px">
+            <h3 data-tr="Mesaj Gönderin" data-en="Send a Message">Mesaj Gönderin</h3>
+            <p data-tr="En kısa sürede geri döneriz." data-en="We&#39;ll get back to you shortly.">En kısa sürede geri döneriz.</p>
+          </div>
+          <form id="contact-form" class="form-grid" data-testid="contact-form">
+            <div class="form-field"><label data-tr="İsim" data-en="Name">İsim</label><input type="text" name="name" required=""></div>
+            <div class="form-field"><label data-tr="E-posta" data-en="Email">E-posta</label><input type="email" name="email" required=""></div>
+            <div class="form-field full"><label data-tr="Konu" data-en="Subject">Konu</label><input type="text" name="subject" required=""></div>
+            <div class="form-field full"><label data-tr="Mesaj" data-en="Message">Mesaj</label><textarea name="message" required=""></textarea></div>
+            <div class="form-field full">
+              <button type="submit" class="btn btn-primary" style="width:auto;justify-self:start" data-testid="submit-contact"><i class="uil uil-message"></i><span data-tr="Mesaj Gönder" data-en="Send Message">Mesaj Gönder</span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MAP -->
+      <div class="map-wrap" data-reveal="">
+        <div class="map-wrap" data-reveal="">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.6266831988064!2d28.846115575745326!3d41.0115435192243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa4c8198d209f%3A0x23f25ec94f21680a!2sF%C3%BCsun%20Y%C3%B6nder%20Anadolu%20Lisesi!5e0!3m2!1str!2str!4v1777725800070!5m2!1str!2str"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="Füsun Yönder Anadolu Lisesi"
+    allowfullscreen="">
+  </iframe>
+</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="socials" style="justify-content:center;margin-bottom:22px">
+    <a href="mailto:fusionrobotics7682@gmail.com" class="social-ic"><i class="uil uil-envelope-alt"></i></a>
+    <a href="https://instagram.com/fusionrobotics7682" target="_blank" rel="noopener" class="social-ic"><i class="uil uil-instagram"></i></a>
+    <a href="https://youtube.com/@fusionrobotics7682" target="_blank" rel="noopener" class="social-ic"><i class="uil uil-youtube"></i></a>
+    <a href="https://twitter.com/fusionrobotics" target="_blank" rel="noopener" class="social-ic">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+    </svg>
+  </a>
+    <a href="https://github.com/fusionrobotics7682" target="_blank" rel="noopener" class="social-ic"><i class="uil uil-github"></i></a>
+  </div>
+  <p class="footer__copy">© 2026 · <b>Fusion Robotics #7682</b> · Füsun Yönder Anadolu Lisesi · Bahçelievler / İstanbul</p>
 </footer>
 
+<!-- TOAST -->
+<div id="toast"></div>
+
 <script>
-    // Reveal sistemini hemen çalıştır
-    const initReveal = () => {
-        const revealElements = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
 
-        revealElements.forEach(el => observer.observe(el));
+/* ================== GALLERY ZOOM ================== */
+document.querySelectorAll('.gal-item').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isZoomed = item.classList.contains('zoomed');
+    document.querySelectorAll('.gal-item').forEach(i => i.classList.remove('zoomed'));
+    if (!isZoomed) item.classList.add('zoomed');
+  });
+});
+
+document.addEventListener('click', () => {
+  document.querySelectorAll('.gal-item').forEach(i => i.classList.remove('zoomed'));
+});
+
+/* ================== LANGUAGE SWITCH ================== */
+const langBtns=document.querySelectorAll('.lang-btn');
+function setLang(lang){
+  document.documentElement.lang=lang;
+  langBtns.forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  document.querySelectorAll('[data-tr][data-en]').forEach(el=>{
+    const txt=lang==='tr'?el.dataset.tr:el.dataset.en;
+    // only replace direct text node, not children
+    const hasTextChildren=[...el.childNodes].some(n=>n.nodeType===3 && n.textContent.trim());
+    if(el.children.length===0 || hasTextChildren){
+      const textNode=[...el.childNodes].find(n=>n.nodeType===3 && n.textContent.trim());
+      if(textNode){textNode.textContent=txt;}else{el.textContent=txt;}
     }
+  });
+  localStorage.setItem('fusion-lang',lang);
+}
+langBtns.forEach(b=>b.addEventListener('click',(e)=>{e.stopPropagation();setLang(b.dataset.lang);}));
 
-    // Dil sistemini çalıştır
-    const initLang = () => {
-        const savedLang = localStorage.getItem('fusion_lang') || 'tr';
-        document.querySelectorAll('[data-tr]').forEach(el => {
-            el.textContent = el.getAttribute('data-' + savedLang);
-        });
-    }
+/* ================== PAGE NAVIGATION (SPA) ================== */
+const overlay=document.getElementById('atom-overlay');
+const pages=document.querySelectorAll('.page');
+const navLinks=document.querySelectorAll('.nav__link');
 
-    document.addEventListener('DOMContentLoaded', () => {
-        initReveal();
-        initLang();
+function goTo(pageId){
+  const target=document.getElementById('page-'+pageId);
+  if(!target || target.classList.contains('active'))return;
+
+  // Show atom transition
+  overlay.classList.add('show');
+
+  setTimeout(()=>{
+    pages.forEach(p=>p.classList.remove('active'));
+    target.classList.add('active');
+    // active nav link
+    navLinks.forEach(l=>l.classList.toggle('active', l.dataset.nav===pageId));
+    // scroll top
+    window.scrollTo({top:0,behavior:'instant'});
+    // re-observe reveals
+    setTimeout(()=>{
+      target.querySelectorAll('[data-reveal]').forEach(el=>{el.classList.remove('in');io.observe(el);});
+      animateBars();
+    },50);
+    // hide overlay
+    setTimeout(()=>overlay.classList.remove('show'),300);
+  },550);
+
+  // close mobile menu
+  document.getElementById('nav-menu').classList.remove('open');
+}
+
+document.querySelectorAll('[data-nav]').forEach(el=>{
+  el.addEventListener('click',(e)=>{
+    e.preventDefault();
+    goTo(el.dataset.nav);
+  });
+});
+
+/* Initial lang load AFTER page structure is ready */
+setLang(localStorage.getItem('fusion-lang')||'tr');
+
+/* ================== MOBILE NAV ================== */
+document.getElementById('nav-toggle').addEventListener('click',()=>{
+  document.getElementById('nav-menu').classList.toggle('open');
+});
+
+/* ================== HEADER SCROLL ================== */
+window.addEventListener('scroll',()=>{
+  const h=document.getElementById('header');
+  h.style.background=window.scrollY>50?'rgba(5,7,12,.94)':'rgba(5,7,12,.78)';
+});
+
+/* ================== REVEAL OBSERVER ================== */
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.1});
+document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+
+/* ================== DASHBOARD BARS ================== */
+function animateBars(){
+  document.querySelectorAll('.page.active .bar-fill').forEach(b=>{
+    const w=b.dataset.w||'60';
+    b.style.width='0%';
+    setTimeout(()=>{b.style.width=w+'%';},100);
+  });
+}
+animateBars();
+
+/* ================== EDUCATION TABS ================== */
+document.querySelectorAll('.edu-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    const key=tab.dataset.edu;
+    document.querySelectorAll('.edu-tab').forEach(t=>t.classList.toggle('active',t===tab));
+    document.querySelectorAll('.edu__content').forEach(c=>c.classList.toggle('active',c.dataset.eduContent===key));
+  });
+});
+
+/* ================== VIDEO CARD CLICK ================== */
+document.querySelectorAll('.video-card').forEach(v=>{
+  v.addEventListener('click',()=>toast(document.documentElement.lang==='en'?'Videos coming soon':'Videolar yakında eklenecek'));
+});
+
+/* ================== TOAST ================== */
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+/* ================== CONTACT FORM ================== */
+/* ================== CONTACT FORM ================== */
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzXr-_hXTBmyw1WIEgNQM4F3qMCxSmOi33BRTpNkIHVBRLJjOyDyzC6RICPhy5MG5bU-Q/exec";
+
+  const fd = new FormData(this);
+  const formData = {
+    school : "—",
+    city   : "—",
+    person : fd.get('name') || "",
+    email  : fd.get('email') || "",
+    type   : "İletişim: " + (fd.get('subject') || ""),
+    count  : "—",
+    notes  : fd.get('message') || ""
+  };
+
+  const btn = this.querySelector("button[type=submit]");
+  btn.disabled = true;
+  btn.innerHTML = '<i class="uil uil-spinner-alt"></i> Gönderiliyor...';
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
     });
-</script>
 
-</body>
-</html>
+    btn.innerHTML = '<i class="uil uil-check"></i> Gönderildi!';
+    btn.style.background = "#00c8ff";
+    this.reset();
+
+  } catch (err) {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="uil uil-message"></i> Tekrar Dene';
+    alert("Bir hata oluştu, lütfen tekrar deneyin.");
+  }
+});
+
+/* ================== SCHOOL FORM ================== */
+document.getElementById("school-form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzXr-_hXTBmyw1WIEgNQM4F3qMCxSmOi33BRTpNkIHVBRLJjOyDyzC6RICPhy5MG5bU-Q/exec";
+
+  const formData = {
+    school : this.school.value,
+    city   : this.city.value,
+    person : this.person.value,
+    email  : this.email.value,
+    type   : this.type.value,
+    count  : this.count.value,
+    notes  : this.notes.value
+  };
+
+const lang = document.documentElement.lang;
+btn.disabled = true;
+btn.innerHTML = `<i class="uil uil-spinner-alt"></i> ${lang === 'en' ? 'Sending...' : 'Gönderiliyor...'}`;
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+
+    btn.innerHTML = `<i class="uil uil-check"></i> ${lang === 'en' ? 'Sent!' : 'Gönderildi!'}`;
+    btn.style.background = "#00c8ff";
+    this.reset();
+
+  } catch (err) {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="uil uil-message"></i> Tekrar Dene';
+    alert("Bir hata oluştu, lütfen tekrar deneyin.");
+  }
+});
+
+/* ================== HASH LINK SUPPORT (optional) ================== */
+if(window.location.hash){
+  const p=window.location.hash.replace('#','');
+  setTimeout(()=>goTo(p),400);
+}
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f55bc1ca9cbe32f',t:'MTc3NzcxMTM2OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; visibility: hidden;" src="./Fusion Robotics #7682 · It should work in theory_files/saved_resource.html"></iframe><script defer="" src="./Fusion Robotics #7682 · It should work in theory_files/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;7f7b0fd8732c4326aae4b9d58d5c514a&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+
+<veepn-lock-screen><template shadowrootmode="open"><style>html{box-sizing:border-box;text-size-adjust:100%;word-break:normal;tab-size:4}*,:before,:after{background-repeat:no-repeat;box-sizing:border-box}:before,:after{text-decoration:inherit;vertical-align:inherit}*{padding:0;margin:0}hr{overflow:visible;height:0;color:inherit;border:0;border-top:1px solid}details,main{display:block}summary{display:list-item}small{font-size:80%}[hidden]{display:none!important}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}a{background-color:transparent}a:active,a:hover{outline-width:0}code,kbd,pre,samp{font-family:monospace}pre{font-size:1em}b,strong{font-weight:bolder}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{border-color:inherit;text-indent:0}iframe{border-style:none}input{border-radius:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{appearance:none}textarea{overflow:auto;resize:vertical}button,input,optgroup,select,textarea{font:inherit;color:inherit}optgroup{font-weight:700}button{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit],[role=button]{cursor:pointer}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button,html [type=button],[type=reset],[type=submit]{appearance:auto}button,input,select,textarea{background-color:transparent;border-style:none}button:-moz-focusring,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{outline:1px dotted ButtonText}select{appearance:none}a:focus,button:focus,input:focus,select:focus,textarea:focus{outline-width:0}select::-ms-expand{display:none}select::-ms-value{color:currentcolor}legend{border:0;color:inherit;display:table;white-space:normal;max-width:100%}::-webkit-file-upload-button{appearance:auto;color:inherit;font:inherit}[disabled]{cursor:default}img{border-style:none}progress{vertical-align:baseline}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-disabled=true]{cursor:default}ul,ol{list-style-type:none}figure{margin:0}@keyframes slide-in{0%{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}.gradient-blue{background:radial-gradient(106.41% 128.47% at 50.15% 128.47%,#23abff,#3066ff)}.gradient-green{background:radial-gradient(92.26% 118.88% at 50.15% .13%,#00c3c3,#00aab3)}.gradient-purple{background:radial-gradient(165.12% 115.56% at 50.15% .13%,#a15aff,#00a0eb)}.bg-blue{background-color:#f2f5ff}.bg-purple{background-color:#f7f0ff}.bg-green{background-color:#ebffed}.lock-screen{font-family:FigtreeVF,sans-serif;letter-spacing:normal;position:fixed;z-index:2147483638;right:24px;bottom:24px;width:327px;border-radius:24px;overflow:hidden;box-shadow:0 24px 32px #00000014;animation:slide-in .3s ease-in-out forwards}.lock-screen__content{position:relative;padding:24px 24px 64px}.lock-screen__close{position:absolute;top:16px;right:16px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;opacity:.5}.lock-screen__label{height:26px;width:fit-content;border-radius:50px;background-color:#fff3;padding-inline:16px;display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;font-size:12px;line-height:18px;margin:-8px auto 16px}.lock-screen__title{color:#fff;text-align:center;font-size:20px;line-height:28px;font-weight:600;margin-bottom:8px}.lock-screen__description{color:#f5f6f7;text-align:center;font-size:14px;line-height:20px}.lock-screen__description b{font-weight:600}.lock-screen__card{position:relative;z-index:1;margin-top:-44px;background-color:#fff;border-radius:24px;padding:32px 20px 20px}.lock-screen__inner{margin-bottom:24px}.lock-screen__submit{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:16px;height:40px;width:100%;border-radius:12px;padding-inline:16px;background-color:#f70;color:#fff;margin-bottom:16px}.lock-screen__skip{display:flex;align-items:center;justify-content:center;font-size:14px;line-height:20px;color:#82829c;margin-inline:auto}.price-card{border:1px solid #f2f2fc;background:linear-gradient(254.14deg,#fafbff .04%,#f5f8ff 100.04%);border-radius:24px;padding:24px 28px}.price-card__label{color:#4a5764;text-align:center;font-size:14px;line-height:20px;text-transform:uppercase;margin-bottom:16px}.price-card__price{display:flex;justify-content:center;align-items:flex-start;column-gap:2px;margin-bottom:12px}.price-card__currency{color:#515478;font-size:18px;line-height:28px}.price-card__number{color:#14142a;text-align:center;font-size:64px;line-height:54px}.price-card__wrap{display:flex;flex-direction:column}.price-card__decimal{color:#515478;font-size:18px;line-height:28px;font-weight:600}.price-card__period{color:#515478;font-size:14px;line-height:20px;margin-top:-6px}.price-card__discount{position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:12px}.price-card__discount-divider{position:absolute;z-index:0;top:50%;left:0;width:100%;height:1px;background-color:#dbe2f9;transform:translateY(-50%)}.price-card__discount-icon{position:absolute;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%)}.price-card__discount-text{position:relative;z-index:2;color:#fff;font-size:12px;font-weight:600;line-height:18px}.price-card__features{display:flex;align-items:center;justify-content:center;column-gap:16px}.price-card__feature{color:#222e3a;font-size:14px;line-height:20px;display:flex;align-items:center;gap:6px}.price-card__feature:before{content:"";display:block;width:4px;height:4px;background-color:#20df9e;border-radius:50%;flex-shrink:0}.features-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.features-list__item{display:flex;flex-direction:column;align-items:center;gap:6px}.features-list__icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center}.features-list__text{color:#293a53;text-align:center;font-size:16px;line-height:24px;letter-spacing:-.1px}</style></template><style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style></veepn-lock-screen></body></html>
